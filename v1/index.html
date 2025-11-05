@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>برنامه حرکت مترو تبریز</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://v1.fontapi.ir/css/Vazirmatn" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background-color: #f4f7f6;
+    }
+    .tabular-nums { font-variant-numeric: tabular-nums; }
+    .toggle-btn-active {
+      background-color: #2563EB;
+      color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .toggle-btn-inactive {
+      background-color: #f9fafb;
+      color: #374151;
+    }
+    select, button, input { font-family: inherit; }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+<div class="w-full max-w-2xl mx-auto">
+  <header class="mb-6 text-center">
+    <h1 class="text-4xl font-bold text-blue-800">برنامه حرکت مترو تبریز</h1>
+    <p class="text-gray-600 mt-2 text-lg">سریع‌ترین مسیر به مقصد شما</p>
+  </header>
+
+  <div class="bg-white rounded-xl shadow-lg p-6 mb-6 flex items-center justify-between border-t-4 border-blue-500">
+    <div class="flex items-center">
+      <svg class="w-12 h-12 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <div class="mr-4">
+        <div id="live-time" class="text-4xl font-bold text-gray-800 tabular-nums" style="direction:ltr;">--:--:--</div>
+        <div id="live-date" class="text-sm text-gray-500">...</div>
+      </div>
+    </div>
+    <div class="text-left">
+      <div class="text-sm font-medium text-gray-700">امروز:</div>
+      <div id="live-day-name" class="text-xl font-semibold text-blue-700">...</div>
+    </div>
+  </div>
+
+  <main class="bg-white rounded-xl shadow-lg p-6 sm:p-8">
+    <form id="schedule-form" class="space-y-6">
+      <fieldset id="form-fieldset" class="space-y-6" disabled>
+        <div>
+          <label for="station-select" class="block text-lg font-medium text-gray-700 mb-2">۱. ایستگاه مبدا را انتخاب کنید:</label>
+          <select id="station-select" class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg text-lg focus:ring-blue-500 focus:border-blue-500">
+            <option value="">-- انتخاب ایستگاه --</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-lg font-medium text-gray-700 mb-2">۲. مسیر خود را انتخاب کنید:</label>
+          <div id="direction-toggle-group" class="flex rounded-lg border border-gray-200 p-1 bg-gray-50">
+            <button type="button" class="w-1/2 p-2 rounded-md transition-colors toggle-btn-inactive" data-value="toElgoli">به سمت ائل‌گولی</button>
+            <button type="button" class="w-1/2 p-2 rounded-md transition-colors toggle-btn-active" data-value="toNoor">به سمت نور</button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-lg font-medium text-gray-700 mb-2">۳. نوع روز را انتخاب کنید:</label>
+          <div id="dayType-toggle-group" class="flex rounded-lg border border-gray-200 p-1 bg-gray-50">
+            <button type="button" class="w-1/2 p-2 rounded-md transition-colors toggle-btn-inactive" data-value="holidays">روز تعطیل و جمعه</button>
+            <button type="button" class="w-1/2 p-2 rounded-md transition-colors toggle-btn-active" data-value="weekdays">روز عادی</button>
+          </div>
+        </div>
+      </fieldset>
+
+      <div id="error-message" class="text-red-600 text-center font-medium hidden pt-2"></div>
+
+      <button type="submit" class="w-full bg-blue-600 text-white text-lg font-bold p-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors focus:ring-2 focus:ring-blue-500 disabled:opacity-50">
+        نمایش اولین قطار بعدی
+      </button>
+    </form>
+
+    <div id="result-container" class="mt-6 hidden">
+      <h2 class="text-xl font-semibold text-gray-800 mb-3">نتایج جستجو:</h2>
+      <div id="result-card" class="bg-blue-50 border-r-4 border-blue-500 p-4 rounded-lg shadow-sm">
+        <p class="text-lg">
+          <span id="result-message" class="text-gray-700"></span>
+          <strong id="result-time" class="text-2xl font-bold text-blue-700 tabular-nums"></strong>
+        </p>
+        <p id="all-times-message" class="text-sm text-gray-500 mt-2"></p>
+      </div>
+      <div id="all-times-container" class="mt-4 max-h-48 overflow-y-auto space-x-2 space-y-2 text-center" dir="ltr"></div>
+    </div>
+  </main>
+
+  <footer class="mt-6 text-center text-gray-500 text-sm">
+    <p>این پروژه متن‌باز است. داده‌ها از فایل رسمی مترو تبریز گرفته شده‌اند.</p>
+  </footer>
+</div>
+
+<script>
+let stationData = {};
+const liveTimeEl = document.getElementById('live-time');
+const liveDateEl = document.getElementById('live-date');
+const liveDayNameEl = document.getElementById('live-day-name');
+const form = document.getElementById('schedule-form');
+const fieldset = document.getElementById('form-fieldset');
+const stationSelect = document.getElementById('station-select');
+const errorEl = document.getElementById('error-message');
+const directionToggleGroup = document.getElementById('direction-toggle-group');
+const dayTypeToggleGroup = document.getElementById('dayType-toggle-group');
+const resultContainer = document.getElementById('result-container');
+const resultMessage = document.getElementById('result-message');
+const resultTime = document.getElementById('result-time');
+const allTimesMessage = document.getElementById('all-times-message');
+const allTimesContainer = document.getElementById('all-times-container');
+
+function updateTime() {
+  const now = new Date();
+  const locale = 'fa-IR';
+  liveTimeEl.textContent = now.toLocaleTimeString('en-US', { hour12: false });
+  liveDateEl.textContent = now.toLocaleDateString(locale, { year:'numeric', month:'long', day:'numeric' });
+  liveDayNameEl.textContent = now.toLocaleDateString(locale, { weekday:'long' });
+  const dayOfWeek = now.getDay();
+  const isHoliday = (dayOfWeek === 5);
+  const holidayBtn = dayTypeToggleGroup.querySelector('[data-value="holidays"]');
+  const weekdayBtn = dayTypeToggleGroup.querySelector('[data-value="weekdays"]');
+  activateToggleButton(isHoliday ? holidayBtn : weekdayBtn, dayTypeToggleGroup);
+}
+
+function setupToggle(group){
+  group.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', ()=> activateToggleButton(btn, group));
+  });
+}
+
+function activateToggleButton(activeBtn, group){
+  group.querySelectorAll('button').forEach(btn=>{
+    btn.classList.remove('toggle-btn-active');
+    btn.classList.add('toggle-btn-inactive');
+  });
+  activeBtn.classList.add('toggle-btn-active');
+  activeBtn.classList.remove('toggle-btn-inactive');
+}
+
+function populateStations(stations){
+  stations.forEach(st=>{
+    const opt=document.createElement('option');
+    opt.value=st;
+    opt.textContent=st;
+    stationSelect.appendChild(opt);
+  });
+}
+
+function timeToMinutes(t){ const [h,m]=t.split(':').map(Number); return h*60+m; }
+function findNextTrain(times, nowM){ return times.find(t=>timeToMinutes(t)>=nowM) || null; }
+
+function handleFormSubmit(e){
+  e.preventDefault();
+  errorEl.classList.add('hidden');
+  resultContainer.classList.add('hidden');
+  allTimesContainer.innerHTML='';
+  const st=stationSelect.value;
+  const dir=directionToggleGroup.querySelector('.toggle-btn-active').dataset.value;
+  const day=dayTypeToggleGroup.querySelector('.toggle-btn-active').dataset.value;
+  if(!st){ errorEl.textContent="لطفاً ایستگاه مبدا را انتخاب کنید."; errorEl.classList.remove('hidden'); return;}
+  const data=stationData[st];
+  if(!data){ errorEl.textContent="اطلاعاتی برای این ایستگاه یافت نشد."; errorEl.classList.remove('hidden'); return;}
+  const times=data[day][dir];
+  if(!times || times.length===0){
+    resultContainer.classList.remove('hidden');
+    resultMessage.textContent="در این مسیر قطاری وجود ندارد.";
+    resultTime.textContent=""; return;
+  }
+  const now=new Date();
+  const next=findNextTrain(times, now.getHours()*60+now.getMinutes());
+  resultContainer.classList.remove('hidden');
+  if(next){
+    resultMessage.textContent="اولین قطار بعدی در ساعت:";
+    resultTime.textContent=next;
+    allTimesMessage.textContent="تمام حرکت‌ها:";
+    times.forEach(t=>{
+      const tag=document.createElement('span');
+      tag.textContent=t;
+      tag.className="inline-block px-3 py-1 rounded-full text-sm font-medium tabular-nums "+(t===next?"bg-blue-600 text-white font-bold":"bg-gray-100 text-gray-700");
+      allTimesContainer.appendChild(tag);
+    });
+  }else{
+    resultMessage.textContent="تمام قطارهای امروز حرکت کرده‌اند.";
+    resultTime.textContent="پایان سرویس";
+  }
+}
+
+function showFatalError(msg){
+  errorEl.textContent=msg;
+  errorEl.classList.remove('hidden');
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  updateTime();
+  setInterval(updateTime,1000);
+  setupToggle(directionToggleGroup);
+  setupToggle(dayTypeToggleGroup);
+  fetch('schedule.json')
+    .then(r=>r.ok?r.json():Promise.reject(r))
+    .then(data=>{
+      stationData=data;
+      populateStations(Object.keys(data));
+      fieldset.disabled=false;
+      form.addEventListener('submit', handleFormSubmit);
+    })
+    .catch(err=>{
+      console.error(err);
+      showFatalError("خطا در بارگذاری داده‌ها. لطفاً دوباره تلاش کنید.");
+    });
+});
+</script>
+</body>
+</html>

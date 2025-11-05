@@ -1,0 +1,24 @@
+{
+    "name": "برنامه مترو تبریز",
+    "short_name": "مترو تبریز",
+    "description": "زمان‌بندی حرکت قطارهای مترو تبریز. اولین قطار بعدی را پیدا کنید.",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#3b82f6",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "https://placehold.co/192x192/3b82f6/white?text=Metro&font=sans-serif",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "https://placehold.co/512x512/3b82f6/white?text=Metro&font=sans-serif",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
+        }
+    ]
+}
