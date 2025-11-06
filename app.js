@@ -120,7 +120,7 @@ const metroDataManager = {
     stationNames: [], // نام ایستگاه‌ها از API بارگذاری خواهند شد
 
     // فاز ۴: به‌روزرسانی آدرس API
-    apiUrl: 'https.timemetro.onrender.com/api/schedule',
+    apiUrl: 'https://timemetro.onrender.com/api/schedule',
 
     /**
      * فاز ۱: بارگذاری داده‌ها از API
