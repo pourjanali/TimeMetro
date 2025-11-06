@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامه مترو تبریز</title>
+    <!-- استفاده از Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- فونت وزیرمتن -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- فاز ۴: افزودن آنالیتیکس - Google Analytics -->
+    <!-- TODO: 'G-XXXXXXXXXX' را با شناسه اندازه‌گیری (Measurement ID) خود جایگزین کنید -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <style>
+        /* اعمال فونت پیش‌فرض */
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            /* انیمیشن نرم برای تغییر رنگ */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* استایل سفارشی برای اسکرول بار در حالت دارک */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #2d3748;
+            /* رنگ تراک در حالت دارک */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #a8a8a8;
+            border-radius: 10px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #718096;
+            /* رنگ انگشتی در حالت دارک */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #888;
+        }
+
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+
+        /* حالت بارگذاری - برای فاز ۱ */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .dark #loading-overlay {
+            background-color: rgba(18, 24, 38, 0.8);
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            /* Light grey */
+            border-top: 5px solid #3b82f6;
+            /* Blue */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        .dark .loader {
+            border: 5px solid #4a5568;
+            border-top: 5px solid #60a5fa;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* برای مخفی کردن لودر */
+        #loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* استایل برای هایلایت قطار بعدی */
+        .next-train-highlight {
+            background-color: #dbeafe;
+            /* bg-blue-100 */
+            color: #1d4ed8;
+            /* text-blue-700 */
+            font-weight: 700;
+            /* font-bold */
+            border: 1px solid #93c5fd;
+            /* border-blue-300 */
+        }
+
+        .dark .next-train-highlight {
+            background-color: #1e3a8a;
+            /* dark:bg-blue-900 */
+            color: #93c5fd;
+            /* dark:text-blue-300 */
+            border-color: #3b82f6;
+            /* dark:border-blue-500 */
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-slate-900 text-gray-900 dark:text-gray-100 min-h-screen">
+
+    <!-- حالت بارگذاری - فاز ۱ -->
+    <div id="loading-overlay">
+        <div class="loader"></div>
+        <span class="mr-4 text-lg font-medium">در حال بارگذاری داده‌ها...</span>
+    </div>
+
+    <!-- هدر و کنترل‌ها -->
+    <header class="bg-white dark:bg-slate-800 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 max-w-5xl">
+            <!-- نوار بالایی -->
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400">برنامه هوشمند مترو تبریز</h1>
+
+                <!-- ویجت آب و هوا و دکمه تم -->
+                <div class="flex items-center space-x-2 sm:space-x-4 space-x-reverse">
+                    <!-- ویجت آب و هوا -->
+                    <div id="weather-widget"
+                        class="flex items-center space-x-1 space-x-reverse text-sm sm:text-base hidden">
+                        <span id="weather-temp" class="font-bold tabular-nums"></span>
+                        <span id="weather-desc"></span>
+                        <img id="weather-icon" src="" alt="Weather" class="w-8 h-8">
+                    </div>
+
+                    <!-- دکمه تغییر تم -->
+                    <button id="theme-toggle"
+                        class="p-2 rounded-full bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-slate-600 transition-colors">
+                        <!-- آیکون‌ها داخل اسکریپت لود می‌شوند -->
+                    </button>
+                </div>
+            </div>
+
+            <!-- تاریخ امروز -->
+            <div id="calendar-widget"
+                class="text-sm sm:text-base text-gray-600 dark:text-gray-400 text-center sm:text-right mb-4">
+                در حال بارگذاری تاریخ...
+            </div>
+
+            <!-- فرم انتخاب ایستگاه و روز -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label for="station-select" class="block text-sm font-medium mb-2">ایستگاه خود را انتخاب
+                        کنید:</label>
+                    <select id="station-select"
+                        class="w-full p-3 bg-gray-50 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                        <!-- گزینه‌ها توسط جاوااسکریپت پر می‌شوند -->
+                    </select>
+                </div>
+                <div>
+                    <label for="day-type-select" class="block text-sm font-medium mb-2">نوع روز را انتخاب کنید:</label>
+                    <select id="day-type-select"
+                        class="w-full p-3 bg-gray-50 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                        <option value="normal">روز عادی (شنبه تا پنج‌شنبه)</option>
+                        <option value="holiday">روز تعطیل (جمعه و تعطیلات رسمی)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- بخش نمایش نتایج -->
+    <main class="container mx-auto px-4 py-6 max-w-5xl">
+
+        <!-- فاز ۲: بخش قطار بعدی -->
+        <div id="next-train-summary" class="mb-6">
+            <!-- محتوای پویا برای قطارهای بعدی در اینجا قرار می‌گیرد -->
+        </div>
+
+        <div id="schedule-results" class="space-y-6">
+            <!-- نتایج توسط جاوااسکریپت در اینجا قرار می‌گیرند -->
+            <p class="text-center text-gray-500 dark:text-gray-400 text-lg mt-8">
+                لطفاً ایستگاه و نوع روز را برای نمایش جدول زمانی انتخاب کنید.
+            </p>
+        </div>
+    </main>
+
+    <script>
+        // =====================================================================
+        // ||                   مدیریت تم (تاریک/روشن)                     ||
+        // =====================================================================
+        const themeManager = {
+            themeToggle: document.getElementById('theme-toggle'),
+            sunIcon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M12 12a5 5 0 100-10 5 5 0 000 10z" /></svg>`,
+            moonIcon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" /></svg>`,
+
+            init: function () {
+                this.themeToggle.addEventListener('click', () => this.toggleTheme());
+                this.applyTheme();
+            },
+
+            applyTheme: function () {
+                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                    this.themeToggle.innerHTML = this.sunIcon;
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    this.themeToggle.innerHTML = this.moonIcon;
+                }
+            },
+
+            toggleTheme: function () {
+                if (localStorage.theme === 'dark') {
+                    localStorage.theme = 'light';
+                } else {
+                    localStorage.theme = 'dark';
+                }
+                this.applyTheme();
+            }
+        };
+
+        // =====================================================================
+        // ||                       ویجت آب و هوا (ساده)                      ||
+        // =====================================================================
+        const weatherWidget = {
+            apiKey: 'c0d0a520c9e671c6c03e48f1076b9117', // کلید API رایگان OpenWeatherMap
+            city: 'Tabriz',
+            units: 'metric',
+            lang: 'fa',
+            widget: document.getElementById('weather-widget'),
+            tempEl: document.getElementById('weather-temp'),
+            descEl: document.getElementById('weather-desc'),
+            iconEl: document.getElementById('weather-icon'),
+
+            init: async function () {
+                try {
+                    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=${this.units}&lang=${this.lang}&appid=${this.apiKey}`;
+                    const response = await fetch(apiUrl);
+                    if (!response.ok) throw new Error('Failed to fetch weather');
+                    const data = await response.json();
+
+                    this.tempEl.textContent = `${Math.round(data.main.temp)}°`;
+                    this.descEl.textContent = data.weather[0].description;
+                    this.iconEl.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+                    this.widget.classList.remove('hidden');
+
+                } catch (error) {
+                    console.error('Error fetching weather:', error);
+                    this.widget.classList.add('hidden'); // در صورت خطا، ویجت را مخفی کن
+                }
+            }
+        };
+
+        // =====================================================================
+        // ||                         ویجت تاریخ شمسی                       ||
+        // =====================================================================
+        const persianCalendar = {
+            widget: document.getElementById('calendar-widget'),
+            init: function () {
+                try {
+                    const today = new Date();
+                    const options = {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        weekday: 'long'
+                    };
+                    const formatter = new Intl.DateTimeFormat('fa-IR', options);
+                    this.widget.textContent = formatter.format(today);
+                } catch (error) {
+                    console.error('Error setting persian date:', error);
+                    this.widget.textContent = 'امروز';
+                }
+            }
+        };
+
+        // =====================================================================
+        // ||                مدیریت داده‌های مترو (فاز ۱)                   ||
+        // =====================================================================
+        const metroDataManager = {
+            metroData: null, // داده‌ها از API بارگذاری خواهند شد
+            stationNames: [], // نام ایستگاه‌ها از API بارگذاری خواهند شد
+
+            // فاز ۴: به‌روزرسانی آدرس API
+            // !!! مهم: این آدرس باید با آدرس سرور بک‌اند که آپلود کرده‌اید (مثلاً در Render.com) جایگزین شود
+            // apiUrl: 'http://localhost:3000/api/schedule', // آدرس محلی برای تست
+            apiUrl: 'https://timemetro.onrender.com/api/schedule', // <-- این آدرس را با URL بک‌اند خودتان جایگزین کنید
+
+            /**
+             * فاز ۱: بارگذاری داده‌ها از API
+             * این تابع اکنون async است و داده‌ها را از سرور fetch می‌کند
+             */
+            init: async function () {
+                try {
+                    const response = await fetch(this.apiUrl);
+                    if (!response.ok) {
+                        throw new Error(`خطا در دریافت داده‌ها: ${response.statusText}`);
+                    }
+                    const data = await response.json();
+
+                    this.metroData = data.scheduleData;
+                    this.stationNames = data.stationNames;
+
+                    console.log('داده‌های مترو با موفقیت از API دریافت شد.');
+
+                } catch (error) {
+                    console.error('مشکل جدی در بارگذاری داده‌های مترو:', error);
+                    // در صورت بروز خطا، می‌توان یک پیام مناسب به کاربر نشان داد
+                    document.getElementById('schedule-results').innerHTML = `
+                        <div class="text-center p-4 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 rounded-lg">
+                            <h3 class="font-bold">خطا در اتصال به سرور</h3>
+                            <p>امکان بارگذاری جدول زمانی وجود ندارد. لطفاً اتصال اینترنت خود را بررسی کرده و صفحه را دوباره بارگذاری کنید.</p>
+                        </div>
+                    `;
+                    // مخفی کردن لودر حتی در صورت خطا
+                    metroApp.hideLoading();
+                }
+            },
+
+            /**
+             * دریافت جدول زمانی برای یک ایستگاه، روز و جهت خاص
+             */
+            getSchedule: function (station, dayType, direction) {
+                if (!this.metroData) {
+                    console.error('داده‌های مترو هنوز بارگذاری نشده‌اند.');
+                    return [];
+                }
+                try {
+                    return this.metroData[dayType][direction][station] || [];
+                } catch (e) {
+                    console.error('خطا در دسترسی به داده‌ها:', station, dayType, direction, e);
+                    return []; // بازگشت آرایه خالی در صورت خطا
+                }
+            }
+        };
+
+        // =====================================================================
+        // ||                         منطق اصلی برنامه                       ||
+        // =====================================================================
+        const metroApp = {
+            stationSelect: document.getElementById('station-select'),
+            dayTypeSelect: document.getElementById('day-type-select'),
+            scheduleResults: document.getElementById('schedule-results'),
+            nextTrainSummary: document.getElementById('next-train-summary'), // فاز ۲
+            loadingOverlay: document.getElementById('loading-overlay'),
+            stationNames: [], // از metroDataManager پر می‌شود
+            updateInterval: null, // فاز ۲: برای به‌روزرسانی خودکار
+
+            init: function (stationNamesData) {
+                this.stationNames = stationNamesData;
+                this.populateStationSelect();
+
+                // اضافه کردن event listener ها
+                this.stationSelect.addEventListener('change', () => this.displaySchedule());
+                this.dayTypeSelect.addEventListener('change', () => this.displaySchedule());
+
+                // تنظیم نوع روز بر اساس تاریخ واقعی (اگر جمعه بود)
+                this.setDefaultDayType();
+
+                // نمایش اولیه
+                this.displaySchedule();
+
+                // فاز ۲: راه‌اندازی به‌روزرسانی خودکار هر ۶۰ ثانیه
+                if (this.updateInterval) clearInterval(this.updateInterval); // پاک کردن تایمر قبلی (اگر وجود داشت)
+                this.updateInterval = setInterval(() => this.displaySchedule(), 60000); // به‌روزرسانی هر 60 ثانیه
+            },
+
+            /**
+             * پر کردن منوی کشویی ایستگاه‌ها
+             */
+            populateStationSelect: function () {
+                if (!this.stationNames || this.stationNames.length === 0) {
+                    console.error("لیست نام ایستگاه‌ها خالی است.");
+                    return;
+                }
+
+                this.stationSelect.innerHTML = ''; // پاک کردن گزینه‌های قبلی
+                this.stationNames.forEach(station => {
+                    const option = document.createElement('option');
+                    option.value = station;
+                    option.textContent = station;
+                    this.stationSelect.appendChild(option);
+                });
+                // انتخاب ایستگاه اول به صورت پیش‌فرض
+                this.stationSelect.selectedIndex = 0;
+            },
+
+            /**
+             * تنظیم خودکار نوع روز (عادی/تعطیل) بر اساس روز هفته
+             */
+            setDefaultDayType: function () {
+                const today = new Date();
+                const dayOfWeek = today.getDay(); // 0 = یکشنبه, ... 5 = جمعه, 6 = شنبه
+
+                // در ایران، جمعه (5) روز تعطیل است
+                if (dayOfWeek === 5) {
+                    this.dayTypeSelect.value = 'holiday';
+                } else {
+                    this.dayTypeSelect.value = 'normal';
+                }
+            },
+
+            /**
+             * نمایش حالت بارگذاری (برای فاز ۱)
+             */
+            showLoading: function () {
+                this.loadingOverlay.classList.remove('hidden');
+            },
+
+            /**
+             * مخفی کردن حالت بارگذاری (برای فاز ۱)
+             */
+            hideLoading: function () {
+                this.loadingOverlay.classList.add('hidden');
+            },
+
+            /**
+             * فاز ۲: پیدا کردن قطارهای بعدی بر اساس زمان فعلی
+             * @param {string[]} times - آرایه زمان‌های حرکت (HH:MM:SS)
+             * @param {Date} now - آبجکت Date زمان فعلی
+             * @returns {object} - شامل { nearestTrain, nextThreeTrains }
+             */
+            _findNextTrains: function (times, now) {
+                const upcomingTrains = [];
+
+                for (const timeStr of times) {
+                    if (!timeStr || timeStr === "***") continue;
+
+                    const [hours, minutes, seconds] = timeStr.split(':').map(Number);
+                    const trainTime = new Date(now.getTime()); // کپی از زمان فعلی
+                    trainTime.setHours(hours, minutes, seconds, 0); // تنظیم زمان قطار برای امروز
+
+                    // اگر زمان قطار گذشته است، نادیده بگیر
+                    // یک پنجره کوچک (مثلاً ۱ دقیقه) برای قطارهایی که همین الان رسیده‌اند در نظر می‌گیریم
+                    if (trainTime.getTime() < now.getTime() - 30000) { // ۳۰ ثانیه تحمل
+                        continue;
+                    }
+
+                    // محاسبه اختلاف زمان به دقیقه
+                    const diffMs = trainTime.getTime() - now.getTime();
+                    const minutesUntil = Math.round(diffMs / 60000);
+
+                    upcomingTrains.push({
+                        time: timeStr.substring(0, 5), // "HH:MM"
+                        fullTime: timeStr, // "HH:MM:SS"
+                        minutesUntil: minutesUntil
+                    });
+                }
+
+                // اگر قطار نزدیکی پیدا شد
+                if (upcomingTrains.length > 0) {
+                    return {
+                        nearestTrain: upcomingTrains[0], // اولین مورد، نزدیک‌ترین است
+                        nextThreeTrains: upcomingTrains.slice(0, 3).map(t => t.fullTime) // ۳ قطار بعدی
+                    };
+                }
+
+                // اگر هیچ قطار بعدی پیدا نشد
+                return { nearestTrain: null, nextThreeTrains: [] };
+            },
+
+            /**
+             * فاز ۲: نمایش خلاصه قطارهای بعدی
+             */
+            _displayNextTrainSummary: function (toNoorData, toElGoliData) {
+                let html = '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+
+                const createSummaryCard = (title, data) => {
+                    let contentHtml = '';
+                    if (data.nearestTrain) {
+                        // اگر قطار در حال حاضر در ایستگاه است
+                        if (data.nearestTrain.minutesUntil <= 0) {
+                            contentHtml = `
+                                <p class="text-xl sm:text-2xl font-bold text-green-600 dark:text-green-400">
+                                    هم‌اکنون در ایستگاه
+                                </p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">
+                                    (ساعت حرکت: ${data.nearestTrain.time})
+                                </p>
+                             `;
+                        } else {
+                            // اگر قطار در آینده می‌آید
+                            contentHtml = `
+                                <p class="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400">
+                                    ${data.nearestTrain.minutesUntil} دقیقه دیگر
+                                </p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">
+                                    (ساعت ${data.nearestTrain.time})
+                                </p>
+                            `;
+                        }
+                    } else {
+                        // اگر قطاری در آینده نیامد
+                        contentHtml = `
+                            <p class="text-xl sm:text-2xl font-bold text-gray-500 dark:text-gray-400">
+                                قطار بعدی وجود ندارد
+                            </p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                (سرویس‌دهی پایان یافته است)
+                            </p>
+                        `;
+                    }
+
+                    return `
+                        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-4 text-center border border-gray-200 dark:border-slate-700">
+                            <h3 class="text-base sm:text-lg font-medium mb-2 text-gray-700 dark:text-gray-300">${title}</h3>
+                            ${contentHtml}
+                        </div>
+                    `;
+                };
+
+                // ساخت کارت‌ها
+                html += createSummaryCard('قطار بعدی به سمت نور', toNoorData);
+                html += createSummaryCard('قطار بعدی به سمت ائل گؤلی', toElGoliData);
+
+                html += '</div>';
+                this.nextTrainSummary.innerHTML = html;
+            },
+
+            /**
+             * نمایش جدول زمانی بر اساس انتخاب‌های کاربر
+             * (به‌روز شده برای فاز ۲)
+             */
+            displaySchedule: function () {
+                const station = this.stationSelect.value;
+                const dayType = this.dayTypeSelect.value;
+                const now = new Date(); // زمان فعلی برای محاسبه قطار بعدی
+
+                if (!station || !dayType) {
+                    this.scheduleResults.innerHTML = '<p class="text-center text-gray-500 dark:text-gray-400">لطفاً ایستگاه و نوع روز را انتخاب کنید.</p>';
+                    this.nextTrainSummary.innerHTML = ''; // پاک کردن خلاصه
+                    return;
+                }
+
+                // دریافت داده‌ها از metroDataManager
+                const timesToNoor = metroDataManager.getSchedule(station, dayType, 'toNoor');
+                const timesToElGoli = metroDataManager.getSchedule(station, dayType, 'toElGoli');
+
+                // فاز ۲: پیدا کردن قطارهای بعدی
+                const toNoorData = this._findNextTrains(timesToNoor, now);
+                const toElGoliData = this._findNextTrains(timesToElGoli, now);
+
+                // فاز ۲: نمایش خلاصه قطارهای بعدی
+                this._displayNextTrainSummary(toNoorData, toElGoliData);
+
+                // ساخت HTML نتایج (جدول کامل)
+                let html = `
+                    <h2 class="text-xl font-bold text-center mb-4">
+                        جدول زمانی کامل ایستگاه ${station} - ${this.dayTypeSelect.options[this.dayTypeSelect.selectedIndex].text}
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                `;
+
+                // کارت حرکت به سمت نور
+                html += this._createScheduleCard(
+                    'به سمت نور (ایستگاه پایانی: نور)',
+                    timesToNoor,
+                    'toNoor',
+                    station,
+                    toNoorData.nextThreeTrains // فاز ۲: پاس دادن ۳ قطار بعدی
+                );
+
+                // کارت حرکت به سمت ائل گؤلی
+                html += this._createScheduleCard(
+                    'به سمت ائل گؤلی (ایستگاه پایانی: ائل گؤلی)',
+                    timesToElGoli,
+                    'toElGoli',
+                    station,
+                    toElGoliData.nextThreeTrains // فاز ۲: پاس دادن ۳ قطار بعدی
+                );
+
+                html += '</div>';
+                this.scheduleResults.innerHTML = html;
+            },
+
+            /**
+             * تابع کمکی برای ساخت کارت HTML هر جهت
+             * (به‌روز شده برای فاز ۲)
+             * @param {string} title - عنوان کارت
+             * @param {string[]} times - آرایه زمان‌ها
+             * @param {string} directionKey - کلید جهت (toNoor یا toElGoli)
+             * @param {string} station - نام ایستگاه فعلی
+             * @param {string[]} nextTrains - (فاز ۲) آرایه ۳ قطار بعدی برای هایلایت
+             * @returns {string} - رشته HTML کارت
+             */
+            _createScheduleCard: function (title, times, directionKey, station, nextTrains = []) {
+                let cardHtml = `
+                    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-4 sm:p-6">
+                        <h3 class="text-lg font-semibold mb-4 border-b border-gray-200 dark:border-slate-700 pb-2">${title}</h3>
+                        <div class="flex flex-wrap gap-2 justify-center">
+                `;
+
+                if (!times || times.length === 0 || times.every(t => t === "***")) {
+                    let placeholder = "حرکتی برای این ایستگاه در این جهت ثبت نشده است.";
+
+                    // اگر ایستگاه پایانی باشد
+                    if (station === "ائل گؤلی" && directionKey === "toElGoli") placeholder = "(ایستگاه پایانی)";
+                    if (station === "نور" && directionKey === "toNoor") placeholder = "(ایستگاه پایانی)";
+
+                    cardHtml += `<span class="text-gray-500 dark:text-gray-400 p-2">${placeholder}</span>`;
+
+                } else {
+                    times.forEach(time => {
+                        if (time && time !== "***") {
+                            // حذف ثانیه برای نمایش تمیزتر
+                            const displayTime = time.substring(0, 5);
+
+                            // فاز ۲: بررسی برای هایلایت
+                            const isNextTrain = nextTrains.includes(time);
+                            const highlightClass = isNextTrain ? 'next-train-highlight' : 'bg-gray-100 dark:bg-slate-700';
+
+                            cardHtml += `
+                                <span class="${highlightClass} text-gray-800 dark:text-gray-200 rounded-md px-3 py-1 text-sm font-medium tabular-nums transition-colors">
+                                    ${displayTime}
+                                </span>`;
+                        }
+                    });
+                }
+
+                cardHtml += `
+                        </div>
+                    </div>
+                `;
+                return cardHtml;
+            }
+        };
+
+        // =====================================================================
+        // ||                      راه‌اندازی برنامه (Init)                       ||\
+        // =====================================================================
+        document.addEventListener('DOMContentLoaded', async () => {
+            // نمایش لودینگ قبل از هر کاری
+            metroApp.showLoading();
+
+            // راه‌اندازی ماژول‌ها (این‌ها نیازی به انتظار ندارند)
+            themeManager.init();
+            weatherWidget.init();
+            persianCalendar.init();
+
+            // ۱. ابتدا داده‌های مترو را از API دریافت می‌کنیم
+            // تابع init جدید در metroDataManager به صورت async است
+            await metroDataManager.init();
+
+            // ۲. فقط پس از دریافت موفقیت‌آمیز داده‌ها، برنامه اصلی را راه‌اندازی می‌کنیم
+            // و لیست ایستگاه‌ها را به آن پاس می‌دهیم
+            if (metroDataManager.metroData && metroDataManager.stationNames.length > 0) {
+                metroApp.init(metroDataManager.stationNames);
+            }
+
+            // ۳. پس از اتمام بارگذاری و راه‌اندازی، لودر را مخفی می‌کنیم
+            metroApp.hideLoading();
+        });
+
+    </script>
+</body>
+
+</html>
