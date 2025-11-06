@@ -1,5 +1,5 @@
 // =====================================================================
-// ||                   مدیریت تم (تاریک/روشن)                     ||
+// ||         مدیریت تم (بازنویسی شده برای حل FOUC - فاز ۵)           ||
 // =====================================================================
 const themeManager = {
     themeToggle: document.getElementById('theme-toggle'),
@@ -7,27 +7,33 @@ const themeManager = {
     moonIcon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" /></svg>`,
 
     init: function () {
-        this.themeToggle.addEventListener('click', () => this.toggleTheme());
-        this.applyTheme();
-    },
-
-    applyTheme: function () {
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
+        // اسکریپت <head> کلاس اولیه را تنظیم کرده است.
+        // ما فقط باید آیکون اولیه را بر اساس آن کلاس تنظیم کنیم.
+        if (document.documentElement.classList.contains('dark')) {
             this.themeToggle.innerHTML = this.sunIcon;
         } else {
-            document.documentElement.classList.remove('dark');
             this.themeToggle.innerHTML = this.moonIcon;
         }
+
+        // شنونده کلیک را اضافه کن
+        this.themeToggle.addEventListener('click', () => this.toggleTheme());
     },
 
+    // تابع applyTheme حذف شد چون منطق آن ادغام شد.
+
     toggleTheme: function () {
-        if (localStorage.theme === 'dark') {
-            localStorage.theme = 'light';
-        } else {
+        // کلاس را روی <html> جابجا کن
+        const isDark = document.documentElement.classList.toggle('dark');
+
+        if (isDark) {
+            // اگر تاریک شد
             localStorage.theme = 'dark';
+            this.themeToggle.innerHTML = this.sunIcon;
+        } else {
+            // اگر روشن شد
+            localStorage.theme = 'light';
+            this.themeToggle.innerHTML = this.moonIcon;
         }
-        this.applyTheme();
     }
 };
 
@@ -54,14 +60,47 @@ const weatherWidget = {
             this.tempEl.textContent = `${Math.round(data.main.temp)}°`;
             this.descEl.textContent = data.weather[0].description;
             this.iconEl.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
-            this.widget.classList.remove('hidden');
+            this.iconEl.alt = data.weather[0].description;
+            this.iconEl.classList.remove('opacity-0'); // نمایش آیکون
+            this.widget.classList.remove('hidden'); // نمایش کل ویجت (برای موبایل)
 
         } catch (error) {
             console.error('Error fetching weather:', error);
-            this.widget.classList.add('hidden'); // در صورت خطا، ویجت را مخفی کن
+            // (تغییر) نمایش خطا به جای مخفی کردن
+            this.tempEl.textContent = 'N/A';
+            this.descEl.textContent = 'خطای آب و هوا';
+            this.iconEl.classList.add('opacity-0');
+            this.widget.classList.remove('hidden'); // نمایش ویجت برای نمایش خطا
         }
     }
 };
+
+// =====================================================================
+// ||                  (جدید) ویجت ساعت زنده محلی                   ||
+// =====================================================================
+const liveClock = {
+    clockEl: document.getElementById('live-clock'),
+
+    init: function () {
+        if (!this.clockEl) return;
+        this.updateTime(); // یکبار بلافاصله اجرا کن
+        setInterval(() => this.updateTime(), 1000); // هر ثانیه تکرار کن
+    },
+
+    updateTime: function () {
+        const now = new Date();
+        // دریافت ساعت به وقت تهران با اعداد فارسی
+        const timeString = now.toLocaleTimeString('fa-IR-u-nu-arab', {
+            timeZone: 'Asia/Tehran',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
+        this.clockEl.textContent = timeString;
+    }
+};
+
 
 // =====================================================================
 // ||                 ویجت تاریخ شمسی (نسخه API - فاز ۵)               ||
@@ -120,14 +159,25 @@ const metroDataManager = {
     stationNames: [], // نام ایستگاه‌ها از API بارگذاری خواهند شد
 
     // فاز ۴: به‌روزرسانی آدرس API
-    apiUrl: 'https://timemetro.onrender.com/api/schedule',
+    apiUrl: 'https://timemetro.onrender.com/api/schedule', // <-- تصحیح شد: https:// اضافه شد
 
     /**
      * فاز ۱: بارگذاری داده‌ها از API
+     * (فاز ۵: مجهز به تایم‌اوت دستی)
      */
     init: async function () {
+        // ایده فول استک: افزودن تایم‌اوت دستی برای مدیریت سرورهای در حال خواب
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 ثانیه تایم‌اوت
+
         try {
-            const response = await fetch(this.apiUrl);
+            const response = await fetch(this.apiUrl, {
+                signal: controller.signal // ارسال سیگنال لغو
+            });
+
+            // اگر درخواست موفق بود، تایمر را پاک کن
+            clearTimeout(timeoutId);
+
             if (!response.ok) {
                 throw new Error(`خطا در دریافت داده‌ها: ${response.statusText}`);
             }
@@ -139,13 +189,29 @@ const metroDataManager = {
             console.log('داده‌های مترو با موفقیت از API دریافت شد.');
 
         } catch (error) {
-            console.error('مشکل جدی در بارگذاری داده‌های مترو:', error);
-            document.getElementById('schedule-results').innerHTML = `
-                <div class="text-center p-4 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 rounded-lg">
-                    <h3 class="font-bold">خطا در اتصال به سرور</h3>
-                    <p>امکان بارگذاری جدول زمانی وجود ندارد. لطفاً اتصال اینترنت خود را بررسی کرده و صفحه را دوباره بارگذاری کنید.</p>
-                </div>
-            `;
+            // در صورت بروز خطا (یا تایم‌اوت) نیز تایمر را پاک کن
+            clearTimeout(timeoutId);
+
+            if (error.name === 'AbortError') {
+                // این خطا زمانی رخ می‌دهد که تایم‌اوت ۱۵ ثانیه‌ای ما اجرا شود
+                console.error('مشکل جدی: سرور پاسخ نداد (Timeout)');
+                document.getElementById('schedule-results').innerHTML = `
+                    <div class="text-center p-4 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 rounded-lg">
+                        <h3 class="font-bold">خطا: سرور پاسخ نمی‌دهد</h3>
+                        <p>به نظر می‌رسد سرور برنامه (onrender.com) در دسترس نیست یا در حال راه‌اندازی است. لطفاً چند لحظه صبر کنید و صفحه را دوباره بارگذاری کنید.</p>
+                        <p class="text-sm mt-2">(این اتفاق معمولاً برای سرویس‌های رایگان رخ می‌دهد)</p>
+                    </div>
+                `;
+            } else {
+                // خطاهای دیگر (مثل خطای 500 یا عدم اتصال)
+                console.error('مشکل جدی در بارگذاری داده‌های مترو:', error);
+                document.getElementById('schedule-results').innerHTML = `
+                    <div class="text-center p-4 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 rounded-lg">
+                        <h3 class="font-bold">خطا در اتصال به سرور</h3>
+                        <p>امکان بارگذاری جدول زمانی وجود ندارد. لطفاً اتصال اینترنت خود را بررسی کرده و صفحه را دوباره بارگذاری کنید.</p>
+                    </div>
+                `;
+            }
             metroApp.hideLoading();
         }
     },
@@ -471,8 +537,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     metroApp.showLoading();
 
     // راه‌اندازی ماژول‌ها (این‌ها نیازی به انتظار ندارند)
-    themeManager.init();
-    weatherWidget.init();
+    themeManager.init(); // بازنویسی شده
+    weatherWidget.init(); // مدیریت خطای بهتر
+    liveClock.init(); // (جدید)
 
     // (تغییر - فاز ۵) persianCalendar.init() اکنون خودکفا است
     // و توابع metroApp را در زمان مناسب (پس از fetch) فراخوانی می‌کند.

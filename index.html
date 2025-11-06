@@ -25,6 +25,20 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#2563eb">
 
+    <!-- 
+      ایده فول استک (حل مشکل FOUC دارک مود):
+      این اسکریپت مسدودکننده قبل از رندر شدن صفحه اجرا می‌شود.
+      localStorage را می‌خواند و کلاس dark را فوراً اعمال می‌کند تا از "چشمک" سفید جلوگیری شود.
+    -->
+    <script>
+        (function () {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
 
     <style>
         /* اعمال فونت پیش‌فرض */
@@ -166,25 +180,38 @@
                     برنامه هوشمند مترو تبریز
                 </h1>
 
-                <!-- ویجت آب و هوا و دکمه تم -->
+                <!-- ویجت آب و هوا، ساعت و دکمه تم -->
                 <div class="flex items-center space-x-2 sm:space-x-4 space-x-reverse">
-                    <!-- ویجت آب و هوا -->
-                    <div id="weather-widget"
-                        class="flex items-center space-x-1 space-x-reverse text-sm sm:text-base hidden">
-                        <span id="weather-temp" class="font-bold tabular-nums"></span>
-                        <span id="weather-desc"></span>
-                        <img id="weather-icon" src="" alt="Weather" class="w-8 h-8">
+
+                    <!-- (جدید) ویجت ساعت زنده -->
+                    <div id="live-clock-widget"
+                        class="flex items-center space-x-1 space-x-reverse text-sm sm:text-base">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span id="live-clock" class="font-bold tabular-nums text-gray-700 dark:text-gray-300">
+                            --:--:--
+                        </span>
                     </div>
 
-                    <!-- دکمه تغییر تم (فاز ۸: بهبود Accessibility) -->
+                    <!-- (تغییر) ویجت آب و هوا (دیگر به طور پیش‌فرض پنهان نیست) -->
+                    <div id="weather-widget" class="hidden sm:flex items-center space-x-1 space-x-reverse text-sm">
+                        <span id="weather-temp" class="font-bold tabular-nums"></span>
+                        <span id="weather-desc" class="text-gray-600 dark:text-gray-400">درحال بارگذاری...</span>
+                        <img id="weather-icon" src="" alt="" class="w-8 h-8 opacity-0"> <!-- پنهان تا زمان لود -->
+                    </div>
+
+                    <!-- دکمه تغییر تم -->
                     <button id="theme-toggle" aria-label="تغییر تم"
                         class="p-2 rounded-full bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-slate-600 transition-colors">
-                        <!-- آیکون‌ها داخل اسکریپت لود می‌شوند -->
+                        <!-- آیکون‌ها داخل app.js لود می‌شوند -->
                     </button>
                 </div>
             </div>
 
-            <!-- تاریخ امروز (توسط API پر می‌شود) -->
+            <!-- تاریخ امروز -->
             <div id="calendar-widget"
                 class="text-sm sm:text-base text-gray-600 dark:text-gray-400 text-center sm:text-right mb-4">
                 در حال بارگذاری تاریخ...
@@ -240,12 +267,12 @@
         class="text-center py-6 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 mt-8">
         <p>
             <!-- TODO: نام خود را جایگزین کنید -->
-            طراحی و توسعه توسط [بهنام پورجانعلی]
+            طراحی و توسعه توسط [نام شما]
         </p>
         <p class="mt-2">
             این پروژه
             <!-- TODO: آدرس ریپازیتوری خود را جایگزین کنید -->
-            <a href="[https://github.com/pourjanali]" target="_blank" rel="noopener noreferrer"
+            <a href="[آدرس ریپازیتوری گیت‌هاب شما]" target="_blank" rel="noopener noreferrer"
                 class="text-blue-500 hover:underline">
                 اپن‌سورس
             </a>

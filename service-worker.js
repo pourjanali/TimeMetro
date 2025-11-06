@@ -4,8 +4,9 @@ const assetsToCache = [
     '/index.html',
     '/app.js', // کش کردن فایل جاوااسکریپت جدید
     'https://cdn.tailwindcss.com', // کش کردن Tailwind
-    'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap' // کش کردن فونت
-    // TODO: مسیر آیکون‌های PWA را اضافه کنید (e.g., '/icons/icon-192x192.png')
+    'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap', // کش کردن فونت
+    '/icons/icon-192x192.png', // (تکمیل شد) اضافه کردن آیکون PWA
+    '/icons/icon-512x512.png'  // (تکمیل شد) اضافه کردن آیکون PWA
 ];
 
 // رویداد نصب: فایل‌های اصلی برنامه را کش می‌کند
