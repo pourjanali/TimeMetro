@@ -1,52 +1,93 @@
-const CACHE_NAME = 'tabriz-metro-v1';
+// A simple, offline-first service worker
+
+const CACHE_NAME = 'tabriz-metro-v2'; // Incremented version
 const assetsToCache = [
     '/',
     '/index.html',
-    '/app.js', // کش کردن فایل جاوااسکریپت جدید
-    'https://cdn.tailwindcss.com', // کش کردن Tailwind
-    'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap', // کش کردن فونت
-    '/icons/icon-192x192.png', // (تکمیل شد) اضافه کردن آیکون PWA
-    '/icons/icon-512x512.png'  // (تکمیل شد) اضافه کردن آیکون PWA
+    '/app.js',
+    '/manifest.json',
+    'https://cdn.tailwindcss.com', // Cache Tailwind
+    'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap', // Cache font
+    // Note: Add icon paths if you have them, e.g., '/icons/icon-192x192.png'
 ];
 
-// رویداد نصب: فایل‌های اصلی برنامه را کش می‌کند
+// Event: install
+// Caches the core application assets
 self.addEventListener('install', event => {
     event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => {
-            console.log('کش باز شد، در حال افزودن فایل‌های پایه');
-            return cache.addAll(assetsToCache);
-        })
+        caches.open(CACHE_NAME)
+            .then(cache => {
+                console.log('Service Worker: Caching app shell');
+                return cache.addAll(assetsToCache);
+            })
+            .catch(error => {
+                console.error('Service Worker: Failed to cache app shell:', error);
+            })
     );
 });
 
-// رویداد fetch: درخواست‌ها را رهگیری می‌کند
-self.addEventListener('fetch', event => {
-    // برای APIهای خارجی (مثل آب و هوا، تقویم، و API خودمان) همیشه به شبکه بروید
-    if (event.request.url.includes('api.openweathermap.org') ||
-        event.request.url.includes('persian-calendar-api') ||
-        event.request.url.includes('timemetro.onrender.com')) {
+// Event: activate
+// Cleans up old caches
+self.addEventListener('activate', event => {
+    event.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => {
+                    if (cacheName !== CACHE_NAME) {
+                        console.log('Service Worker: Deleting old cache:', cacheName);
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        })
+    );
+    return self.clients.claim();
+});
 
-        event.respondWith(fetch(event.request));
+// Event: fetch
+// Implements a "Cache falling back to Network" strategy
+self.addEventListener('fetch', event => {
+    // We only want to cache GET requests
+    if (event.request.method !== 'GET') {
         return;
     }
 
-    // برای فایل‌های محلی (HTML, JS, CSS)، ابتدا کش را بررسی کن
     event.respondWith(
-        caches.match(event.request).then(response => {
-            // اگر در کش بود، آن را برگردان
-            if (response) {
-                return response;
-            }
-            // اگر نبود، از شبکه بگیر
-            return fetch(event.request).then(
-                networkResponse => {
-                    // (اختیاری) می‌توانید درخواست‌های موفق جدید را در کش ذخیره کنید
-                    // caches.open(CACHE_NAME).then(cache => {
-                    //     cache.put(event.request, networkResponse.clone());
-                    // });
-                    return networkResponse;
+        caches.match(event.request)
+            .then(cachedResponse => {
+                // 1. Try to get from cache
+                if (cachedResponse) {
+                    // Cache hit - return response
+                    return cachedResponse;
                 }
-            );
-        })
+
+                // 2. Not in cache - go to network
+                return fetch(event.request)
+                    .then(networkResponse => {
+                        // 3. (Optional) Cache the new response
+                        // Check if we received a valid response
+                        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+                            return networkResponse;
+                        }
+
+                        // IMPORTANT: Clone the response. A response is a stream
+                        // and because we want the browser to consume the response
+                        // as well as the cache consuming the response, we need
+                        // to clone it so we have two streams.
+                        const responseToCache = networkResponse.clone();
+
+                        caches.open(CACHE_NAME)
+                            .then(cache => {
+                                cache.put(event.request, responseToCache);
+                            });
+
+                        return networkResponse;
+                    })
+                    .catch(error => {
+                        // Network request failed (e.g., offline)
+                        console.log('Service Worker: Fetch failed; returning offline page or error.', error);
+                        // Here you could return an offline fallback page if you had one
+                    });
+            })
     );
 });

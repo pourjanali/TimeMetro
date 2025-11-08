@@ -1,11 +1,11 @@
 {
     "name": "برنامه مترو تبریز",
     "short_name": "مترو تبریز",
-    "description": "برنامه هوشمند و آنلاین حرکت قطارهای مترو تبریز",
+    "description": "برنامه هوشمند و آفلاین حرکت قطارهای مترو تبریز",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#f3f4f6",
-    "theme_color": "#2563eb",
+    "background_color": "#111827",
+    "theme_color": "#1f2937",
     "icons": [
         {
             "src": "icons/icon-192x192.png",

@@ -1,278 +1,197 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<!-- Adding class="dark" to force dark mode -->
+<html lang="fa" dir="rtl" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>برنامه مترو تبریز</title>
-    <!-- استفاده از Tailwind CSS -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- فونت وزیرمتن -->
+    <!-- Vazirmatn Font -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <!-- فاز ۴: افزودن آنالیتیکس - Google Analytics -->
-    <!-- TODO: 'G-XXXXXXXXXX' را با شناسه اندازه‌گیری (Measurement ID) خود جایگزین کنید -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-    </script>
-
-    <!-- فاز ۶: افزودن مانیفست PWA -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#2563eb">
+    <meta name="theme-color" content="#1f2937"> <!-- Dark theme color -->
 
-    <!-- 
-      ایده فول استک (حل مشکل FOUC دارک مود):
-      این اسکریپت مسدودکننده قبل از رندر شدن صفحه اجرا می‌شود.
-      localStorage را می‌خواند و کلاس dark را فوراً اعمال می‌کند تا از "چشمک" سفید جلوگیری شود.
-    -->
-    <script>
-        (function () {
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        })();
-    </script>
-
+    <!-- Inline styles to apply dark mode instantly and set font -->
     <style>
-        /* اعمال فونت پیش‌فرض */
         body {
             font-family: 'Vazirmatn', sans-serif;
+            /* Instant dark background */
+            background-color: #111827;
         }
 
-        /* فاز ۴: بهبود انیمیشن تغییر تم */
-        body,
-        .bg-white,
-        .bg-gray-100,
-        .bg-gray-800,
-        .bg-gray-900,
-        .text-gray-900,
-        .text-gray-100,
-        .border-gray-300,
-        .border-gray-700,
-        .bg-slate-800,
-        .bg-slate-900,
-        .dark .bg-slate-700,
-        .dark .border-slate-600,
-        .dark .bg-slate-800 {
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-
-
-        /* استایل سفارشی برای اسکرول بار در حالت دارک */
+        /* Custom scrollbar for dark mode */
         ::-webkit-scrollbar {
             width: 8px;
-            height: 8px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-
-        .dark ::-webkit-scrollbar-track {
-            background: #2d3748;
+            background: #1f2937;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #a8a8a8;
-            border-radius: 10px;
-        }
-
-        .dark ::-webkit-scrollbar-thumb {
-            background: #718096;
+            background: #4b5563;
+            border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #888;
-        }
-
-        .dark ::-webkit-scrollbar-thumb:hover {
-            background: #a0aec0;
-        }
-
-        /* حالت بارگذاری */
-        #loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
-
-        .dark #loading-overlay {
-            background-color: rgba(18, 24, 38, 0.8);
-        }
-
-        .loader {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #3b82f6;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-        }
-
-        .dark .loader {
-            border: 5px solid #4a5568;
-            border-top: 5px solid #60a5fa;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        #loading-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        /* استایل برای هایلایت قطار بعدی */
-        .next-train-highlight {
-            background-color: #dbeafe;
-            color: #1d4ed8;
-            font-weight: 700;
-            border: 1px solid #93c5fd;
-        }
-
-        .dark .next-train-highlight {
-            background-color: #1e3a8a;
-            color: #93c5fd;
-            border-color: #3b82f6;
+            background: #6b7280;
         }
     </style>
+
+    <!-- Tailwind dark mode configuration (using class) -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // This tells Tailwind to use the class on the <html> tag
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Vazirmatn', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
-<body class="bg-gray-100 dark:bg-slate-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+<body class="bg-gray-900 text-gray-100 min-h-screen antialiased">
 
-    <!-- حالت بارگذاری -->
-    <div id="loading-overlay">
-        <div class="loader"></div>
-        <span class="mr-4 text-lg font-medium">در حال بارگذاری داده‌ها...</span>
-    </div>
+    <!-- Header -->
+    <header class="sticky top-0 z-10 bg-gray-900/80 backdrop-blur-md shadow-lg border-b border-gray-700">
+        <div class="container mx-auto max-w-3xl px-4 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-blue-400">برنامه مترو تبریز</h1>
 
-    <!-- هدر و کنترل‌ها -->
-    <header class="bg-white dark:bg-slate-800 shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 max-w-5xl">
-            <!-- نوار بالایی -->
-            <div class="flex justify-between items-center mb-4">
-                <!-- فاز ۵: بهبود ریسپانسیو عنوان -->
-                <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400">
-                    برنامه هوشمند مترو تبریز
-                </h1>
-
-                <!-- ویجت آب و هوا، ساعت و دکمه تم -->
-                <div class="flex items-center space-x-2 sm:space-x-4 space-x-reverse">
-
-                    <!-- (جدید) ویجت ساعت زنده -->
-                    <div id="live-clock-widget"
-                        class="flex items-center space-x-1 space-x-reverse text-sm sm:text-base">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span id="live-clock" class="font-bold tabular-nums text-gray-700 dark:text-gray-300">
+                <!-- Clock and Date Container -->
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <!-- Clock Vector Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div class="flex flex-col items-end">
+                        <!-- Live Clock -->
+                        <div id="live-clock" class="text-xl font-medium tabular-nums text-gray-200">
                             --:--:--
-                        </span>
+                        </div>
+                        <!-- Persian Date -->
+                        <div id="persian-date" class="text-sm text-gray-400">
+                            ...
+                        </div>
                     </div>
-
-                    <!-- (تغییر) ویجت آب و هوا (دیگر به طور پیش‌فرض پنهان نیست) -->
-                    <div id="weather-widget" class="hidden sm:flex items-center space-x-1 space-x-reverse text-sm">
-                        <span id="weather-temp" class="font-bold tabular-nums"></span>
-                        <span id="weather-desc" class="text-gray-600 dark:text-gray-400">درحال بارگذاری...</span>
-                        <img id="weather-icon" src="" alt="" class="w-8 h-8 opacity-0"> <!-- پنهان تا زمان لود -->
-                    </div>
-
-                    <!-- دکمه تغییر تم -->
-                    <button id="theme-toggle" aria-label="تغییر تم"
-                        class="p-2 rounded-full bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-slate-600 transition-colors">
-                        <!-- آیکون‌ها داخل app.js لود می‌شوند -->
-                    </button>
-                </div>
-            </div>
-
-            <!-- تاریخ امروز -->
-            <div id="calendar-widget"
-                class="text-sm sm:text-base text-gray-600 dark:text-gray-400 text-center sm:text-right mb-4">
-                در حال بارگذاری تاریخ...
-            </div>
-
-            <!-- فرم انتخاب ایستگاه و روز -->
-            <!-- فاز ۵: بهبود ریسپانسیو گرید (اعمال gap-4 که از قبل بود) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                    <label for="station-select" class="block text-sm font-medium mb-2">ایستگاه خود را انتخاب
-                        کنید:</label>
-                    <select id="station-select"
-                        class="w-full p-3 bg-gray-50 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
-                        <!-- گزینه‌ها توسط جاوااسکریپت پر می‌شوند -->
-                    </select>
-                </div>
-                <div>
-                    <label for="day-type-select" class="block text-sm font-medium mb-2">نوع روز:</label>
-                    <select id="day-type-select"
-                        class="w-full p-3 bg-gray-50 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
-                        <!-- 
-                            (تغییر - فاز ۵) 
-                            مقدار 'normal' به 'normal' تغییر کرد تا با API تقویم (که تعطیل نیست) هماهنگ باشد
-                            و مقدار 'holiday' برای تعطیلات.
-                            ماژول persianCalendar این مقادیر را تنظیم می‌کند.
-                        -->
-                        <option value="normal">روز عادی (شنبه تا پنج‌شنبه)</option>
-                        <option value="holiday">روز تعطیل (جمعه و تعطیلات رسمی)</option>
-                    </select>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- بخش نمایش نتایج -->
-    <main class="container mx-auto px-4 py-6 max-w-5xl flex-grow">
+    <!-- Main Content -->
+    <main class="container mx-auto max-w-3xl px-4 py-6">
 
-        <!-- فاز ۲: بخش قطار بعدی -->
-        <div id="next-train-summary" class="mb-6">
-            <!-- محتوای پویا برای قطارهای بعدی در اینجا قرار می‌گیرد -->
+        <!-- Controls -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <!-- Station Selection -->
+            <div>
+                <label for="station-select" class="block text-sm font-medium text-gray-300 mb-2">ایستگاه:</label>
+                <select id="station-select"
+                    class="block w-full rounded-lg border-gray-600 bg-gray-800 p-3 text-gray-100 shadow-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    <!-- Options will be added by JS -->
+                </select>
+            </div>
+
+            <!-- Day Type Selection -->
+            <div>
+                <label for="day-type-select" class="block text-sm font-medium text-gray-300 mb-2">نوع روز:</label>
+                <select id="day-type-select"
+                    class="block w-full rounded-lg border-gray-600 bg-gray-800 p-3 text-gray-100 shadow-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    <option value="normal">روز عادی</option>
+                    <option value="holiday">روز تعطیل / جمعه</option>
+                </select>
+            </div>
         </div>
 
-        <div id="schedule-results" class="space-y-6">
-            <!-- نتایج توسط جاوااسکریپت در اینجا قرار می‌گیرند -->
-            <p class="text-center text-gray-500 dark:text-gray-400 text-lg mt-8">
+        <!-- Loading Spinner (hidden by default) -->
+        <div id="loading" class="text-center py-10 hidden">
+            <div
+                class="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-blue-400 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]">
+            </div>
+            <p class="mt-4 text-gray-400">در حال بارگذاری اطلاعات...</p>
+        </div>
+
+        <!-- NEW: Next 2 Trains Summary Section -->
+        <div id="summary-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 hidden">
+            <!-- Summary Box 1: Direction 1 -->
+            <div id="summary-dir-1" class="bg-gray-800 rounded-lg shadow-lg border border-gray-700 overflow-hidden">
+                <div class="px-5 py-4 bg-gray-700/50">
+                    <h3 id="summary-dir-1-title" class="text-lg font-semibold text-gray-100">...</h3>
+                </div>
+                <div class="p-5 space-y-3">
+                    <!-- Next Train -->
+                    <div class="flex items-center justify-between pb-3 border-b border-gray-700">
+                        <span class="text-blue-400 font-semibold">قطار بعدی:</span>
+                        <div class="text-left">
+                            <div id="summary-dir-1-next-time" class="text-3xl font-bold text-blue-300 tabular-nums">
+                                --:--
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 2nd Next Train -->
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-300">قطار بعد:</span>
+                        <span id="summary-dir-1-second-time"
+                            class="text-xl font-medium bg-gray-700 text-gray-200 rounded px-4 py-1 tabular-nums">--:--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Box 2: Direction 2 -->
+            <div id="summary-dir-2" class="bg-gray-800 rounded-lg shadow-lg border border-gray-700 overflow-hidden">
+                <div class="px-5 py-4 bg-gray-700/50">
+                    <h3 id="summary-dir-2-title" class="text-lg font-semibold text-gray-100">...</h3>
+                </div>
+                <div class="p-5 space-y-3">
+                    <!-- Next Train -->
+                    <div class="flex items-center justify-between pb-3 border-b border-gray-700">
+                        <span class="text-green-400 font-semibold">قطار بعدی:</span>
+                        <div class="text-left">
+                            <div id="summary-dir-2-next-time" class="text-3xl font-bold text-green-300 tabular-nums">
+                                --:--
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 2nd Next Train -->
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-300">قطار بعد:</span>
+                        <span id="summary-dir-2-second-time"
+                            class="text-xl font-medium bg-gray-700 text-gray-200 rounded px-4 py-1 tabular-nums">--:--</span>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- END of summary-container -->
+
+
+        <!-- Schedule Container (For Full Timetables) -->
+        <div id="schedule-container" class="space-y-6">
+            <!-- Initial Message -->
+            <p id="initial-message" class="text-center text-gray-400 text-lg mt-8">
                 لطفاً ایستگاه و نوع روز را برای نمایش جدول زمانی انتخاب کنید.
             </p>
+            <!-- Full timetable cards will be injected here by JS -->
         </div>
     </main>
 
-    <!-- فاز ۵: افزودن فوتر (مورد ۲) -->
-    <footer
-        class="text-center py-6 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 mt-8">
+    <!-- Footer -->
+    <footer class="text-center py-6 text-sm text-gray-500 border-t border-gray-700 mt-8">
         <p>
-            <!-- TODO: نام خود را جایگزین کنید -->
-            طراحی و توسعه توسط [نام شما]
+            طراحی و توسعه توسط بهنام
         </p>
         <p class="mt-2">
             این پروژه
-            <!-- TODO: آدرس ریپازیتوری خود را جایگزین کنید -->
-            <a href="[آدرس ریپازیتوری گیت‌هاب شما]" target="_blank" rel="noopener noreferrer"
+            <a href="https://github.com/Amirhosein-Ghoreishi/Tabriz-Metro-PWA" target="_blank" rel="noopener noreferrer"
                 class="text-blue-500 hover:underline">
                 اپن‌سورس
             </a>
@@ -281,12 +200,12 @@
     </footer>
 
 
-    <!-- فاز ۶: ثبت سرویس ورکر PWA -->
+    <!-- PWA Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/service-worker.js')
                 .then(registration => {
-                    console.log('سرویس ورکر با موفقیت ثبت شد:', registration);
+                    console.log('سرویس ورکر با موفقیت ثبت شد.');
                 })
                 .catch(error => {
                     console.log('ثبت سرویس ورکر با خطا مواجه شد:', error);
@@ -294,8 +213,9 @@
         }
     </script>
 
-    <!-- فاز ۸: اتصال فایل جاوااسکریپت خارجی -->
-    <script type="module" src="app.js" defer></script>
+    <!-- Main Application Logic -->
+    <script src="app.js"></script>
+
 </body>
 
 </html>
