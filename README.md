@@ -28,7 +28,7 @@
 
 ## 🌐 دمو
 
-[مشاهده برنامه در GitHub Pages](https://your-username.github.io/tabriz-metro)
+[مشاهده برنامه در وب سایت](https://timemetro.ir/)
 
 ## 🤝 مشارکت
 
