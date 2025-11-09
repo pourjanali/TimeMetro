@@ -64,7 +64,15 @@
     <header class="sticky top-0 z-10 bg-gray-900/80 backdrop-blur-md shadow-lg border-b border-gray-700">
         <div class="container mx-auto max-w-3xl px-4 py-4">
             <div class="flex justify-between items-center">
-                <h1 class="text-2xl font-bold text-blue-400">برنامه مترو تبریز</h1>
+                <!-- Logo and Title Container -->
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0">
+                        <img src="https://camo.githubusercontent.com/19edbc324e5e5662dfcec81ce19b9205d1791721d60af8af63063d539957f281/68747470733a2f2f696d672e69636f6e73382e636f6d2f666c75656e63792f39362f3030303030302f7375627761792e706e67"
+                            alt="مترو تبریز" class="h-10 w-10 rounded-lg bg-blue-500 p-1">
+                    </div>
+                    <h1 class="text-2xl font-bold text-blue-400">برنامه مترو تبریز</h1>
+                </div>
 
                 <!-- Clock and Date Container -->
                 <div class="flex items-center space-x-2 space-x-reverse">
@@ -137,13 +145,21 @@
                             <div id="summary-dir-1-next-time" class="text-3xl font-bold text-blue-300 tabular-nums">
                                 --:--
                             </div>
+                            <div id="summary-dir-1-countdown" class="text-sm text-blue-200 mt-1">
+                                -- دقیقه
+                            </div>
                         </div>
                     </div>
                     <!-- 2nd Next Train -->
                     <div class="flex items-center justify-between">
                         <span class="text-gray-300">قطار بعد:</span>
-                        <span id="summary-dir-1-second-time"
-                            class="text-xl font-medium bg-gray-700 text-gray-200 rounded px-4 py-1 tabular-nums">--:--</span>
+                        <div class="text-left">
+                            <span id="summary-dir-1-second-time"
+                                class="text-xl font-medium bg-gray-700 text-gray-200 rounded px-4 py-1 tabular-nums block">--:--</span>
+                            <div id="summary-dir-1-second-countdown" class="text-xs text-gray-400 mt-1 text-left">
+                                -- دقیقه
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -161,18 +177,25 @@
                             <div id="summary-dir-2-next-time" class="text-3xl font-bold text-green-300 tabular-nums">
                                 --:--
                             </div>
+                            <div id="summary-dir-2-countdown" class="text-sm text-green-200 mt-1">
+                                -- دقیقه
+                            </div>
                         </div>
                     </div>
                     <!-- 2nd Next Train -->
                     <div class="flex items-center justify-between">
                         <span class="text-gray-300">قطار بعد:</span>
-                        <span id="summary-dir-2-second-time"
-                            class="text-xl font-medium bg-gray-700 text-gray-200 rounded px-4 py-1 tabular-nums">--:--</span>
+                        <div class="text-left">
+                            <span id="summary-dir-2-second-time"
+                                class="text-xl font-medium bg-gray-700 text-gray-200 rounded px-4 py-1 tabular-nums block">--:--</span>
+                            <div id="summary-dir-2-second-countdown" class="text-xs text-gray-400 mt-1 text-left">
+                                -- دقیقه
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div> <!-- END of summary-container -->
-
 
         <!-- Schedule Container (For Full Timetables) -->
         <div id="schedule-container" class="space-y-6">

@@ -276,17 +276,38 @@ const metroApp = {
     loadingSpinner: document.getElementById('loading'),
     initialMessage: document.getElementById('initial-message'),
 
-    // NEW: Summary Card DOM Elements
+    // NEW: Summary Card DOM Elements (Updated with countdown)
     summaryContainer: document.getElementById('summary-container'),
     summaryDir1: {
         title: document.getElementById('summary-dir-1-title'),
         nextTime: document.getElementById('summary-dir-1-next-time'),
         secondTime: document.getElementById('summary-dir-1-second-time'),
+        countdown: document.getElementById('summary-dir-1-countdown'),
+        secondCountdown: document.getElementById('summary-dir-1-second-countdown'),
     },
     summaryDir2: {
         title: document.getElementById('summary-dir-2-title'),
         nextTime: document.getElementById('summary-dir-2-next-time'),
         secondTime: document.getElementById('summary-dir-2-second-time'),
+        countdown: document.getElementById('summary-dir-2-countdown'),
+        secondCountdown: document.getElementById('summary-dir-2-second-countdown'),
+    },
+    /**
+ * NEW: Calculates minutes remaining until a train time
+ * @param {string} trainTime - Train time in "HH:MM:SS" format
+ * @returns {number} Minutes remaining (rounded up)
+ */
+    calculateMinutesRemaining(trainTime) {
+        const now = new Date();
+        const [hours, minutes] = trainTime.split(':').map(Number);
+
+        const trainDate = new Date();
+        trainDate.setHours(hours, minutes, 0, 0);
+
+        const diffMs = trainDate - now;
+        const diffMinutes = Math.ceil(diffMs / (1000 * 60));
+
+        return Math.max(0, diffMinutes); // Return 0 if train has already passed
     },
 
 
@@ -401,7 +422,7 @@ const metroApp = {
     },
 
     /**
-     * NEW: Updates the "Next 2 Trains" summary boxes
+     * NEW: Updates the "Next 2 Trains" summary boxes with countdown
      * @param {string[]} direction1Times - Array of times for direction 1
      * @param {string[]} direction2Times - Array of times for direction 2
      * @param {object} data - The metro data object with headers
@@ -413,17 +434,27 @@ const metroApp = {
 
         if (nextTrainIndex1 !== -1) {
             // Next train
-            this.summaryDir1.nextTime.textContent = this.getDisplayTime(direction1Times[nextTrainIndex1]);
+            const nextTime1 = direction1Times[nextTrainIndex1];
+            this.summaryDir1.nextTime.textContent = this.getDisplayTime(nextTime1);
+            const minutes1 = this.calculateMinutesRemaining(nextTime1);
+            this.summaryDir1.countdown.textContent = `${minutes1} دقیقه`;
+
             // 2nd Next train
             if (direction1Times.length > nextTrainIndex1 + 1) {
-                this.summaryDir1.secondTime.textContent = this.getDisplayTime(direction1Times[nextTrainIndex1 + 1]);
+                const secondTime1 = direction1Times[nextTrainIndex1 + 1];
+                this.summaryDir1.secondTime.textContent = this.getDisplayTime(secondTime1);
+                const minutes2 = this.calculateMinutesRemaining(secondTime1);
+                this.summaryDir1.secondCountdown.textContent = `${minutes2} دقیقه`;
             } else {
-                this.summaryDir1.secondTime.textContent = "--:--"; // No second train
+                this.summaryDir1.secondTime.textContent = "--:--";
+                this.summaryDir1.secondCountdown.textContent = "-- دقیقه";
             }
         } else {
             // No more trains
             this.summaryDir1.nextTime.textContent = "--:--";
+            this.summaryDir1.countdown.textContent = "-- دقیقه";
             this.summaryDir1.secondTime.textContent = "--:--";
+            this.summaryDir1.secondCountdown.textContent = "-- دقیقه";
         }
 
         // --- Direction 2 ---
@@ -432,17 +463,27 @@ const metroApp = {
 
         if (nextTrainIndex2 !== -1) {
             // Next train
-            this.summaryDir2.nextTime.textContent = this.getDisplayTime(direction2Times[nextTrainIndex2]);
+            const nextTime2 = direction2Times[nextTrainIndex2];
+            this.summaryDir2.nextTime.textContent = this.getDisplayTime(nextTime2);
+            const minutes1 = this.calculateMinutesRemaining(nextTime2);
+            this.summaryDir2.countdown.textContent = `${minutes1} دقیقه`;
+
             // 2nd Next train
             if (direction2Times.length > nextTrainIndex2 + 1) {
-                this.summaryDir2.secondTime.textContent = this.getDisplayTime(direction2Times[nextTrainIndex2 + 1]);
+                const secondTime2 = direction2Times[nextTrainIndex2 + 1];
+                this.summaryDir2.secondTime.textContent = this.getDisplayTime(secondTime2);
+                const minutes2 = this.calculateMinutesRemaining(secondTime2);
+                this.summaryDir2.secondCountdown.textContent = `${minutes2} دقیقه`;
             } else {
-                this.summaryDir2.secondTime.textContent = "--:--"; // No second train
+                this.summaryDir2.secondTime.textContent = "--:--";
+                this.summaryDir2.secondCountdown.textContent = "-- دقیقه";
             }
         } else {
             // No more trains
             this.summaryDir2.nextTime.textContent = "--:--";
+            this.summaryDir2.countdown.textContent = "-- دقیقه";
             this.summaryDir2.secondTime.textContent = "--:--";
+            this.summaryDir2.secondCountdown.textContent = "-- دقیقه";
         }
 
         // Show the summary container
@@ -451,9 +492,15 @@ const metroApp = {
         }
     },
 
-
     /**
      * Creates an HTML card for a single direction's FULL schedule
+     * @param {string} title - The title for the card (e.g., direction name)
+     * @param {string[]} times - An array of time strings (HH:MM:SS)
+     * @param {string} themeColor - 'blue' or 'green' for highlighting
+     * @returns {string} HTML string for the card
+     */
+    /**
+     * Creates an HTML card for a single direction's FULL schedule with countdown
      * @param {string} title - The title for the card (e.g., direction name)
      * @param {string[]} times - An array of time strings (HH:MM:SS)
      * @param {string} themeColor - 'blue' or 'green' for highlighting
@@ -480,6 +527,7 @@ const metroApp = {
         times.forEach((time, index) => {
             const isNextTrain = (index === nextTrainIndex);
             const isPastTrain = (index < nextTrainIndex);
+            const minutesRemaining = this.calculateMinutesRemaining(time);
 
             let classes = "text-center rounded-md p-2 text-lg font-medium tabular-nums transition-colors ";
             let highlightClass = themeColor === 'blue' ? "bg-blue-600 text-white shadow-lg scale-105" : "bg-green-600 text-white shadow-lg scale-105";
@@ -496,9 +544,12 @@ const metroApp = {
             }
 
             timesHtml += `
-                <span class="${classes}">
-                    ${this.getDisplayTime(time)}
-                </span>`;
+                <div class="${classes}">
+                    <div class="font-bold">${this.getDisplayTime(time)}</div>
+                    <div class="text-xs mt-1 ${isNextTrain ? 'text-blue-100' : 'text-gray-400'}">
+                        ${isPastTrain ? 'گذشته' : `${minutesRemaining} دقیقه`}
+                    </div>
+                </div>`;
         });
 
         timesHtml += '</div>';
