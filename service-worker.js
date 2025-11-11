@@ -1,24 +1,32 @@
-// A simple, offline-first service worker
+// Enhanced service worker with update notifications
+const CACHE_NAME = 'tabriz-metro-v2.1.0';
+const APP_SHELL_CACHE = 'tabriz-metro-shell-v1';
 
-const CACHE_NAME = 'tabriz-metro-v2'; // Incremented version
 const assetsToCache = [
     '/',
     '/index.html',
     '/app.js',
     '/manifest.json',
-    'https://cdn.tailwindcss.com', // Cache Tailwind
-    'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap', // Cache font
-    // Note: Add icon paths if you have them, e.g., '/icons/icon-192x192.png'
+    '/privacy.html',
+    '/terms.html',
+    'https://cdn.tailwindcss.com',
+    'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap',
+    'https://img.icons8.com/fluency/96/000000/subway.png'
 ];
 
-// Event: install
-// Caches the core application assets
+// Install event - cache app shell
 self.addEventListener('install', event => {
+    console.log('Service Worker: Installing...');
+
     event.waitUntil(
-        caches.open(CACHE_NAME)
+        caches.open(APP_SHELL_CACHE)
             .then(cache => {
                 console.log('Service Worker: Caching app shell');
                 return cache.addAll(assetsToCache);
+            })
+            .then(() => {
+                console.log('Service Worker: Install completed');
+                return self.skipWaiting();
             })
             .catch(error => {
                 console.error('Service Worker: Failed to cache app shell:', error);
@@ -26,56 +34,50 @@ self.addEventListener('install', event => {
     );
 });
 
-// Event: activate
-// Cleans up old caches
+// Activate event - clean up old caches and claim clients
 self.addEventListener('activate', event => {
+    console.log('Service Worker: Activating...');
+
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames.map(cacheName => {
-                    if (cacheName !== CACHE_NAME) {
+                    if (cacheName !== CACHE_NAME && cacheName !== APP_SHELL_CACHE) {
                         console.log('Service Worker: Deleting old cache:', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
             );
+        }).then(() => {
+            console.log('Service Worker: Activate completed');
+            return self.clients.claim();
         })
     );
-    return self.clients.claim();
 });
 
-// Event: fetch
-// Implements a "Cache falling back to Network" strategy
+// Fetch event - cache first, then network strategy
 self.addEventListener('fetch', event => {
-    // We only want to cache GET requests
-    if (event.request.method !== 'GET') {
-        return;
-    }
+    // Skip non-GET requests
+    if (event.request.method !== 'GET') return;
 
     event.respondWith(
         caches.match(event.request)
             .then(cachedResponse => {
-                // 1. Try to get from cache
+                // Return cached version if available
                 if (cachedResponse) {
-                    // Cache hit - return response
                     return cachedResponse;
                 }
 
-                // 2. Not in cache - go to network
+                // Otherwise go to network
                 return fetch(event.request)
                     .then(networkResponse => {
-                        // 3. (Optional) Cache the new response
-                        // Check if we received a valid response
+                        // Check if valid response
                         if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
                             return networkResponse;
                         }
 
-                        // IMPORTANT: Clone the response. A response is a stream
-                        // and because we want the browser to consume the response
-                        // as well as the cache consuming the response, we need
-                        // to clone it so we have two streams.
+                        // Clone and cache the response
                         const responseToCache = networkResponse.clone();
-
                         caches.open(CACHE_NAME)
                             .then(cache => {
                                 cache.put(event.request, responseToCache);
@@ -83,11 +85,41 @@ self.addEventListener('fetch', event => {
 
                         return networkResponse;
                     })
-                    .catch(error => {
-                        // Network request failed (e.g., offline)
-                        console.log('Service Worker: Fetch failed; returning offline page or error.', error);
-                        // Here you could return an offline fallback page if you had one
+                    .catch(() => {
+                        // Network failed - you could return a custom offline page here
+                        console.log('Service Worker: Network request failed');
                     });
             })
     );
 });
+
+// Listen for messages from the app
+self.addEventListener('message', event => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+        self.skipWaiting();
+    }
+});
+
+// Check for updates periodically
+self.addEventListener('periodicsync', event => {
+    if (event.tag === 'update-check') {
+        event.waitUntil(checkForUpdates());
+    }
+});
+
+async function checkForUpdates() {
+    try {
+        const response = await fetch('/');
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const client = await self.clients.matchAll();
+        if (client && client.length) {
+            client[0].postMessage({
+                type: 'UPDATE_AVAILABLE',
+                message: 'بروزرسانی جدید موجود است'
+            });
+        }
+    } catch (error) {
+        console.log('Update check failed:', error);
+    }
+}
