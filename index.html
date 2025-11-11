@@ -12,8 +12,6 @@
     <!-- Vazirmatn Font -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#1f2937"> <!-- Dark theme color -->
 
     <!-- Inline styles to apply dark mode instantly and set font -->
@@ -264,20 +262,6 @@
             </p>
         </div>
     </footer>
-
-
-    <!-- PWA Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js')
-                .then(registration => {
-                    console.log('سرویس ورکر با موفقیت ثبت شد.');
-                })
-                .catch(error => {
-                    console.log('ثبت سرویس ورکر با خطا مواجه شد:', error);
-                });
-        }
-    </script>
 
     <!-- Main Application Logic -->
     <script src="app.js"></script>
