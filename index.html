@@ -240,20 +240,6 @@
                 مشاهده در GitHub
             </a>
         </div>
-        <!-- PWA Install Button in Footer -->
-        <div class="mb-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700 max-w-md mx-auto">
-            <p class="text-gray-300 mb-2">
-                برای نصب برنامه روی دستگاه خود:
-            </p>
-            <button id="manual-install-btn"
-                class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition-colors duration-200 text-sm font-medium">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                </svg>
-                نصب برنامه مترو
-            </button>
-        </div>
 
         <!-- Hosting Badge -->
         <div class="flex justify-center items-center mb-4">
@@ -295,20 +281,6 @@
 
     <!-- Main Application Logic -->
     <script src="app.js"></script>
-    <script>
-        // Manual install button
-        document.getElementById('manual-install-btn')?.addEventListener('click', async () => {
-            if (window.deferredPrompt) {
-                window.deferredPrompt.prompt();
-                const { outcome } = await window.deferredPrompt.userChoice;
-                console.log(`User response: ${outcome}`);
-                window.deferredPrompt = null;
-            } else {
-                // Show instructions for manual installation
-                alert('برای نصب برنامه:\n1. در مرورگر خود روی منو کلیک کنید\n2. گزینه "Add to Home Screen" یا "نصب برنامه" را انتخاب کنید');
-            }
-        });
-    </script>
 
 </body>
 
