@@ -53,3 +53,4 @@
 - **Cloudflare Pages** (برای میزبانی و توزیع)
 
 <div align="center">ساخته شده با ❤️ برای مردم عزیز تبریز</div>
+<div align="center">Made with ❤️ for the great people of Tabriz</div>
