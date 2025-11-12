@@ -16,13 +16,14 @@
 
 <div align="center">
   
-  ![لایسنس MIT](https://img.shields.io/github/license/pourjanali/TimeMetro?style=for-the-badge&label=لایسنس)
-  ![ستاره‌های گیت‌هاب](https://img.shields.io/github/stars/pourjanali/TimeMetro?style=for-the-badge&label=ستاره&color=yellow)
-  ![فورک‌های گیت‌هاب](https://img.shields.io/github/forks/pourjanali/TimeMetro?style=for-the-badge&label=فورک&color=green)
-  ![مشکلات باز](https://img.shields.io/github/issues/pourjanali/TimeMetro?style=for-the-badge&label=مشکلات&color=orange)
-  ![میزبانی شده در Cloudflare](https://img.shields.io/badge/Deploy-Cloudflare-blue?style=for-the-badge&logo=cloudflare)
+  ![MIT License](https://img.shields.io/github/license/pourjanali/TimeMetro?style=for-the-badge)
+  ![GitHub Stars](https://img.shields.io/github/stars/pourjanali/TimeMetro?style=for-the-badge&color=yellow)
+  ![GitHub Forks](https://img.shields.io/github/forks/pourjanali/TimeMetro?style=for-the-badge&color=green)
+  ![GitHub Issues](https://img.shields.io/github/issues/pourjanali/TimeMetro?style=for-the-badge&color=orange)
+  ![Cloudflare Pages](https://img.shields.io/badge/Deploy-Cloudflare-blue?style=for-the-badge&logo=cloudflare)
 
 </div>
+
 
 ## 🚇 درباره پروژه
 
