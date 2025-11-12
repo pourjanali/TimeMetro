@@ -1,140 +1,213 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حریم خصوصی - برنامه مترو تبریز</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Vazirmatn Font -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
 
+    <meta name="theme-color" content="#1f2937">
     <style>
         body {
             font-family: 'Vazirmatn', sans-serif;
             background-color: #111827;
-            color: #f9fafb;
-            line-height: 1.8;
-            margin: 0;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .container {
-            background-color: #1f2937;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 20px;
-            border: 1px solid #374151;
-        }
-
-        h1 {
-            color: #10b981;
-            text-align: center;
-            border-bottom: 2px solid #374151;
-            padding-bottom: 10px;
-        }
-
-        h2 {
-            color: #34d399;
-            margin-top: 25px;
-        }
-
-        .privacy-badge {
-            background: #065f46;
-            color: #a7f3d0;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            margin: 20px 0;
-            font-weight: bold;
-        }
-
-        .section {
-            margin-bottom: 25px;
-            padding: 15px;
-            background-color: #374151;
-            border-radius: 8px;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #374151;
-            color: #9ca3af;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: #34d399;
-            text-decoration: none;
-            padding: 8px 16px;
-            border: 1px solid #10b981;
-            border-radius: 5px;
-        }
-
-        .back-link:hover {
-            background-color: #10b981;
-            color: white;
         }
     </style>
 </head>
 
-<body>
-    <div class="container">
-        <h1>🔒 حریم خصوصی برنامه مترو تبریز</h1>
-
-        <div class="privacy-badge">
-            ✅ این برنامه هیچ داده‌ای از کاربران جمع‌آوری نمی‌کند
+<body class="bg-gray-900 text-gray-100 min-h-screen antialiased">
+    <!-- Header -->
+    <header class="sticky top-0 z-10 bg-gray-900/95 backdrop-blur-md shadow-xl border-b border-gray-700">
+        <div class="container mx-auto max-w-4xl px-4 py-4">
+            <div class="flex items-center justify-center space-x-4 space-x-reverse">
+                <div class="flex-shrink-0 bg-gradient-to-br from-blue-500 to-blue-600 p-2 rounded-xl shadow-lg">
+                    <img src="https://img.icons8.com/fluency/96/000000/subway.png" alt="لوگوی مترو تبریز"
+                        class="h-12 w-12 rounded-lg">
+                </div>
+                <div class="text-center">
+                    <h1
+                        class="text-2xl font-bold bg-gradient-to-l from-blue-400 to-green-400 bg-clip-text text-transparent">
+                        حریم خصوصی
+                    </h1>
+                    <p class="text-sm text-gray-300 mt-1">برنامه مترو تبریز</p>
+                </div>
+            </div>
         </div>
+    </header>
 
-        <div class="section">
-            <h2>📊 اطلاعات جمع‌آوری شده</h2>
-            <p><strong>هیچ اطلاعاتی جمع‌آوری نمی‌شود:</strong></p>
-            <p>• هیچ اطلاعات شخصی</p>
-            <p>• هیچ اطلاعات موقعیت مکانی</p>
-            <p>• هیچ اطلاعات استفاده از برنامه</p>
-            <p>• هیچ اطلاعات دستگاه</p>
-        </div>
+    <!-- Main Content -->
+    <main class="container mx-auto max-w-4xl px-4 py-8">
+        <div class="bg-gray-800/50 rounded-2xl p-8 border border-gray-700 shadow-lg">
+            <!-- Privacy Badge -->
+            <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-2xl p-6 mb-8 text-center">
+                <h2 class="text-2xl font-bold text-white mb-2">✅ هیچ داده‌ای جمع‌آوری نمی‌شود</h2>
+                <p class="text-green-100">این برنامه کاملاً محترم به حریم خصوصی شماست</p>
+            </div>
 
-        <div class="section">
-            <h2>💾 ذخیره‌سازی اطلاعات</h2>
-            <p>• تمام داده‌ها به صورت محلی در مرورگر شما ذخیره می‌شوند</p>
-            <p>• برای استفاده آفلاین، صفحه را بوکمارک کنید</p>
-        </div>
+            <!-- Information Collection -->
+            <div class="mb-8">
+                <h3
+                    class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                    <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span>اطلاعات جمع‌آوری شده</span>
+                </h3>
+                <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600">
+                    <p class="text-gray-300 text-center mb-4"><strong>این برنامه هیچ اطلاعاتی از کاربران جمع‌آوری
+                            نمی‌کند</strong></p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-red-400">❌ هیچ اطلاعات شخصی</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-red-400">❌ هیچ اطلاعات موقعیت مکانی</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-red-400">❌ هیچ اطلاعات استفاده از برنامه</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-red-400">❌ هیچ اطلاعات دستگاه</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="section">
-            <h2>🌐 دسترسی‌های سایت</h2>
-            <p>این سایت به هیچ دسترسی خاصی نیاز ندارد:</p>
-            <p>• ❌ دسترسی به موقعیت مکانی</p>
-            <p>• ❌ دسترسی به مخاطبین</p>
-            <p>• ❌ دسترسی به فایل‌ها</p>
-            <p>• ❌ دسترسی به دوربین</p>
-        </div>
+            <!-- Data Storage -->
+            <div class="mb-8">
+                <h3
+                    class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                    </svg>
+                    <span>ذخیره‌سازی اطلاعات</span>
+                </h3>
+                <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600 text-center">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-green-400 font-semibold">💾 ذخیره‌سازی محلی</p>
+                            <p class="text-gray-300 text-sm mt-2">تمام داده‌ها به صورت محلی در مرورگر شما ذخیره می‌شوند
+                            </p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-green-400 font-semibold">📱 استفاده آفلاین</p>
+                            <p class="text-gray-300 text-sm mt-2">برای استفاده آفلاین، صفحه را بوکمارک کنید</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="section">
-            <h2>🔍 سرویس‌های تحلیلی</h2>
-            <p>• از هیچ سرویس تحلیلی (Analytics) استفاده نمی‌شود</p>
-            <p>• از هیچ سرویس تبلیغاتی استفاده نمی‌شود</p>
-            <p>• تنها اتصال به CDN برای فونت و استایل‌ها</p>
-        </div>
+            <!-- Site Permissions -->
+            <div class="mb-8">
+                <h3
+                    class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                    <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <span>دسترسی‌های سایت</span>
+                </h3>
+                <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600">
+                    <p class="text-gray-300 text-center mb-4">این سایت به هیچ دسترسی خاصی نیاز ندارد</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-red-400">❌ دسترسی به موقعیت مکانی</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-red-400">❌ دسترسی به مخاطبین</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-red-400">❌ دسترسی به فایل‌ها</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-red-400">❌ دسترسی به دوربین</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="section">
-            <h2>📞 تماس با ما</h2>
-            <p>اگر سوالی درباره حریم خصوصی دارید، از طریق ریپازیتوری GitHub با ما در ارتباط باشید:</p>
-            <p style="text-align: center; background: #065f46; padding: 10px; border-radius: 5px;">
-                <a href="https://github.com/pourjanali/TimeMetro"
-                    style="color: white; text-decoration: none; font-weight: bold;">
-                    GitHub.com/pourjanali/TimeMetro
+            <!-- Analytics Services -->
+            <div class="mb-8">
+                <h3
+                    class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                    <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                    <span>سرویس‌های تحلیلی</span>
+                </h3>
+                <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600 text-center">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-red-400 font-semibold">📊 هیچ سرویس تحلیلی</p>
+                            <p class="text-gray-300 text-sm mt-2">از هیچ سرویس تحلیلی (Analytics) استفاده نمی‌شود</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-red-400 font-semibold">🚫 هیچ تبلیغاتی</p>
+                            <p class="text-gray-300 text-sm mt-2">از هیچ سرویس تبلیغاتی استفاده نمی‌شود</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-green-400 font-semibold">🌐 اتصال به CDN</p>
+                            <p class="text-gray-300 text-sm mt-2">تنها اتصال به CDN برای فونت و استایل‌ها</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="text-center">
+                <h3
+                    class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                    <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span>تماس با ما</span>
+                </h3>
+                <p class="text-gray-300 mb-6">اگر سوالی درباره حریم خصوصی دارید، از طریق ریپازیتوری GitHub با ما در
+                    ارتباط باشید:</p>
+
+                <a href="https://github.com/pourjanali/TimeMetro" target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center space-x-3 space-x-reverse bg-gray-800 hover:bg-gray-700 rounded-2xl px-6 py-4 transition-all duration-200 border border-gray-700 hover:border-blue-500">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    <div class="text-right">
+                        <p class="text-white font-bold">GitHub Repository</p>
+                        <p class="text-gray-400 text-sm">github.com/pourjanali/TimeMetro</p>
+                    </div>
                 </a>
-            </p>
+            </div>
         </div>
-        <div class="footer">
-            <p>ما به حریم خصوصی شما احترام می‌گذاریم</p>
-            <a href="index.html" class="back-link">← بازگشت به برنامه</a>
+
+        <!-- Back Button -->
+        <div class="text-center mt-8">
+            <a href="index.html"
+                class="inline-flex items-center space-x-2 space-x-reverse bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-2xl px-6 py-3 transition-all duration-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>بازگشت به برنامه</span>
+            </a>
         </div>
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-b from-gray-900 to-gray-950 border-t border-gray-800 mt-16">
+        <div class="container mx-auto max-w-4xl px-4 py-8 text-center">
+            <p class="text-gray-500 text-sm">© ۱۴۰۴ - تمامی حقوق محفوظ است | نسخه ۲.۰.۰</p>
+        </div>
+    </footer>
 </body>
 
 </html>

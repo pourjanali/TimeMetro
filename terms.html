@@ -1,135 +1,238 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>شرایط استفاده - برنامه مترو تبریز</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Vazirmatn Font -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
 
+    <meta name="theme-color" content="#1f2937">
     <style>
         body {
             font-family: 'Vazirmatn', sans-serif;
             background-color: #111827;
-            color: #f9fafb;
-            line-height: 1.8;
-            margin: 0;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .container {
-            background-color: #1f2937;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 20px;
-            border: 1px solid #374151;
-        }
-
-        h1 {
-            color: #3b82f6;
-            text-align: center;
-            border-bottom: 2px solid #374151;
-            padding-bottom: 10px;
-        }
-
-        h2 {
-            color: #60a5fa;
-            margin-top: 25px;
-        }
-
-        .section {
-            margin-bottom: 25px;
-            padding: 15px;
-            background-color: #374151;
-            border-radius: 8px;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #374151;
-            color: #9ca3af;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: #60a5fa;
-            text-decoration: none;
-            padding: 8px 16px;
-            border: 1px solid #3b82f6;
-            border-radius: 5px;
-        }
-
-        .back-link:hover {
-            background-color: #3b82f6;
-            color: white;
         }
     </style>
 </head>
 
-<body>
-    <div class="container">
-        <h1>📋 شرایط استفاده از برنامه مترو تبریز</h1>
-
-        <div class="section">
-            <h2>✅ پذیرش شرایط</h2>
-            <p>با استفاده از برنامه مترو تبریز، شما این شرایط استفاده را می‌پذیرید. لطفاً قبل از استفاده، این شرایط را
-                به دقت مطالعه کنید.</p>
+<body class="bg-gray-900 text-gray-100 min-h-screen antialiased">
+    <!-- Header -->
+    <header class="sticky top-0 z-10 bg-gray-900/95 backdrop-blur-md shadow-xl border-b border-gray-700">
+        <div class="container mx-auto max-w-4xl px-4 py-4">
+            <div class="flex items-center justify-center space-x-4 space-x-reverse">
+                <div class="flex-shrink-0 bg-gradient-to-br from-blue-500 to-blue-600 p-2 rounded-xl shadow-lg">
+                    <img src="https://img.icons8.com/fluency/96/000000/subway.png" alt="لوگوی مترو تبریز"
+                        class="h-12 w-12 rounded-lg">
+                </div>
+                <div class="text-center">
+                    <h1
+                        class="text-2xl font-bold bg-gradient-to-l from-blue-400 to-green-400 bg-clip-text text-transparent">
+                        شرایط استفاده
+                    </h1>
+                    <p class="text-sm text-gray-300 mt-1">برنامه مترو تبریز</p>
+                </div>
+            </div>
         </div>
+    </header>
 
-        <div class="section">
-            <h2>🎯 هدف برنامه</h2>
-            <p>این برنامه یک سرویس غیرانتفاعی است که اطلاعات زمان‌بندی مترو تبریز را به صورت آفلاین در اختیار کاربران
-                قرار می‌دهد.</p>
-        </div>
+    <!-- Main Content -->
+    <main class="container mx-auto max-w-4xl px-4 py-8">
+        <div class="bg-gray-800/50 rounded-2xl p-8 border border-gray-700 shadow-lg">
+            <!-- Acceptance Section -->
+            <div class="mb-8">
+                <h3
+                    class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>پذیرش شرایط</span>
+                </h3>
+                <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600 text-center">
+                    <p class="text-gray-300">
+                        با استفاده از برنامه مترو تبریز، شما این شرایط استفاده را می‌پذیرید.
+                        لطفاً قبل از استفاده، این شرایط را به دقت مطالعه کنید.
+                    </p>
+                </div>
+            </div>
 
-        <div class="section">
-            <h2>📊 دقت اطلاعات</h2>
-            <p>• اطلاعات زمان‌بندی بر اساس داده‌های رسمی ارائه می‌شود</p>
-            <p>• ممکن است به دلیل شرایط فنی یا تغییرات برنامه‌ریزی، اختلافاتی وجود داشته باشد</p>
-            <p>• توصیه می‌شود برای اطلاعات دقیق‌تر به اعلان‌های ایستگاه مراجعه کنید</p>
-        </div>
+            <!-- App Purpose -->
+            <div class="mb-8">
+                <h3
+                    class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                    <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <span>هدف برنامه</span>
+                </h3>
+                <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600 text-center">
+                    <p class="text-gray-300">
+                        این برنامه یک سرویس غیرانتفاعی است که اطلاعات زمان‌بندی مترو تبریز را
+                        به صورت آفلاین در اختیار کاربران قرار می‌دهد.
+                    </p>
+                </div>
+            </div>
 
-        <div class="section">
-            <h2>🔒 حریم خصوصی</h2>
-            <p>• این سایت هیچ داده‌ای از کاربران جمع‌آوری نمی‌کند</p>
-            <p>• هیچ اطلاعات شخصی ذخیره یا منتقل نمی‌شود</p>
-            <p>• تمام پردازش‌ها در دستگاه کاربر انجام می‌شود</p>
-        </div>
+            <!-- Information Accuracy -->
+            <div class="mb-8">
+                <h3
+                    class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                    <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <span>دقت اطلاعات</span>
+                </h3>
+                <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600">
+                    <div class="grid grid-cols-1 gap-4 text-center">
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-green-400 font-semibold">📅 اطلاعات بر اساس داده‌های رسمی</p>
+                            <p class="text-gray-300 text-sm mt-2">اطلاعات زمان‌بندی بر اساس داده‌های رسمی ارائه می‌شود
+                            </p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-yellow-400 font-semibold">⚠️ امکان اختلاف زمانی</p>
+                            <p class="text-gray-300 text-sm mt-2">ممکن است به دلیل شرایط فنی یا تغییرات برنامه‌ریزی،
+                                اختلافاتی وجود داشته باشد</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-blue-400 font-semibold">🔔 مراجعه به اعلان‌های ایستگاه</p>
+                            <p class="text-gray-300 text-sm mt-2">توصیه می‌شود برای اطلاعات دقیق‌تر به اعلان‌های ایستگاه
+                                مراجعه کنید</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="section">
-            <h2>⚖️ مسئولیت‌ها</h2>
-            <p>• توسعه‌دهنده مسئولیتی در قبال تاخیرها یا تغییرات برنامه‌ریزی ندارد</p>
-            <p>• کاربر موظف است از اطلاعات برنامه به صورت مسئولانه استفاده کند</p>
-            <p>• برنامه جایگزین اعلان‌های رسمی مترو نیست</p>
-        </div>
+            <!-- Privacy -->
+            <div class="mb-8">
+                <h3
+                    class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                    <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <span>حریم خصوصی</span>
+                </h3>
+                <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-red-400 font-semibold">🚫 هیچ داده‌ای جمع‌آوری نمی‌شود</p>
+                            <p class="text-gray-300 text-sm mt-2">این سایت هیچ داده‌ای از کاربران جمع‌آوری نمی‌کند</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-red-400 font-semibold">🔒 هیچ اطلاعات شخصی</p>
+                            <p class="text-gray-300 text-sm mt-2">هیچ اطلاعات شخصی ذخیره یا منتقل نمی‌شود</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-green-400 font-semibold">💻 پردازش محلی</p>
+                            <p class="text-gray-300 text-sm mt-2">تمام پردازش‌ها در دستگاه کاربر انجام می‌شود</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="section">
-            <h2>📝 تغییرات شرایط</h2>
-            <p>این شرایط استفاده ممکن است در آینده به روزرسانی شود. ادامه استفاده از برنامه به معنی پذیرش شرایط جدید
-                است.</p>
-        </div>
+            <!-- Responsibilities -->
+            <div class="mb-8">
+                <h3
+                    class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                    <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <span>مسئولیت‌ها</span>
+                </h3>
+                <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-yellow-400 font-semibold">⏰ عدم مسئولیت در تاخیرها</p>
+                            <p class="text-gray-300 text-sm mt-2">توسعه‌دهنده مسئولیتی در قبال تاخیرها یا تغییرات
+                                برنامه‌ریزی ندارد</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <p class="text-yellow-400 font-semibold">👤 استفاده مسئولانه</p>
+                            <p class="text-gray-300 text-sm mt-2">کاربر موظف است از اطلاعات برنامه به صورت مسئولانه
+                                استفاده کند</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 md:col-span-2">
+                            <p class="text-red-400 font-semibold">🚫 جایگزین اعلان‌های رسمی نیست</p>
+                            <p class="text-gray-300 text-sm mt-2">برنامه جایگزین اعلان‌های رسمی مترو نیست</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="section">
-            <h2>🔗 لینک به پروژه</h2>
-            <p>این پروژه متن‌باز است و می‌توانید در توسعه آن مشارکت کنید:</p>
-            <p style="text-align: center; background: #1e40af; padding: 10px; border-radius: 5px;">
-                <a href="https://github.com/pourjanali/TimeMetro"
-                    style="color: white; text-decoration: none; font-weight: bold;">
-                    GitHub.com/pourjanali/TimeMetro
+            <!-- Terms Changes -->
+            <div class="mb-8">
+                <h3
+                    class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                    <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                    <span>تغییرات شرایط</span>
+                </h3>
+                <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600 text-center">
+                    <p class="text-gray-300">
+                        این شرایط استفاده ممکن است در آینده به روزرسانی شود.
+                        ادامه استفاده از برنامه به معنی پذیرش شرایط جدید است.
+                    </p>
+                </div>
+            </div>
+
+            <!-- GitHub Section -->
+            <div class="text-center">
+                <h3
+                    class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                    <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                    <span>پروژه متن‌باز</span>
+                </h3>
+                <p class="text-gray-300 mb-6">این پروژه متن‌باز است و می‌توانید در توسعه آن مشارکت کنید:</p>
+
+                <a href="https://github.com/pourjanali/TimeMetro" target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center space-x-3 space-x-reverse bg-gray-800 hover:bg-gray-700 rounded-2xl px-6 py-4 transition-all duration-200 border border-gray-700 hover:border-blue-500">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    <div class="text-right">
+                        <p class="text-white font-bold">GitHub Repository</p>
+                        <p class="text-gray-400 text-sm">github.com/pourjanali/TimeMetro</p>
+                    </div>
                 </a>
-            </p>
+            </div>
         </div>
 
-        <div class="footer">
-            <p>آخرین به‌روزرسانی: آبان‌ماه هزار و چهارصد و چهار</p>
-            <a href="index.html" class="back-link">← بازگشت به برنامه</a>
+        <!-- Back Button -->
+        <div class="text-center mt-8">
+            <a href="index.html"
+                class="inline-flex items-center space-x-2 space-x-reverse bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-2xl px-6 py-3 transition-all duration-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>بازگشت به برنامه</span>
+            </a>
         </div>
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-b from-gray-900 to-gray-950 border-t border-gray-800 mt-16">
+        <div class="container mx-auto max-w-4xl px-4 py-8 text-center">
+            <p class="text-gray-500 text-sm">© ۱۴۰۴ - تمامی حقوق محفوظ است | نسخه ۲.۰.۰</p>
+            <p class="text-gray-500 text-sm mt-2">آخرین به‌روزرسانی: آبان‌ماه ۱۴۰۴</p>
+        </div>
+    </footer>
 </body>
 
 </html>
