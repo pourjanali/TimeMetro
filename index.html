@@ -4,16 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تبریز مترو واخت جدولی | تبریز شهر قطار برنامه‌سی</title>
+    <title>جدول زمانی مترو تبریز | برنامه قطار شهری تبریز</title>
     <meta name="description"
-        content="تبریز مترو واخت جدولی رسمی برنامه‌سی. عادی و بایرام گونلرینده تبریز مترو حرکت واختلاری">
-    <meta name="keywords" content="تبریز مترو, مترو واخت جدولی, تبریز شهر قطاری, مترو برنامه‌سی, تبریز مترو ایستانسی">
-    <meta name="author" content="تبریز مترو برنامه‌سی">
+        content="برنامه رسمی نمایش زمان‌بندی مترو تبریز. مشاهده زمان حرکت قطارها در خط مترو تبریز برای ایستگاه‌های مختلف در روزهای عادی و تعطیل">
+    <meta name="keywords" content="مترو تبریز, زمان‌بندی مترو, قطار شهری تبریز, برنامه مترو, ایستگاه مترو تبریز">
+    <meta name="author" content="برنامه مترو تبریز">
     <link rel="icon" href="https://img.icons8.com/fluency/96/000000/subway.png" type="image/png">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="تبریز مترو واخت جدولی">
-    <meta property="og:description" content="تبریز مترو واخت جدولی رسمی برنامه‌سی">
+    <meta property="og:title" content="جدول زمانی مترو تبریز">
+    <meta property="og:description" content="برنامه رسمی نمایش زمان‌بندی مترو تبریز">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fa_IR">
 
@@ -31,98 +31,6 @@
         body {
             font-family: 'Vazirmatn', sans-serif;
             background-color: #111827;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* Light mode styles */
-        body.light-mode {
-            background-color: #f8fafc;
-            color: #1f2937;
-        }
-
-        body.light-mode .bg-gray-900 {
-            background-color: #f8fafc;
-        }
-
-        body.light-mode .bg-gray-800 {
-            background-color: #e2e8f0;
-        }
-
-        body.light-mode .text-gray-100 {
-            color: #1f2937;
-        }
-
-        body.light-mode .text-gray-300 {
-            color: #4b5563;
-        }
-
-        body.light-mode .text-gray-400 {
-            color: #6b7280;
-        }
-
-        body.light-mode .border-gray-700 {
-            border-color: #d1d5db;
-        }
-
-        body.light-mode .bg-gray-800\/50 {
-            background-color: rgba(226, 232, 240, 0.8);
-        }
-
-        /* Theme toggle button styles */
-        #theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(59, 130, 246, 0.1);
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        body.light-mode #theme-toggle {
-            background: rgba(59, 130, 246, 0.15);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        #theme-toggle:hover {
-            transform: scale(1.1);
-            background: rgba(59, 130, 246, 0.2);
-        }
-
-        #theme-toggle svg {
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .sun-icon {
-            opacity: 0;
-            transform: scale(0.8);
-        }
-
-        .moon-icon {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        body.light-mode .sun-icon {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        body.light-mode .moon-icon {
-            opacity: 0;
-            transform: scale(0.8);
         }
 
         ::-webkit-scrollbar {
@@ -133,28 +41,13 @@
             background: #1f2937;
         }
 
-        body.light-mode ::-webkit-scrollbar-track {
-            background: #e2e8f0;
-        }
-
         ::-webkit-scrollbar-thumb {
             background: #4b5563;
             border-radius: 4px;
         }
 
-        body.light-mode ::-webkit-scrollbar-thumb {
-            background: #9ca3af;
-        }
-
         ::-webkit-scrollbar-thumb:hover {
             background: #6b7280;
-        }
-
-        .lang-switcher {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
         }
     </style>
     <script>
@@ -175,57 +68,21 @@
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "تبریز مترو برنامه‌سی",
-        "description": "تبریز مترو واخت جدولی برنامه‌سی",
+        "name": "برنامه مترو تبریز",
+        "description": "برنامه نمایش زمان‌بندی مترو تبریز",
         "url": "https://timemetro.ir",
         "applicationCategory": "TravelApplication",
         "operatingSystem": "Any",
         "permissions": "none",
         "author": {
             "@type": "Organization",
-            "name": "تبریز مترو"
+            "name": "مترو تبریز"
         }
     }
     </script>
 </head>
 
 <body class="bg-gray-900 text-gray-100 min-h-screen antialiased">
-    <!-- Theme Toggle Button -->
-    <button id="theme-toggle" aria-label="Toggle light/dark mode">
-        <!-- Sun Icon for Light Mode -->
-        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-        <!-- Moon Icon for Dark Mode -->
-        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-    </button>
-
-    <!-- Language Switcher -->
-    <div class="lang-switcher">
-        <div class="flex space-x-2">
-            <button id="lang-fa"
-                class="bg-blue-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-blue-700 shadow-lg">
-                فارسی
-            </button>
-            <button id="lang-az"
-                class="bg-gray-700 text-gray-300 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-gray-600 shadow-lg">
-                Türkçe
-            </button>
-        </div>
-    </div>
-
     <!-- Enhanced Header -->
     <header class="sticky top-0 z-10 bg-gray-900/95 backdrop-blur-md shadow-xl border-b border-gray-700">
         <div class="container mx-auto max-w-6xl px-4 py-4">
@@ -233,16 +90,15 @@
                 <!-- Logo and Title -->
                 <div class="flex items-center space-x-4 space-x-reverse">
                     <div class="flex-shrink-0 bg-gradient-to-br from-blue-500 to-blue-600 p-2 rounded-xl shadow-lg">
-                        <img src="https://img.icons8.com/fluency/96/000000/subway.png" alt="تبریز مترو لوغو"
+                        <img src="https://img.icons8.com/fluency/96/000000/subway.png" alt="لوگوی مترو تبریز"
                             class="h-12 w-12 rounded-lg">
                     </div>
                     <div class="text-center sm:text-right">
                         <h1
                             class="text-2xl font-bold bg-gradient-to-l from-blue-400 to-green-400 bg-clip-text text-transparent">
-                            تبریز مترو برنامه‌سی
+                            برنامه مترو تبریز
                         </h1>
-                        <p class="text-sm text-gray-300 mt-1" data-lang="fa">سرویس زمان‌بندی هوشمند قطار شهری</p>
-                        <p class="text-sm text-gray-300 mt-1 hidden" data-lang="az">آخین قطار حرکت واختلاری</p>
+                        <p class="text-sm text-gray-300 mt-1">سرویس زمان‌بندی هوشمند قطار شهری</p>
                     </div>
                 </div>
 
@@ -271,9 +127,7 @@
     <main class="container mx-auto max-w-6xl px-4 py-8">
         <!-- Enhanced Controls -->
         <div class="bg-gray-800/50 rounded-2xl p-6 mb-8 border border-gray-700 shadow-lg">
-            <h2 class="text-xl font-bold text-center mb-6 text-gray-100" data-lang="fa">انتخاب ایستگاه و زمان</h2>
-            <h2 class="text-xl font-bold text-center mb-6 text-gray-100 hidden" data-lang="az">ایستانس و واخت سئچیمی
-            </h2>
+            <h2 class="text-xl font-bold text-center mb-6 text-gray-100">انتخاب ایستگاه و زمان</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label for="station-select" class="block text-sm font-medium text-gray-300 mb-3">
@@ -284,8 +138,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
-                            <span data-lang="fa">ایستگاه مترو:</span>
-                            <span data-lang="az" class="hidden">مترو ایستانسی:</span>
+                            <span>ایستگاه مترو:</span>
                         </span>
                     </label>
                     <select id="station-select"
@@ -300,17 +153,13 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
-                            <span data-lang="fa">نوع روز:</span>
-                            <span data-lang="az" class="hidden">گون نوعو:</span>
+                            <span>نوع روز:</span>
                         </span>
                     </label>
                     <select id="day-type-select"
                         class="block w-full rounded-xl border-gray-600 bg-gray-700 p-4 text-gray-100 shadow-lg focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-all duration-200">
-                        <option value="normal" data-lang="fa">روز عادی (شنبه تا چهارشنبه)</option>
-                        <option value="normal" data-lang="az" class="hidden">آدی گون (شنبه‌دن دؤردشنبه‌یه)</option>
-                        <option value="holiday" data-lang="fa">روز تعطیل (پنجشنبه ، جمعه و تعطیلات رسمی)</option>
-                        <option value="holiday" data-lang="az" class="hidden">بایرام گونو (پنجشنبه، جومعه و رسمی
-                            بایراملار)</option>
+                        <option value="normal">روز عادی (شنبه تا چهارشنبه)</option>
+                        <option value="holiday">روز تعطیل (پنجشنبه ، جمعه و تعطیلات رسمی)</option>
                     </select>
                 </div>
             </div>
@@ -321,8 +170,7 @@
             <div
                 class="inline-block h-16 w-16 animate-spin rounded-full border-4 border-solid border-blue-500 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]">
             </div>
-            <p class="mt-6 text-gray-400 text-lg" data-lang="fa">در حال بارگذاری اطلاعات مترو...</p>
-            <p class="mt-6 text-gray-400 text-lg hidden" data-lang="az">مترو معلوماتلاری یوکلنیر...</p>
+            <p class="mt-6 text-gray-400 text-lg">در حال بارگذاری اطلاعات مترو...</p>
         </div>
 
         <!-- Next Trains Summary Section -->
@@ -335,8 +183,7 @@
                 </div>
                 <div class="p-6 space-y-4">
                     <div class="flex items-center justify-between pb-4 border-b border-gray-600">
-                        <span class="text-blue-300 font-semibold text-lg" data-lang="fa">قطار بعدی:</span>
-                        <span class="text-blue-300 font-semibold text-lg hidden" data-lang="az">سونراکی قطار:</span>
+                        <span class="text-blue-300 font-semibold text-lg">قطار بعدی:</span>
                         <div class="text-left">
                             <div id="summary-dir-1-next-time"
                                 class="text-4xl font-black text-blue-300 tabular-nums leading-tight">
@@ -348,8 +195,7 @@
                         </div>
                     </div>
                     <div class="flex items-center justify-between">
-                        <span class="text-gray-300" data-lang="fa">قطار بعد:</span>
-                        <span class="text-gray-300 hidden" data-lang="az">ایندیکی قطار:</span>
+                        <span class="text-gray-300">قطار بعد:</span>
                         <div class="text-left">
                             <span id="summary-dir-1-second-time"
                                 class="text-2xl font-bold bg-gray-700 text-gray-200 rounded-xl px-5 py-2 tabular-nums block border border-gray-600">
@@ -371,8 +217,7 @@
                 </div>
                 <div class="p-6 space-y-4">
                     <div class="flex items-center justify-between pb-4 border-b border-gray-600">
-                        <span class="text-green-300 font-semibold text-lg" data-lang="fa">قطار بعدی:</span>
-                        <span class="text-green-300 font-semibold text-lg hidden" data-lang="az">سونراکی قطار:</span>
+                        <span class="text-green-300 font-semibold text-lg">قطار بعدی:</span>
                         <div class="text-left">
                             <div id="summary-dir-2-next-time"
                                 class="text-4xl font-black text-green-300 tabular-nums leading-tight">
@@ -384,8 +229,7 @@
                         </div>
                     </div>
                     <div class="flex items-center justify-between">
-                        <span class="text-gray-300" data-lang="fa">قطار بعد:</span>
-                        <span class="text-gray-300 hidden" data-lang="az">ایندیکی قطار:</span>
+                        <span class="text-gray-300">قطار بعد:</span>
                         <div class="text-left">
                             <span id="summary-dir-2-second-time"
                                 class="text-2xl font-bold bg-gray-700 text-gray-200 rounded-xl px-5 py-2 tabular-nums block border border-gray-600">
@@ -404,8 +248,7 @@
         <div id="schedule-container" class="space-y-8">
             <p id="initial-message"
                 class="text-center text-gray-400 text-xl mt-12 bg-gray-800/50 rounded-2xl p-8 border border-gray-700">
-                <span data-lang="fa">🚇 برای مشاهده زمان‌بندی مترو، لطفاً ایستگاه مورد نظر خود را انتخاب کنید</span>
-                <span data-lang="az" class="hidden">🚇 مترو واخت جدولونو گؤرمک اوچون ایستانسی سئچین</span>
+                🚇 برای مشاهده زمان‌بندی مترو، لطفاً ایستگاه مورد نظر خود را انتخاب کنید
             </p>
         </div>
     </main>
@@ -419,53 +262,75 @@
                 <div class="text-center md:text-right">
                     <div class="flex items-center justify-center md:justify-start space-x-3 space-x-reverse mb-4">
                         <div class="bg-blue-600 p-2 rounded-lg">
-                            <img src="https://img.icons8.com/fluency/48/000000/subway.png" alt="تبریز مترو"
+                            <img src="https://img.icons8.com/fluency/48/000000/subway.png" alt="مترو تبریز"
                                 class="h-8 w-8">
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-white">تبریز مترو</h3>
-                            <p class="text-gray-400 text-sm" data-lang="fa">سرویس زمان‌بندی هوشمند</p>
-                            <p class="text-gray-400 text-sm hidden" data-lang="az">آخین واخت خدمتی</p>
+                            <h3 class="text-xl font-bold text-white">مترو تبریز</h3>
+                            <p class="text-gray-400 text-sm">سرویس زمان‌بندی هوشمند</p>
                         </div>
                     </div>
                     <p class="text-gray-300 text-sm leading-relaxed text-center md:text-right">
-                        <span data-lang="fa">برنامه غیررسمی نمایش زمان‌بندی مترو تبریز. همراه شما در سفرهای
-                            درون‌شهری.</span>
-                        <span data-lang="az" class="hidden">غیر رسمی تبریز مترو واخت جدولی برنامه‌سی. شهر سفرلرینده
-                            یانینیزدا.</span>
+                        برنامه غیررسمی نمایش زمان‌بندی مترو تبریز. همراه شما در سفرهای درون‌شهری.
                     </p>
                 </div>
 
-                <!-- Quick Links -->
+                <!-- Quick Links Section -->
                 <div class="text-center">
-                    <h4 class="text-lg font-semibold text-white mb-4" data-lang="fa">لینک‌های سریع</h4>
-                    <h4 class="text-lg font-semibold text-white mb-4 hidden" data-lang="az">سورعتلی لینکلر</h4>
-                    <div class="space-y-3">
+                    <h4 class="text-lg font-semibold text-white mb-4">لینک‌های سریع</h4>
+                    <div class="grid grid-cols-2 gap-3 max-w-md mx-auto">
+                        <!-- Privacy -->
                         <a href="privacy.html"
-                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-blue-400 transition-colors duration-200 bg-gray-800/50 rounded-xl px-4 py-2 w-full max-w-xs">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-blue-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                             </svg>
-                            <span data-lang="fa">حریم خصوصی</span>
-                            <span data-lang="az" class="hidden">خصوصی حریمی</span>
+                            <span>حریم خصوصی</span>
                         </a>
+
+                        <!-- Terms -->
                         <a href="terms.html"
-                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-green-400 transition-colors duration-200 bg-gray-800/50 rounded-xl px-4 py-2 w-full max-w-xs">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-green-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
-                            <span data-lang="fa">شرایط استفاده</span>
-                            <span data-lang="az" class="hidden">ایستیفاده شرطلری</span>
+                            <span>شرایط استفاده</span>
+                        </a>
+
+                        <!-- GitHub Project -->
+                        <a href="https://github.com/pourjanali/TimeMetro" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-purple-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+                            <span>پروژه گیت‌هاب</span>
+                        </a>
+
+                        <!-- Developer -->
+                        <a href="https://pourjanali.ir" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-green-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
+                            <img src="https://pourjanali.ir/images/logo.png" alt="pourjanali"
+                                class="h-4 w-4 rounded-full">
+                            <span>توسعه‌دهنده</span>
+                        </a>
+                    </div>
+
+                    <!-- Hosting Badge -->
+                    <div class="mt-4">
+                        <a href="https://pages.cloudflare.com/" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-blue-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
+                            <img src="https://pages.cloudflare.com/resources/logo/logo.svg" alt="Cloudflare Pages"
+                                class="h-4 w-4">
+                            <span>میزبانی شده در Cloudflare Pages</span>
                         </a>
                     </div>
                 </div>
-
                 <!-- GitHub Contact Section -->
                 <div class="text-center md:text-left">
-                    <h4 class="text-lg font-semibold text-white mb-4" data-lang="fa">ارتباط با ما</h4>
-                    <h4 class="text-lg font-semibold text-white mb-4 hidden" data-lang="az">بیزیمله ائلاجه</h4>
+                    <h4 class="text-lg font-semibold text-white mb-4">ارتباط با ما</h4>
                     <div class="space-y-4">
                         <a href="https://github.com/pourjanali/TimeMetro" target="_blank" rel="noopener noreferrer"
                             class="inline-flex items-center justify-center md:justify-start space-x-3 space-x-reverse bg-gray-800 hover:bg-gray-700 rounded-2xl px-4 py-3 transition-all duration-200 border border-gray-700 hover:border-purple-500 w-full max-w-xs">
@@ -475,55 +340,10 @@
                             </svg>
                             <div class="text-right">
                                 <p class="text-white font-medium">GitHub Repository</p>
-                                <p class="text-gray-400 text-sm" data-lang="fa">مشارکت در توسعه</p>
-                                <p class="text-gray-400 text-sm hidden" data-lang="az">اینکیشافا قاتیلما</p>
+                                <p class="text-gray-400 text-sm">مشارکت در توسعه</p>
                             </div>
                         </a>
                     </div>
-                </div>
-            </div>
-
-            <!-- GitHub & Hosting Section -->
-            <div class="border-t border-gray-800 pt-8">
-                <div class="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0 gap-4">
-                    <!-- GitHub Project -->
-                    <a href="https://github.com/pourjanali/TimeMetro" target="_blank" rel="noopener noreferrer"
-                        class="flex items-center space-x-3 space-x-reverse bg-gray-800 hover:bg-gray-700 rounded-xl px-5 py-4 transition-all duration-200 border border-gray-700 hover:border-purple-500 w-[180px]">
-                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                        </svg>
-                        <div class="text-right">
-                            <p class="text-white font-medium" data-lang="fa">پروژه متن‌باز</p>
-                            <p class="text-white font-medium hidden" data-lang="az">آچیق منبع پروژه</p>
-                            <p class="text-gray-400 text-sm" data-lang="fa">مشارکت در توسعه پذیرفته می‌شود</p>
-                            <p class="text-gray-400 text-sm hidden" data-lang="az">اینکیشافا قاتیلما قبول اولونور</p>
-                        </div>
-                    </a>
-
-                    <!-- Developer -->
-                    <a href="https://pourjanali.ir" target="_blank" rel="noopener noreferrer"
-                        class="flex items-center space-x-3 space-x-reverse bg-gray-800 hover:bg-gray-700 rounded-xl px-5 py-4 transition-all duration-200 border border-gray-700 hover:border-green-500 w-[180px]">
-                        <img src="https://avatars.githubusercontent.com/u/95444541" alt="pourjanali"
-                            class="h-7 w-7 rounded-full">
-                        <div class="text-right">
-                            <p class="text-white font-medium" data-lang="fa">توسعه‌دهنده</p>
-                            <p class="text-white font-medium hidden" data-lang="az">اینکیشافچی</p>
-                            <p class="text-gray-400 text-sm">pourjanali.ir</p>
-                        </div>
-                    </a>
-
-                    <!-- Hosting Badge -->
-                    <a href="https://pages.cloudflare.com/" target="_blank" rel="noopener noreferrer"
-                        class="flex items-center space-x-3 space-x-reverse bg-gray-800 hover:bg-gray-700 rounded-xl px-5 py-4 transition-all duration-200 border border-gray-700 hover:border-blue-500 w-[180px]">
-                        <img src="https://pages.cloudflare.com/resources/logo/logo.svg" alt="Cloudflare Pages"
-                            class="h-7 w-7">
-                        <div class="text-right">
-                            <p class="text-white font-medium" data-lang="fa">میزبانی شده در</p>
-                            <p class="text-white font-medium hidden" data-lang="az">میزبان اولوندوغو</p>
-                            <p class="text-gray-400 text-sm">Cloudflare Pages</p>
-                        </div>
-                    </a>
                 </div>
             </div>
 
@@ -532,18 +352,15 @@
                 <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-center">
                     <div class="space-y-2">
                         <p class="text-gray-500 text-sm">
-                            <span data-lang="fa">نسخه ۲.۰.۰ | ساخته شده با ❤️ برای مردم تبریز</span>
-                            <span data-lang="az" class="hidden">ورسیا ۲.۰.۰ | تبریز خالقی اوچون ❤️ ایله یارادیلیب</span>
+                            نسخه ۲.۰.۰ | ساخته شده با ❤️ برای مردم تبریز
                         </p>
                         <p class="text-gray-500 text-sm">
-                            <span data-lang="fa">برنامه غیررسمی نمایش زمان‌بندی مترو تبریز</span>
-                            <span data-lang="az" class="hidden">غیر رسمی تبریز مترو واخت جدولی برنامه‌سی</span>
+                            برنامه غیررسمی نمایش زمان‌بندی مترو تبریز
                         </p>
                     </div>
                     <div>
                         <p class="text-gray-500 text-sm">
-                            © ۱۴۰۴ - <span data-lang="fa">تمامی حقوق محفوظ است</span>
-                            <span data-lang="az" class="hidden">بوتون حاقلار محفوزدور</span>
+                            © ۱۴۰۴ - تمامی حقوق محفوظ است
                         </p>
                     </div>
                 </div>
@@ -553,167 +370,6 @@
 
     <!-- Main Application Logic -->
     <script src="app.js"></script>
-
-    <!-- Language Switcher Script -->
-    <script>
-        class LanguageManager {
-            constructor() {
-                this.currentLang = 'fa';
-                this.init();
-            }
-
-            init() {
-                // Add event listeners to language buttons
-                document.getElementById('lang-fa').addEventListener('click', () => this.switchLanguage('fa'));
-                document.getElementById('lang-az').addEventListener('click', () => this.switchLanguage('az'));
-
-                // Load saved language preference
-                const savedLang = localStorage.getItem('metro-app-lang');
-                if (savedLang) {
-                    this.switchLanguage(savedLang);
-                }
-            }
-
-            switchLanguage(lang) {
-                this.currentLang = lang;
-                localStorage.setItem('metro-app-lang', lang);
-
-                // Update button styles
-                document.getElementById('lang-fa').className =
-                    lang === 'fa'
-                        ? 'bg-blue-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-blue-700 shadow-lg'
-                        : 'bg-gray-700 text-gray-300 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-gray-600 shadow-lg';
-
-                document.getElementById('lang-az').className =
-                    lang === 'az'
-                        ? 'bg-blue-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-blue-700 shadow-lg'
-                        : 'bg-gray-700 text-gray-300 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-gray-600 shadow-lg';
-
-                // Show/hide language-specific elements
-                document.querySelectorAll('[data-lang="fa"]').forEach(el => {
-                    el.classList.toggle('hidden', lang !== 'fa');
-                });
-
-                document.querySelectorAll('[data-lang="az"]').forEach(el => {
-                    el.classList.toggle('hidden', lang !== 'az');
-                });
-
-                // Update page title
-                if (lang === 'fa') {
-                    document.title = 'جدول زمانی مترو تبریز | برنامه قطار شهری تبریز';
-                } else {
-                    document.title = 'Təbriz Metrosu Cədvəli | Təbriz Şəhər Qatarı Proqramı';
-                }
-
-                // Update station names if they exist
-                this.updateStationNames(lang);
-            }
-
-            updateStationNames(lang) {
-                const stationSelect = document.getElementById('station-select');
-                if (!stationSelect || !stationSelect.options) return;
-
-                const stationNames = {
-                    'fa': {
-                        'ائل گؤلی': 'ائل گؤلی',
-                        'سهند': 'سهند',
-                        'امام رضا(ع)': 'امام رضا(ع)',
-                        'خیام': 'خیام',
-                        '29بهمن': '29بهمن',
-                        'استاد شهریار': 'استاد شهریار',
-                        'دانشگاه': 'دانشگاه',
-                        'آبرسان': 'آبرسان',
-                        'سالار ملی(قطب)': 'سالار ملی(قطب)',
-                        'شهید بهشتی (ره)': 'شهید بهشتی (ره)',
-                        'میدان ساعت': 'میدان ساعت',
-                        'میدان کهن': 'میدان کهن',
-                        'قونقا': 'قونقا',
-                        'گازران': 'گازران',
-                        'لاله': 'لاله',
-                        'امام حسین(ع)': 'امام حسین(ع)',
-                        'شهید باکری': 'شهید باکری',
-                        'نور': 'نور'
-                    },
-                    'az': {
-                        'ائل گؤلی': 'ایل گؤلو',
-                        'سهند': 'سهند',
-                        'امام رضا(ع)': 'امام رضا(ع)',
-                        'خیام': 'خیام',
-                        '29بهمن': '29بهمن',
-                        'استاد شهریار': 'استاد شهریار',
-                        'دانشگاه': 'دانشگاه',
-                        'آبرسان': 'آب‌رسان',
-                        'سالار ملی(قطب)': 'سالار میلی(قطب)',
-                        'شهید بهشتی (ره)': 'شهید بهشتی (ره)',
-                        'میدان ساعت': 'ساعات میدانی',
-                        'میدان کهن': 'کؤهن میدان',
-                        'قونقا': 'قونقا',
-                        'گازران': 'گازران',
-                        'لاله': 'لاله',
-                        'امام حسین(ع)': 'امام حسین(ع)',
-                        'شهید باکری': 'شهید باکری',
-                        'نور': 'نور'
-                    }
-                };
-
-                const selectedValue = stationSelect.value;
-
-                for (let i = 1; i < stationSelect.options.length; i++) {
-                    const option = stationSelect.options[i];
-                    const originalName = option.value;
-                    option.textContent = stationNames[lang][originalName] || originalName;
-                }
-
-                // Restore selection
-                if (selectedValue) {
-                    stationSelect.value = selectedValue;
-                }
-            }
-
-            getCurrentLanguage() {
-                return this.currentLang;
-            }
-        }
-
-        // Initialize language manager
-        const languageManager = new LanguageManager();
-    </script>
-
-    <!-- Theme Toggle Script -->
-    <script>
-        // Theme Toggle Logic
-        (function () {
-            const toggle = document.getElementById('theme-toggle');
-            const body = document.body;
-
-            function setTheme(isDark) {
-                if (isDark) {
-                    body.classList.remove('light-mode');
-                    body.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    body.classList.remove('dark');
-                    body.classList.add('light-mode');
-                    localStorage.setItem('theme', 'light');
-                }
-            }
-
-            // Initialize theme from localStorage or system preference
-            const savedTheme = localStorage.getItem('theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-            if (savedTheme === 'light' || (!savedTheme && !systemPrefersDark)) {
-                setTheme(false);
-            } else {
-                setTheme(true);
-            }
-
-            toggle.addEventListener('click', () => {
-                const isCurrentlyDark = body.classList.contains('dark');
-                setTheme(!isCurrentlyDark);
-            });
-        })();
-    </script>
 </body>
 
 </html>
