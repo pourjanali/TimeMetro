@@ -83,292 +83,343 @@
     </script>
 
     <!-- ==========================
-         Localization (FA / EN / TR)
+         Localization (FA / EN / TR / AZ)
          This runs BEFORE app.js so translations are applied to static content
          WITHOUT modifying the app.js logic.
          ========================== -->
     <script>
-        (function () {
-            const translations = {
-                fa: {
-                    // page/meta
-                    title: "جدول زمانی مترو تبریز | برنامه قطار شهری تبریز",
-                    meta_description: "برنامه رسمی نمایش زمان‌بندی مترو تبریز. مشاهده زمان حرکت قطارها در خط مترو تبریز برای ایستگاه‌های مختلف در روزهای عادی و تعطیل",
-                    og_title: "جدول زمانی مترو تبریز",
-                    og_description: "برنامه رسمی نمایش زمان‌بندی مترو تبریز",
+            (function () {
+                const translations = {
+                    fa: {
+                        // page/meta
+                        title: "جدول زمانی مترو تبریز | برنامه قطار شهری تبریز",
+                        meta_description: "برنامه رسمی نمایش زمان‌بندی مترو تبریز. مشاهده زمان حرکت قطارها در خط مترو تبریز برای ایستگاه‌های مختلف در روزهای عادی و تعطیل",
+                        og_title: "جدول زمانی مترو تبریز",
+                        og_description: "برنامه رسمی نمایش زمان‌بندی مترو تبریز",
+
+                        // header
+                        header_title: "برنامه مترو تبریز",
+                        header_subtitle: "سرویس زمان‌بندی هوشمند قطار شهری",
+
+                        // controls
+                        station_label: "ایستگاه مترو:",
+                        day_type_label: "نوع روز:",
+                        day_option_normal: "روز عادی (شنبه تا چهارشنبه)",
+                        day_option_holiday: "روز تعطیل (پنجشنبه ، جمعه و تعطیلات رسمی)",
+
+                        // loading & messages
+                        loading_text: "در حال بارگذاری اطلاعات مترو...",
+                        initial_message: "🚇 برای مشاهده زمان‌بندی مترو، لطفاً ایستگاه مورد نظر خود را انتخاب کنید",
+
+                        // summaries
+                        summary_dir_title_prefix: "...", // placeholder
+                        next_train_label: "قطار بعدی:",
+                        following_train_label: "قطار بعد:",
+
+                        // footer
+                        footer_brand: "مترو تبریز",
+                        footer_subtitle: "سرویس زمان‌بندی هوشمند",
+                        footer_description: "برنامه غیررسمی نمایش زمان‌بندی مترو تبریز. همراه شما در سفرهای درون‌شهری.",
+                        quick_links_title: "لینک‌های سریع",
+                        privacy_text: "حریم خصوصی",
+                        terms_text: "شرایط استفاده",
+                        github_project_text: "پروژه گیت‌هاب",
+                        developer_text: "توسعه‌دهنده",
+                        hosting_text: "میزبانی شده در Cloudflare Pages",
+                        contact_title: "ارتباط با ما",
+                        github_repo_text: "GitHub Repository",
+                        github_repo_subtext: "مشارکت در توسعه",
+                        version_text: "نسخه ۲.۰.۰ | ساخته شده با ❤️ برای مردم تبریز",
+                        unofficial_text: "برنامه غیررسمی نمایش زمان‌بندی مترو تبریز",
+                        copyright_text: "© ۱۴۰۴ - تمامی حقوق محفوظ است"
+                    },
+                    en: {
+                        title: "Tabriz Metro Timetable | Tabriz Urban Train Schedule",
+                        meta_description: "Official-like viewer for Tabriz Metro timetable. See train times for stations on normal days and holidays.",
+                        og_title: "Tabriz Metro Timetable",
+                        og_description: "Tabriz Metro timetable viewer",
+
+                        header_title: "Tabriz Metro",
+                        header_subtitle: "Smart urban train timetable service",
+
+                        station_label: "Station:",
+                        day_type_label: "Day type:",
+                        day_option_normal: "Normal day (Sat–Wed)",
+                        day_option_holiday: "Holiday (Thu, Fri & public holidays)",
+
+                        loading_text: "Loading metro information...",
+                        initial_message: "🚇 To view the timetable, please select a station.",
+
+                        summary_dir_title_prefix: "...",
+                        next_train_label: "Next train:",
+                        following_train_label: "Following train:",
+
+                        footer_brand: "Tabriz Metro",
+                        footer_subtitle: "Smart timetable service",
+                        footer_description: "Unofficial timetable viewer for Tabriz Metro. Helping you in city travel.",
+                        quick_links_title: "Quick Links",
+                        privacy_text: "Privacy",
+                        terms_text: "Terms of Use",
+                        github_project_text: "GitHub Project",
+                        developer_text: "Developer",
+                        hosting_text: "Hosted on Cloudflare Pages",
+                        contact_title: "Contact",
+                        github_repo_text: "GitHub Repository",
+                        github_repo_subtext: "Contribute to development",
+                        version_text: "Version 2.0.0 | Made with ❤️ for the people of Tabriz",
+                        unofficial_text: "Unofficial Tabriz Metro timetable viewer",
+                        copyright_text: "© 2025 - All rights reserved"
+                    },
+                    tr: {
+                        title: "Tebriz Metro Saatleri | Tebriz Şehir Treni Programı",
+                        meta_description: "Tebriz Metrosu saatlerini gösteren uygulama. Normal günler ve tatiller için istasyon kalkış saatlerini görüntüleyin.",
+                        og_title: "Tebriz Metro Saatleri",
+                        og_description: "Tebriz Metrosu saat gösterici",
+
+                        header_title: "Tebriz Metrosu",
+                        header_subtitle: "Akıllı şehir treni saat servisi",
+
+                        station_label: "İstasyon:",
+                        day_type_label: "Gün tipi:",
+                        day_option_normal: "Normal gün (Cmt–Çar)",
+                        day_option_holiday: "Tatil (Per, Cum ve resmi tatiller)",
+
+                        loading_text: "Metro bilgileri yükleniyor...",
+                        initial_message: "🚇 Saatleri görüntülemek için lütfen bir istasyon seçin.",
+
+                        summary_dir_title_prefix: "...",
+                        next_train_label: "Sonraki tren:",
+                        following_train_label: "Bir sonraki tren:",
+
+                        footer_brand: "Tebriz Metrosu",
+                        footer_subtitle: "Akıllı saat servisi",
+                        footer_description: "Tebriz Metrosu için gayriresmî saat görüntüleyici. Şehir içi yolculukta yanında.",
+                        quick_links_title: "Hızlı Bağlantılar",
+                        privacy_text: "Gizlilik",
+                        terms_text: "Kullanım Şartları",
+                        github_project_text: "GitHub Projesi",
+                        developer_text: "Geliştirici",
+                        hosting_text: "Cloudflare Pages üzerinde barındırılıyor",
+                        contact_title: "İletişim",
+                        github_repo_text: "GitHub Deposu",
+                        github_repo_subtext: "Geliştirmeye katkı",
+                        version_text: "Sürüm 2.0.0 | Tebriz halkı için ❤️ ile yapıldı",
+                        unofficial_text: "Tebriz Metrosu için gayriresmî saat gösterici",
+                        copyright_text: "© 2025 - Tüm hakları saklıdır"
+                    },
+
+                    az: {
+                        title: "Təbriz Metro Cədvəli | Təbriz Şəhər Qatar Saatları",
+                        meta_description: "Təbriz Metrosunun cədvəlini göstərən xidmət. Adi və tətİl günləri üçün qatar saatlarını görün.",
+                        og_title: "Təbriz Metro Cədvəli",
+                        og_description: "Təbriz Metro cədvəl göstərİcisi",
+
+                        header_title: "Təbriz Metrosu",
+                        header_subtitle: "Ağıllı şəhər qatarı cədvəl xidməti",
+
+                        station_label: "Metro Stansiyası:",
+                        day_type_label: "Gün növü:",
+                        day_option_normal: "Adi gün (Şənbə – Çərşənbə)",
+                        day_option_holiday: "Tətİl günü (Cümə axşamı, Cümə və rəsmi tətİllər)",
+
+                        loading_text: "Metro məlumatları yüklənir...",
+                        initial_message: "🚇 Cədvəli görmək üçün stansiyanı seçin.",
+
+                        summary_dir_title_prefix: "...",
+                        next_train_label: "Növbəti qatar:",
+                        following_train_label: "Sonrakı qatar:",
+
+                        footer_brand: "Təbriz Metrosu",
+                        footer_subtitle: "Ağıllı cədvəl xidməti",
+                        footer_description: "Təbriz metrosu üçün qeyri-rəsmi cədvəl göstərİcisi.",
+                        quick_links_title: "Sürətli keçidlər",
+                        privacy_text: "Gizlilik",
+                        terms_text: "İstifadə Şərtləri",
+                        github_project_text: "GitHub Layihəsi",
+                        developer_text: "Tərtibatçı",
+                        hosting_text: "Cloudflare Pages üzərində yerləşdirilib",
+                        contact_title: "Əlaqə",
+                        github_repo_text: "GitHub Repozİtoriyası",
+                        github_repo_subtext: "İnkişafa töhfə verin",
+                        version_text: "Versiya 2.0.0 | Təbriz xalqı üçün ❤️ ilə hazırlanıb",
+                        unofficial_text: "Təbriz Metrosu üçün qeyri-rəsmi cədvəl göstərİcisi",
+                        copyright_text: "© 2025 - Bütün hüquqlar qorunur"
+                    }
+
+                };
+
+                // map of element ids -> translation keys
+                const map = {
+                    // meta/page
+                    "page-title": "title",
+                    "meta-description": "meta_description",
+                    "meta-keywords": "meta_keywords", // optional
+                    "og-title": "og_title",
+                    "og-description": "og_description",
 
                     // header
-                    header_title: "برنامه مترو تبریز",
-                    header_subtitle: "سرویس زمان‌بندی هوشمند قطار شهری",
+                    "header-title": "header_title",
+                    "header-subtitle": "header_subtitle",
 
                     // controls
-                    station_label: "ایستگاه مترو:",
-                    day_type_label: "نوع روز:",
-                    day_option_normal: "روز عادی (شنبه تا چهارشنبه)",
-                    day_option_holiday: "روز تعطیل (پنجشنبه ، جمعه و تعطیلات رسمی)",
+                    "station-label": "station_label",
+                    "day-type-label": "day_type_label",
+                    "day-option-normal": "day_option_normal",
+                    "day-option-holiday": "day_option_holiday",
 
                     // loading & messages
-                    loading_text: "در حال بارگذاری اطلاعات مترو...",
-                    initial_message: "🚇 برای مشاهده زمان‌بندی مترو، لطفاً ایستگاه مورد نظر خود را انتخاب کنید",
+                    "loading-text": "loading_text",
+                    "initial-message": "initial_message",
 
-                    // summaries
-                    summary_dir_title_prefix: "...", // placeholder
-                    next_train_label: "قطار بعدی:",
-                    following_train_label: "قطار بعد:",
+                    // summary labels (these exist in DOM; some use data-i18n)
+                    "summary-dir-1-next-label": "next_train_label",
+                    "summary-dir-1-follow-label": "following_train_label",
+                    "summary-dir-2-next-label": "next_train_label",
+                    "summary-dir-2-follow-label": "following_train_label",
 
                     // footer
-                    footer_brand: "مترو تبریز",
-                    footer_subtitle: "سرویس زمان‌بندی هوشمند",
-                    footer_description: "برنامه غیررسمی نمایش زمان‌بندی مترو تبریز. همراه شما در سفرهای درون‌شهری.",
-                    quick_links_title: "لینک‌های سریع",
-                    privacy_text: "حریم خصوصی",
-                    terms_text: "شرایط استفاده",
-                    github_project_text: "پروژه گیت‌هاب",
-                    developer_text: "توسعه‌دهنده",
-                    hosting_text: "میزبانی شده در Cloudflare Pages",
-                    contact_title: "ارتباط با ما",
-                    github_repo_text: "GitHub Repository",
-                    github_repo_subtext: "مشارکت در توسعه",
-                    version_text: "نسخه ۲.۰.۰ | ساخته شده با ❤️ برای مردم تبریز",
-                    unofficial_text: "برنامه غیررسمی نمایش زمان‌بندی مترو تبریز",
-                    copyright_text: "© ۱۴۰۴ - تمامی حقوق محفوظ است"
-                },
-                en: {
-                    title: "Tabriz Metro Timetable | Tabriz Urban Train Schedule",
-                    meta_description: "Official-like viewer for Tabriz Metro timetable. See train times for stations on normal days and holidays.",
-                    og_title: "Tabriz Metro Timetable",
-                    og_description: "Tabriz Metro timetable viewer",
+                    "footer-brand": "footer_brand",
+                    "footer-subtitle": "footer_subtitle",
+                    "footer-desc": "footer_description",
+                    "quick-links-title": "quick_links_title",
+                    "privacy-text": "privacy_text",
+                    "terms-text": "terms_text",
+                    "github-project-text": "github_project_text",
+                    "developer-text": "developer_text",
+                    "hosting-text": "hosting_text",
+                    "contact-title": "contact_title",
+                    "github-repo-text": "github_repo_text",
+                    "github-repo-subtext": "github_repo_subtext",
+                    "version-text": "version_text",
+                    "unofficial-text": "unofficial_text",
+                    "copyright-text": "copyright_text"
+                };
 
-                    header_title: "Tabriz Metro",
-                    header_subtitle: "Smart urban train timetable service",
-
-                    station_label: "Station:",
-                    day_type_label: "Day type:",
-                    day_option_normal: "Normal day (Sat–Wed)",
-                    day_option_holiday: "Holiday (Thu, Fri & public holidays)",
-
-                    loading_text: "Loading metro information...",
-                    initial_message: "🚇 To view the timetable, please select a station.",
-
-                    summary_dir_title_prefix: "...",
-                    next_train_label: "Next train:",
-                    following_train_label: "Following train:",
-
-                    footer_brand: "Tabriz Metro",
-                    footer_subtitle: "Smart timetable service",
-                    footer_description: "Unofficial timetable viewer for Tabriz Metro. Helping you in city travel.",
-                    quick_links_title: "Quick Links",
-                    privacy_text: "Privacy",
-                    terms_text: "Terms of Use",
-                    github_project_text: "GitHub Project",
-                    developer_text: "Developer",
-                    hosting_text: "Hosted on Cloudflare Pages",
-                    contact_title: "Contact",
-                    github_repo_text: "GitHub Repository",
-                    github_repo_subtext: "Contribute to development",
-                    version_text: "Version 2.0.0 | Made with ❤️ for the people of Tabriz",
-                    unofficial_text: "Unofficial Tabriz Metro timetable viewer",
-                    copyright_text: "© 2025 - All rights reserved"
-                },
-                tr: {
-                    title: "Tebriz Metro Saatleri | Tebriz Şehir Treni Programı",
-                    meta_description: "Tebriz Metrosu saatlerini gösteren uygulama. Normal günler ve tatiller için istasyon kalkış saatlerini görüntüleyin.",
-                    og_title: "Tebriz Metro Saatleri",
-                    og_description: "Tebriz Metrosu saat gösterici",
-
-                    header_title: "Tebriz Metrosu",
-                    header_subtitle: "Akıllı şehir treni saat servisi",
-
-                    station_label: "İstasyon:",
-                    day_type_label: "Gün tipi:",
-                    day_option_normal: "Normal gün (Cmt–Çar)",
-                    day_option_holiday: "Tatil (Per, Cum ve resmi tatiller)",
-
-                    loading_text: "Metro bilgileri yükleniyor...",
-                    initial_message: "🚇 Saatleri görüntülemek için lütfen bir istasyon seçin.",
-
-                    summary_dir_title_prefix: "...",
-                    next_train_label: "Sonraki tren:",
-                    following_train_label: "Bir sonraki tren:",
-
-                    footer_brand: "Tebriz Metrosu",
-                    footer_subtitle: "Akıllı saat servisi",
-                    footer_description: "Tebriz Metrosu için gayriresmî saat görüntüleyici. Şehir içi yolculukta yanında.",
-                    quick_links_title: "Hızlı Bağlantılar",
-                    privacy_text: "Gizlilik",
-                    terms_text: "Kullanım Şartları",
-                    github_project_text: "GitHub Projesi",
-                    developer_text: "Geliştirici",
-                    hosting_text: "Cloudflare Pages üzerinde barındırılıyor",
-                    contact_title: "İletişim",
-                    github_repo_text: "GitHub Deposu",
-                    github_repo_subtext: "Geliştirmeye katkı",
-                    version_text: "Sürüm 2.0.0 | Tebriz halkı için ❤️ ile yapıldı",
-                    unofficial_text: "Tebriz Metrosu için gayriresmî saat gösterici",
-                    copyright_text: "© 2025 - Tüm hakları saklıdır"
+                // helper to set text content safely
+                function setText(id, text) {
+                    const el = document.getElementById(id);
+                    if (!el) return;
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
+                        el.placeholder = text;
+                    } else {
+                        el.textContent = text;
+                    }
                 }
-            };
 
-            // map of element ids -> translation keys
-            const map = {
-                // meta/page
-                "page-title": "title",
-                "meta-description": "meta_description",
-                "meta-keywords": "meta_keywords", // optional
-                "og-title": "og_title",
-                "og-description": "og_description",
+                function applyTranslations(lang) {
+                    const t = translations[lang] || translations.fa;
 
-                // header
-                "header-title": "header_title",
-                "header-subtitle": "header_subtitle",
+                    // set page-level texts
+                    if (document.getElementById("page-title")) document.getElementById("page-title").textContent = t.title;
+                    if (document.getElementById("meta-description")) document.getElementById("meta-description").setAttribute("content", t.meta_description);
+                    if (document.getElementById("og-title")) document.getElementById("og-title").setAttribute("content", t.og_title);
+                    if (document.getElementById("og-description")) document.getElementById("og-description").setAttribute("content", t.og_description);
 
-                // controls
-                "station-label": "station_label",
-                "day-type-label": "day_type_label",
-                "day-option-normal": "day_option_normal",
-                "day-option-holiday": "day_option_holiday",
+                    // header
+                    setText("header-title", t.header_title);
+                    setText("header-subtitle", t.header_subtitle);
 
-                // loading & messages
-                "loading-text": "loading_text",
-                "initial-message": "initial_message",
+                    // controls: labels and select options
+                    setText("station-label", t.station_label);
+                    setText("day-type-label", t.day_type_label);
 
-                // summary labels (these exist in DOM; some use data-i18n)
-                "summary-dir-1-next-label": "next_train_label",
-                "summary-dir-1-follow-label": "following_train_label",
-                "summary-dir-2-next-label": "next_train_label",
-                "summary-dir-2-follow-label": "following_train_label",
+                    const dayNormal = document.getElementById("day-option-normal");
+                    if (dayNormal) dayNormal.textContent = t.day_option_normal;
+                    const dayHoliday = document.getElementById("day-option-holiday");
+                    if (dayHoliday) dayHoliday.textContent = t.day_option_holiday;
 
-                // footer
-                "footer-brand": "footer_brand",
-                "footer-subtitle": "footer_subtitle",
-                "footer-desc": "footer_description",
-                "quick-links-title": "quick_links_title",
-                "privacy-text": "privacy_text",
-                "terms-text": "terms_text",
-                "github-project-text": "github_project_text",
-                "developer-text": "developer_text",
-                "hosting-text": "hosting_text",
-                "contact-title": "contact_title",
-                "github-repo-text": "github_repo_text",
-                "github-repo-subtext": "github_repo_subtext",
-                "version-text": "version_text",
-                "unofficial-text": "unofficial_text",
-                "copyright-text": "copyright_text"
-            };
+                    // loading & messages
+                    setText("loading-text", t.loading_text);
+                    // initial-message is a <p id="initial-message"> so set its innerText
+                    const initMsg = document.getElementById("initial-message");
+                    if (initMsg) initMsg.textContent = t.initial_message;
 
-            // helper to set text content safely
-            function setText(id, text) {
-                const el = document.getElementById(id);
-                if (!el) return;
-                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
-                    el.placeholder = text;
+                    // summary labels (some spans)
+                    const s1_next = document.getElementById("summary-dir-1-next-label");
+                    if (s1_next) s1_next.textContent = t.next_train_label;
+                    const s1_follow = document.getElementById("summary-dir-1-follow-label");
+                    if (s1_follow) s1_follow.textContent = t.following_train_label;
+
+                    const s2_next = document.getElementById("summary-dir-2-next-label");
+                    if (s2_next) s2_next.textContent = t.next_train_label;
+                    const s2_follow = document.getElementById("summary-dir-2-follow-label");
+                    if (s2_follow) s2_follow.textContent = t.following_train_label;
+
+                    // footer
+                    setText("footer-brand", t.footer_brand);
+                    setText("footer-subtitle", t.footer_subtitle);
+                    setText("footer-desc", t.footer_description);
+                    setText("quick-links-title", t.quick_links_title);
+                    setText("privacy-text", t.privacy_text);
+                    setText("terms-text", t.terms_text);
+                    setText("github-project-text", t.github_project_text);
+                    setText("developer-text", t.developer_text);
+                    setText("hosting-text", t.hosting_text);
+                    setText("contact-title", t.contact_title);
+                    setText("github-repo-text", t.github_repo_text);
+                    setText("github-repo-subtext", t.github_repo_subtext);
+                    setText("version-text", t.version_text);
+                    setText("unofficial-text", t.unofficial_text);
+                    setText("copyright-text", t.copyright_text);
+
+                    // set HTML lang & dir
+                    if (lang === 'fa') {
+                        document.documentElement.lang = 'fa';
+                        document.documentElement.dir = 'rtl';
+                    } else if (lang === 'tr') {
+                        document.documentElement.lang = 'tr';
+                        document.documentElement.dir = 'ltr';
+                    } else if (lang === 'az') {
+                        document.documentElement.lang = 'az';
+                        document.documentElement.dir = 'ltr';
+                    } else {
+                        document.documentElement.lang = 'en';
+                        document.documentElement.dir = 'ltr';
+                    }
+
+
+                    // adjust text alignment classes for RTL/LTR where applicable
+                    // simple approach: add class 'lang-rtl' to body when fa
+                    if (lang === 'fa') {
+                        document.body.classList.add('rtl');
+                        document.body.classList.remove('ltr');
+                    } else {
+                        document.body.classList.add('ltr');
+                        document.body.classList.remove('rtl');
+                    }
+                }
+
+                // language switcher setup
+                const langSelect = {
+                    init: function () {
+                        const sel = document.getElementById('language-switcher');
+                        if (!sel) return;
+                        const saved = localStorage.getItem('metro-lang') || 'fa';
+                        sel.value = saved;
+                        applyTranslations(saved);
+
+                        sel.addEventListener('change', function (ev) {
+                            const v = ev.target.value;
+                            localStorage.setItem('metro-lang', v);
+                            applyTranslations(v);
+                            // do NOT reload the page — we change only static text
+                        });
+                    }
+                };
+
+                // expose for debugging (optional)
+                window._metro_i18n = {
+                    apply: applyTranslations,
+                    translations: translations
+                };
+
+                // init on DOMContentLoaded to ensure elements exist
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', () => langSelect.init());
                 } else {
-                    el.textContent = text;
+                    langSelect.init();
                 }
-            }
-
-            function applyTranslations(lang) {
-                const t = translations[lang] || translations.fa;
-
-                // set page-level texts
-                if (document.getElementById("page-title")) document.getElementById("page-title").textContent = t.title;
-                if (document.getElementById("meta-description")) document.getElementById("meta-description").setAttribute("content", t.meta_description);
-                if (document.getElementById("og-title")) document.getElementById("og-title").setAttribute("content", t.og_title);
-                if (document.getElementById("og-description")) document.getElementById("og-description").setAttribute("content", t.og_description);
-
-                // header
-                setText("header-title", t.header_title);
-                setText("header-subtitle", t.header_subtitle);
-
-                // controls: labels and select options
-                setText("station-label", t.station_label);
-                setText("day-type-label", t.day_type_label);
-
-                const dayNormal = document.getElementById("day-option-normal");
-                if (dayNormal) dayNormal.textContent = t.day_option_normal;
-                const dayHoliday = document.getElementById("day-option-holiday");
-                if (dayHoliday) dayHoliday.textContent = t.day_option_holiday;
-
-                // loading & messages
-                setText("loading-text", t.loading_text);
-                // initial-message is a <p id="initial-message"> so set its innerText
-                const initMsg = document.getElementById("initial-message");
-                if (initMsg) initMsg.textContent = t.initial_message;
-
-                // summary labels (some spans)
-                const s1_next = document.getElementById("summary-dir-1-next-label");
-                if (s1_next) s1_next.textContent = t.next_train_label;
-                const s1_follow = document.getElementById("summary-dir-1-follow-label");
-                if (s1_follow) s1_follow.textContent = t.following_train_label;
-
-                const s2_next = document.getElementById("summary-dir-2-next-label");
-                if (s2_next) s2_next.textContent = t.next_train_label;
-                const s2_follow = document.getElementById("summary-dir-2-follow-label");
-                if (s2_follow) s2_follow.textContent = t.following_train_label;
-
-                // footer
-                setText("footer-brand", t.footer_brand);
-                setText("footer-subtitle", t.footer_subtitle);
-                setText("footer-desc", t.footer_description);
-                setText("quick-links-title", t.quick_links_title);
-                setText("privacy-text", t.privacy_text);
-                setText("terms-text", t.terms_text);
-                setText("github-project-text", t.github_project_text);
-                setText("developer-text", t.developer_text);
-                setText("hosting-text", t.hosting_text);
-                setText("contact-title", t.contact_title);
-                setText("github-repo-text", t.github_repo_text);
-                setText("github-repo-subtext", t.github_repo_subtext);
-                setText("version-text", t.version_text);
-                setText("unofficial-text", t.unofficial_text);
-                setText("copyright-text", t.copyright_text);
-
-                // set HTML lang & dir
-                document.documentElement.lang = (lang === 'fa') ? 'fa' : ((lang === 'tr') ? 'tr' : 'en');
-                document.documentElement.dir = (lang === 'fa') ? 'rtl' : 'ltr';
-
-                // adjust text alignment classes for RTL/LTR where applicable
-                // simple approach: add class 'lang-rtl' to body when fa
-                if (lang === 'fa') {
-                    document.body.classList.add('rtl');
-                    document.body.classList.remove('ltr');
-                } else {
-                    document.body.classList.add('ltr');
-                    document.body.classList.remove('rtl');
-                }
-            }
-
-            // language switcher setup
-            const langSelect = {
-                init: function () {
-                    const sel = document.getElementById('language-switcher');
-                    if (!sel) return;
-                    const saved = localStorage.getItem('metro-lang') || 'fa';
-                    sel.value = saved;
-                    applyTranslations(saved);
-
-                    sel.addEventListener('change', function (ev) {
-                        const v = ev.target.value;
-                        localStorage.setItem('metro-lang', v);
-                        applyTranslations(v);
-                        // do NOT reload the page — we change only static text
-                    });
-                }
-            };
-
-            // expose for debugging (optional)
-            window._metro_i18n = {
-                apply: applyTranslations,
-                translations: translations
-            };
-
-            // init on DOMContentLoaded to ensure elements exist
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', () => langSelect.init());
-            } else {
-                langSelect.init();
-            }
-        })();
+            })();
     </script>
     <!-- END localization -->
 </head>
@@ -419,6 +470,8 @@
                         <option value="fa">🇮🇷 فارسی</option>
                         <option value="en">🇺🇸 English</option>
                         <option value="tr">🇹🇷 Türkçe</option>
+                        <option value="az">🇦🇿 Azərbaycan Türkcəsi</option>
+
                     </select>
                 </div>
 
@@ -430,7 +483,8 @@
     <main class="container mx-auto max-w-6xl px-4 py-8">
         <!-- Enhanced Controls -->
         <div class="bg-gray-800/50 rounded-2xl p-6 mb-8 border border-gray-700 shadow-lg">
-            <h2 id="controls-heading" class="text-xl font-bold text-center mb-6 text-gray-100">انتخاب ایستگاه و زمان</h2>
+            <h2 id="controls-heading" class="text-xl font-bold text-center mb-6 text-gray-100">انتخاب ایستگاه و زمان
+            </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label for="station-select" id="station-label" class="block text-sm font-medium text-gray-300 mb-3">
@@ -450,7 +504,8 @@
                     </select>
                 </div>
                 <div>
-                    <label for="day-type-select" id="day-type-label" class="block text-sm font-medium text-gray-300 mb-3">
+                    <label for="day-type-select" id="day-type-label"
+                        class="block text-sm font-medium text-gray-300 mb-3">
                         <span class="flex items-center space-x-2 space-x-reverse">
                             <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -462,7 +517,8 @@
                     <select id="day-type-select"
                         class="block w-full rounded-xl border-gray-600 bg-gray-700 p-4 text-gray-100 shadow-lg focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-all duration-200">
                         <option id="day-option-normal" value="normal">روز عادی (شنبه تا چهارشنبه)</option>
-                        <option id="day-option-holiday" value="holiday">روز تعطیل (پنجشنبه ، جمعه و تعطیلات رسمی)</option>
+                        <option id="day-option-holiday" value="holiday">روز تعطیل (پنجشنبه ، جمعه و تعطیلات رسمی)
+                        </option>
                     </select>
                 </div>
             </div>
@@ -486,7 +542,8 @@
                 </div>
                 <div class="p-6 space-y-4">
                     <div class="flex items-center justify-between pb-4 border-b border-gray-600">
-                        <span id="summary-dir-1-next-label" class="text-blue-300 font-semibold text-lg">قطار بعدی:</span>
+                        <span id="summary-dir-1-next-label" class="text-blue-300 font-semibold text-lg">قطار
+                            بعدی:</span>
                         <div class="text-left">
                             <div id="summary-dir-1-next-time"
                                 class="text-4xl font-black text-blue-300 tabular-nums leading-tight">
@@ -520,7 +577,8 @@
                 </div>
                 <div class="p-6 space-y-4">
                     <div class="flex items-center justify-between pb-4 border-b border-gray-600">
-                        <span id="summary-dir-2-next-label" class="text-green-300 font-semibold text-lg">قطار بعدی:</span>
+                        <span id="summary-dir-2-next-label" class="text-green-300 font-semibold text-lg">قطار
+                            بعدی:</span>
                         <div class="text-left">
                             <div id="summary-dir-2-next-time"
                                 class="text-4xl font-black text-green-300 tabular-nums leading-tight">
