@@ -80,6 +80,24 @@
         }
     }
     </script>
+    <script>
+        document.getElementById("language-switcher").addEventListener("change", function () {
+            const lang = this.value;
+
+            // ذخیره زبان انتخابی
+            localStorage.setItem("metro-lang", lang);
+
+            // فعلاً فقط ریلود، بدون تغییر محتوا یا منطق
+            location.reload();
+        });
+
+        // بازیابی زبان ذخیره‌شده
+        const savedLang = localStorage.getItem("metro-lang");
+        if (savedLang) {
+            document.getElementById("language-switcher").value = savedLang;
+        }
+    </script>
+
 </head>
 
 <body class="bg-gray-900 text-gray-100 min-h-screen antialiased">
@@ -119,6 +137,17 @@
                         </div>
                     </div>
                 </div>
+                <!-- Language Switcher -->
+                <div
+                    class="flex items-center space-x-2 space-x-reverse bg-gray-800/50 rounded-2xl px-4 py-3 border border-gray-700">
+                    <select id="language-switcher"
+                        class="bg-gray-700 text-gray-100 p-2 rounded-lg border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        <option value="fa">🇮🇷 فارسی</option>
+                        <option value="en">🇺🇸 English</option>
+                        <option value="tr">🇹🇷 Türkçe</option>
+                    </select>
+                </div>
+
             </div>
         </div>
     </header>
