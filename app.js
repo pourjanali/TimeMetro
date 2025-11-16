@@ -121,85 +121,18 @@ const csvDataHoliday = `
 20:02:00,20:04:00,20:06:00,20:08:00,20:10:00,20:12:00,20:14:00,20:16:00,20:18:00,20:20:00,20:22:00,20:25:00,20:27:00,20:29:00,20:31:00,20:33:00,20:35:00,20:37:00,***,20:47:00,20:45:00,20:43:00,20:41:00,20:39:00,20:37:00,20:35:00,20:33:00,20:31:00,20:29:00,20:26:00,20:24:00,20:22:00,20:20:00,20:18:00,20:16:00,20:14:00,20:12:00
 20:18:00,20:20:00,20:22:00,20:24:00,20:26:00,20:28:00,20:30:00,20:32:00,20:34:00,20:36:00,20:38:00,20:41:00,20:43:00,20:45:00,20:47:00,20:49:00,20:51:00,20:53:00,***,21:03:00,21:01:00,20:59:00,20:57:00,20:55:00,20:53:00,20:51:00,20:49:00,20:47:00,20:45:00,20:42:00,20:40:00,20:38:00,20:36:00,20:34:00,20:32:00,20:30:00,20:28:00
 `;
-
 // =====================================================================
-// ||                    ساعت زنده (Live Clock)                       ||
-// =====================================================================
-const liveClock = {
-    clockElement: document.getElementById('live-clock'),
-    intervalId: null,
-
-    init() {
-        this.updateTime(); // Update immediately on init
-        this.intervalId = setInterval(() => this.updateTime(), 1000);
-    },
-
-    updateTime() {
-        if (this.clockElement) {
-            const now = new Date();
-            // Format to HH:MM:SS with padding
-            const timeString = [
-                now.getHours(),
-                now.getMinutes(),
-                now.getSeconds()
-            ].map(num => String(num).padStart(2, '0')).join(':');
-
-            this.clockElement.textContent = timeString;
-        }
-    }
-};
-
-// =====================================================================
-// ||                تقویم شمسی (Persian Calendar)                   ||
-// =====================================================================
-const persianCalendar = {
-    dateElement: document.getElementById('persian-date'),
-
-    init() {
-        this.updateDate();
-        // Update daily (in milliseconds: 24h * 60m * 60s * 1000ms)
-        setInterval(() => this.updateDate(), 24 * 60 * 60 * 1000);
-    },
-
-    updateDate() {
-        if (this.dateElement) {
-            try {
-                const options = {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                    weekday: 'long'
-                };
-                // Use built-in browser Intl API for Persian date
-                const persianDate = new Date().toLocaleDateString('fa-IR', options);
-                this.dateElement.textContent = persianDate;
-            } catch (error) {
-                console.error("Error formatting Persian date:", error);
-                this.dateElement.textContent = "خطا در نمایش تاریخ";
-            }
-        }
-    }
-};
-
-// =====================================================================
-// ||               مدیریت داده‌های مترو (Local)                     ||
+// ||               Enhanced Metro Data Manager                      ||
 // =====================================================================
 const metroDataManager = {
     metroData: {
         normal: null,
         holiday: null
     },
-    stationNames: [], // Unique list of stations
+    stationNames: [],
 
-    /**
-     * Parses the embedded CSV string into a structured object
-     * @param {string} csvString The raw CSV data
-     * @returns {object} Parsed metro data structure
-     */
     parseCsvData(csvString) {
         const lines = csvString.trim().split('\n');
-
-        // Find the header row (index 2)
         const headerLine = lines[2].split(',');
         const separatorIndex = headerLine.indexOf('***');
 
@@ -208,26 +141,20 @@ const metroDataManager = {
             return null;
         }
 
-        // Get station names from the first block
         const stations = headerLine.slice(0, separatorIndex).map(s => s.trim());
-
-        // Get direction titles from the row above headers (index 1)
         const titleLine = lines[1].split(',');
         const direction1_header = titleLine[0].trim();
         const direction2_header = titleLine[separatorIndex + 1].trim();
 
         const timetable = [];
 
-        // Process data rows (starting from index 3)
         for (let i = 3; i < lines.length; i++) {
             if (!lines[i] || lines[i].trim().length === 0) continue;
 
             const columns = lines[i].split(',');
-
             const dir1_times = columns.slice(0, separatorIndex).map(t => t.trim() || null);
             const dir2_times = columns.slice(separatorIndex + 1).map(t => t.trim() || null);
 
-            // Only add if there's valid time data in the row
             if (dir1_times.some(t => t) || dir2_times.some(t => t)) {
                 timetable.push({ dir1_times, dir2_times });
             }
@@ -241,9 +168,6 @@ const metroDataManager = {
         };
     },
 
-    /**
-     * Initializes the data manager by parsing the embedded CSV strings
-     */
     init() {
         try {
             this.metroData.normal = this.parseCsvData(csvDataNormal);
@@ -258,7 +182,6 @@ const metroDataManager = {
         } catch (error) {
             console.error("Error initializing metro data:", error);
         }
-        // No async needed, just return a promise-like "then"
         return {
             then: (callback) => callback()
         };
@@ -266,7 +189,7 @@ const metroDataManager = {
 };
 
 // =====================================================================
-// ||                     هسته برنامه (Metro App)                       ||
+// ||               Enhanced Metro Application                       ||
 // =====================================================================
 const metroApp = {
     // DOM Elements
@@ -276,7 +199,7 @@ const metroApp = {
     loadingSpinner: document.getElementById('loading'),
     initialMessage: document.getElementById('initial-message'),
 
-    // NEW: Summary Card DOM Elements (Updated with countdown)
+    // Summary Card DOM Elements
     summaryContainer: document.getElementById('summary-container'),
     summaryDir1: {
         title: document.getElementById('summary-dir-1-title'),
@@ -292,32 +215,15 @@ const metroApp = {
         countdown: document.getElementById('summary-dir-2-countdown'),
         secondCountdown: document.getElementById('summary-dir-2-second-countdown'),
     },
-    /**
- * NEW: Calculates minutes remaining until a train time
- * @param {string} trainTime - Train time in "HH:MM:SS" format
- * @returns {number} Minutes remaining (rounded up)
- */
-    calculateMinutesRemaining(trainTime) {
-        const now = new Date();
-        const [hours, minutes] = trainTime.split(':').map(Number);
-
-        const trainDate = new Date();
-        trainDate.setHours(hours, minutes, 0, 0);
-
-        const diffMs = trainDate - now;
-        const diffMinutes = Math.ceil(diffMs / (1000 * 60));
-
-        return Math.max(0, diffMinutes); // Return 0 if train has already passed
-    },
-
 
     // State
     currentTime: null,
     updateInterval: null,
+    currentLanguage: 'fa',
+    currentTranslations: null,
 
     /**
-     * Initializes the main application
-     * @param {string[]} stationNames - List of station names from data manager
+     * Enhanced initialization with multilingual support
      */
     init(stationNames) {
         if (!this.stationSelect || !this.dayTypeSelect || !this.scheduleContainer) {
@@ -325,9 +231,12 @@ const metroApp = {
             return;
         }
 
-        // Populate station dropdown
+        // Get current translations
+        this.currentTranslations = window.metroTranslations?.getCurrent() || this.getDefaultTranslations();
+
+        // Populate station dropdown with translated placeholder
         if (stationNames && stationNames.length > 0) {
-            this.stationSelect.innerHTML = '<option value="">-- انتخاب ایستگاه --</option>';
+            this.stationSelect.innerHTML = `<option value="">${this.currentTranslations.select_station_placeholder}</option>`;
             stationNames.forEach(name => {
                 if (name && name !== '***') {
                     const option = document.createElement('option');
@@ -337,59 +246,70 @@ const metroApp = {
                 }
             });
         } else {
-            this.showError('لیست ایستگاه‌ها بارگذاری نشد.');
+            this.showError(this.currentTranslations.error_message);
         }
 
         // Add event listeners
         this.stationSelect.addEventListener('change', () => this.updateSchedule());
         this.dayTypeSelect.addEventListener('change', () => this.updateSchedule());
 
-        // Start the continuous update loop (every 10 seconds)
+        // Start the continuous update loop
         this.updateInterval = setInterval(() => {
-            if (this.stationSelect.value) { // Only update if a station is selected
+            if (this.stationSelect.value) {
                 this.updateSchedule();
             }
-        }, 10000); // Update every 10 seconds
+        }, 10000);
     },
 
     /**
-     * Main function to update the schedule display
+     * Get default translations as fallback
+     */
+    getDefaultTranslations() {
+        return {
+            minutes: "دقیقه",
+            passed: "گذشته",
+            next_train: "قطار بعدی",
+            following_train: "قطار بعد",
+            no_data_message: "اطلاعاتی برای این ایستگاه در این مسیر یافت نشد.",
+            error_message: "خطا در بارگذاری اطلاعات"
+        };
+    },
+
+    /**
+     * Enhanced schedule update with multilingual support
      */
     updateSchedule() {
         const selectedStation = this.stationSelect.value;
         const selectedDayType = this.dayTypeSelect.value;
+
+        // Update current translations
+        this.currentTranslations = window.metroTranslations?.getCurrent() || this.getDefaultTranslations();
 
         // Hide initial message
         if (this.initialMessage) {
             this.initialMessage.classList.add('hidden');
         }
 
-        // If no station is selected, clear the schedule
         if (!selectedStation) {
             this.scheduleContainer.innerHTML = '';
             if (this.initialMessage) {
                 this.initialMessage.classList.remove('hidden');
             }
-            // NEW: Hide summary container
             if (this.summaryContainer) {
                 this.summaryContainer.classList.add('hidden');
             }
             return;
         }
 
-        // Get the data for the selected day type
         const data = metroDataManager.metroData[selectedDayType];
-
         if (!data) {
-            this.showError('اطلاعاتی برای روز انتخابی یافت نشد.');
+            this.showError(this.currentTranslations.error_message);
             return;
         }
 
-        // Find the index of the selected station
         const stationIndex = data.stations.indexOf(selectedStation);
-
         if (stationIndex === -1) {
-            this.showError('ایستگاه انتخاب شده در جدول زمانی یافت نشد.');
+            this.showError(this.currentTranslations.error_message);
             return;
         }
 
@@ -401,110 +321,86 @@ const metroApp = {
             String(now.getSeconds()).padStart(2, '0')
         ].join(':');
 
-        // Extract times for the selected station from all rows
+        // Extract times
         const direction1Times = data.timetable
             .map(row => row.dir1_times[stationIndex])
-            .filter(time => time); // Filter out null/empty values
-
+            .filter(time => time);
         const direction2Times = data.timetable
             .map(row => row.dir2_times[stationIndex])
-            .filter(time => time); // Filter out null/empty values
+            .filter(time => time);
 
-        // NEW: Update the summary cards
+        // Update summary cards and schedule
         this.updateSummaryCards(direction1Times, direction2Times, data);
 
-        // Create HTML cards for both directions (Full Timetable)
         const card1 = this.createStationCard(data.direction1_header, direction1Times, 'blue');
         const card2 = this.createStationCard(data.direction2_header, direction2Times, 'green');
 
-        // Update the DOM
         this.scheduleContainer.innerHTML = card1 + card2;
     },
 
     /**
-     * NEW: Updates the "Next 2 Trains" summary boxes with countdown
-     * @param {string[]} direction1Times - Array of times for direction 1
-     * @param {string[]} direction2Times - Array of times for direction 2
-     * @param {object} data - The metro data object with headers
+     * Enhanced summary cards with multilingual countdown
      */
     updateSummaryCards(direction1Times, direction2Times, data) {
-        // --- Direction 1 ---
+        // Direction 1
         this.summaryDir1.title.textContent = data.direction1_header;
         const nextTrainIndex1 = this.findNextTrainIndex(direction1Times);
 
         if (nextTrainIndex1 !== -1) {
-            // Next train
             const nextTime1 = direction1Times[nextTrainIndex1];
             this.summaryDir1.nextTime.textContent = this.getDisplayTime(nextTime1);
             const minutes1 = this.calculateMinutesRemaining(nextTime1);
-            this.summaryDir1.countdown.textContent = `${minutes1} دقیقه`;
+            this.summaryDir1.countdown.textContent = `${minutes1} ${this.currentTranslations.minutes}`;
 
-            // 2nd Next train
             if (direction1Times.length > nextTrainIndex1 + 1) {
                 const secondTime1 = direction1Times[nextTrainIndex1 + 1];
                 this.summaryDir1.secondTime.textContent = this.getDisplayTime(secondTime1);
                 const minutes2 = this.calculateMinutesRemaining(secondTime1);
-                this.summaryDir1.secondCountdown.textContent = `${minutes2} دقیقه`;
+                this.summaryDir1.secondCountdown.textContent = `${minutes2} ${this.currentTranslations.minutes}`;
             } else {
                 this.summaryDir1.secondTime.textContent = "--:--";
-                this.summaryDir1.secondCountdown.textContent = "-- دقیقه";
+                this.summaryDir1.secondCountdown.textContent = `-- ${this.currentTranslations.minutes}`;
             }
         } else {
-            // No more trains
             this.summaryDir1.nextTime.textContent = "--:--";
-            this.summaryDir1.countdown.textContent = "-- دقیقه";
+            this.summaryDir1.countdown.textContent = `-- ${this.currentTranslations.minutes}`;
             this.summaryDir1.secondTime.textContent = "--:--";
-            this.summaryDir1.secondCountdown.textContent = "-- دقیقه";
+            this.summaryDir1.secondCountdown.textContent = `-- ${this.currentTranslations.minutes}`;
         }
 
-        // --- Direction 2 ---
+        // Direction 2
         this.summaryDir2.title.textContent = data.direction2_header;
         const nextTrainIndex2 = this.findNextTrainIndex(direction2Times);
 
         if (nextTrainIndex2 !== -1) {
-            // Next train
             const nextTime2 = direction2Times[nextTrainIndex2];
             this.summaryDir2.nextTime.textContent = this.getDisplayTime(nextTime2);
             const minutes1 = this.calculateMinutesRemaining(nextTime2);
-            this.summaryDir2.countdown.textContent = `${minutes1} دقیقه`;
+            this.summaryDir2.countdown.textContent = `${minutes1} ${this.currentTranslations.minutes}`;
 
-            // 2nd Next train
             if (direction2Times.length > nextTrainIndex2 + 1) {
                 const secondTime2 = direction2Times[nextTrainIndex2 + 1];
                 this.summaryDir2.secondTime.textContent = this.getDisplayTime(secondTime2);
                 const minutes2 = this.calculateMinutesRemaining(secondTime2);
-                this.summaryDir2.secondCountdown.textContent = `${minutes2} دقیقه`;
+                this.summaryDir2.secondCountdown.textContent = `${minutes2} ${this.currentTranslations.minutes}`;
             } else {
                 this.summaryDir2.secondTime.textContent = "--:--";
-                this.summaryDir2.secondCountdown.textContent = "-- دقیقه";
+                this.summaryDir2.secondCountdown.textContent = `-- ${this.currentTranslations.minutes}`;
             }
         } else {
-            // No more trains
             this.summaryDir2.nextTime.textContent = "--:--";
-            this.summaryDir2.countdown.textContent = "-- دقیقه";
+            this.summaryDir2.countdown.textContent = `-- ${this.currentTranslations.minutes}`;
             this.summaryDir2.secondTime.textContent = "--:--";
-            this.summaryDir2.secondCountdown.textContent = "-- دقیقه";
+            this.summaryDir2.secondCountdown.textContent = `-- ${this.currentTranslations.minutes}`;
         }
 
-        // Show the summary container
         if (this.summaryContainer) {
             this.summaryContainer.classList.remove('hidden');
         }
     },
 
     /**
-     * Creates an HTML card for a single direction's FULL schedule
-     * @param {string} title - The title for the card (e.g., direction name)
-     * @param {string[]} times - An array of time strings (HH:MM:SS)
-     * @param {string} themeColor - 'blue' or 'green' for highlighting
-     * @returns {string} HTML string for the card
-     */
-    /**
-     * Creates an HTML card for a single direction's FULL schedule with countdown
-     * @param {string} title - The title for the card (e.g., direction name)
-     * @param {string[]} times - An array of time strings (HH:MM:SS)
-     * @param {string} themeColor - 'blue' or 'green' for highlighting
-     * @returns {string} HTML string for the card
+     * Enhanced station card creation with multilingual support
      */
     createStationCard(title, times, themeColor = 'blue') {
         if (times.length === 0) {
@@ -514,14 +410,12 @@ const metroApp = {
                     <h3 class="text-lg font-semibold text-gray-100">${title}</h3>
                 </div>
                 <div class="p-5">
-                    <p class="text-gray-400">اطلاعاتی برای این ایستگاه در این مسیر یافت نشد.</p>
+                    <p class="text-gray-400">${this.currentTranslations.no_data_message}</p>
                 </div>
             </div>`;
         }
 
-        // Find the index of the next train
         const nextTrainIndex = this.findNextTrainIndex(times);
-
         let timesHtml = '<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">';
 
         times.forEach((time, index) => {
@@ -533,13 +427,10 @@ const metroApp = {
             let highlightClass = themeColor === 'blue' ? "bg-blue-600 text-white shadow-lg scale-105" : "bg-green-600 text-white shadow-lg scale-105";
 
             if (isNextTrain) {
-                // Highlight the next train
                 classes += highlightClass;
             } else if (isPastTrain) {
-                // Dim past trains
                 classes += "bg-gray-700/50 text-gray-500 line-through";
             } else {
-                // Future trains
                 classes += "bg-gray-700 text-gray-200";
             }
 
@@ -547,14 +438,14 @@ const metroApp = {
                 <div class="${classes}">
                     <div class="font-bold">${this.getDisplayTime(time)}</div>
                     <div class="text-xs mt-1 ${isNextTrain ? 'text-blue-100' : 'text-gray-400'}">
-                        ${isPastTrain ? 'گذشته' : `${minutesRemaining} دقیقه`}
+                        ${isPastTrain ? this.currentTranslations.passed : `${minutesRemaining} ${this.currentTranslations.minutes}`}
                     </div>
                 </div>`;
         });
 
         timesHtml += '</div>';
 
-        let cardHtml = `
+        return `
             <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700">
                 <div class="px-5 py-4 bg-gray-700/50">
                     <h3 class="text-lg font-semibold text-gray-100">${title}</h3>
@@ -564,58 +455,52 @@ const metroApp = {
                 </div>
             </div>
         `;
-        return cardHtml;
     },
 
     /**
-     * Finds the index of the next train in a sorted list of times
-     * @param {string[]} times - Array of time strings
-     * @returns {number} Index of the next train, or -1 if all have passed
+     * Utility functions (unchanged logic)
      */
+    calculateMinutesRemaining(trainTime) {
+        const now = new Date();
+        const [hours, minutes] = trainTime.split(':').map(Number);
+
+        const trainDate = new Date();
+        trainDate.setHours(hours, minutes, 0, 0);
+        const diffMs = trainDate - now;
+        const diffMinutes = Math.ceil(diffMs / (1000 * 60));
+
+        return Math.max(0, diffMinutes);
+    },
+
     findNextTrainIndex(times) {
         if (!this.currentTime) return -1;
 
         for (let i = 0; i < times.length; i++) {
             if (times[i] >= this.currentTime) {
-                return i; // This is the next train
+                return i;
             }
         }
-        return -1; // All trains for today have passed
+        return -1;
     },
 
-    /**
-     * Formats a HH:MM:SS time string to HH:MM
-     * @param {string} timeString - e.g., "07:30:00"
-     * @returns {string} - e.g., "07:30"
-     */
     getDisplayTime(timeString) {
-        return timeString.substring(0, 5); // "HH:MM:SS" -> "HH:MM"
+        return timeString.substring(0, 5);
     },
 
-    /**
-     * Shows a loading message
-     */
     showLoading() {
         if (this.loadingSpinner) this.loadingSpinner.classList.remove('hidden');
         this.scheduleContainer.innerHTML = '';
         if (this.initialMessage) this.initialMessage.classList.add('hidden');
     },
 
-    /**
-     * Hides the loading message
-     */
     hideLoading() {
         if (this.loadingSpinner) this.loadingSpinner.classList.add('hidden');
     },
 
-    /**
-     * Displays an error message in the schedule container
-     * @param {string} message - The error message to display
-     */
     showError(message) {
         this.scheduleContainer.innerHTML = `
             <div class="bg-red-900 border border-red-700 text-red-100 px-4 py-3 rounded-lg shadow-lg" role="alert">
-                <strong class="font-bold">خطا: </strong>
+                <strong class="font-bold">${this.currentTranslations.error_message}: </strong>
                 <span class="block sm:inline">${message}</span>
             </div>
         `;
@@ -623,27 +508,74 @@ const metroApp = {
 };
 
 // =====================================================================
-// ||                      راه‌اندازی برنامه (Init)                       ||
+// ||              Live Clock & Persian Calendar                     ||
+// =====================================================================
+const liveClock = {
+    clockElement: document.getElementById('live-clock'),
+    intervalId: null,
+
+    init() {
+        this.updateTime();
+        this.intervalId = setInterval(() => this.updateTime(), 1000);
+    },
+
+    updateTime() {
+        if (this.clockElement) {
+            const now = new Date();
+            const timeString = [
+                now.getHours(),
+                now.getMinutes(),
+                now.getSeconds()
+            ].map(num => String(num).padStart(2, '0')).join(':');
+            this.clockElement.textContent = timeString;
+        }
+    }
+};
+
+const persianCalendar = {
+    dateElement: document.getElementById('persian-date'),
+
+    init() {
+        this.updateDate();
+        setInterval(() => this.updateDate(), 24 * 60 * 60 * 1000);
+    },
+
+    updateDate() {
+        if (this.dateElement) {
+            try {
+                const options = {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    weekday: 'long'
+                };
+                const persianDate = new Date().toLocaleDateString('fa-IR', options);
+                this.dateElement.textContent = persianDate;
+            } catch (error) {
+                console.error("Error formatting Persian date:", error);
+                this.dateElement.textContent = "خطا در نمایش تاریخ";
+            }
+        }
+    }
+};
+
+// =====================================================================
+// ||                      Application Startup                      ||
 // =====================================================================
 document.addEventListener('DOMContentLoaded', () => {
-    // Show loading spinner
     metroApp.showLoading();
 
-    // Initialize modules (all local, no APIs)
     liveClock.init();
     persianCalendar.init();
 
-    // Initialize the data manager (now synchronous)
     metroDataManager.init().then(() => {
-        // Data is parsed, now init the main app
         if (metroDataManager.metroData.normal && metroDataManager.stationNames.length > 0) {
+            // Make metroApp globally accessible for language switching
+            window.metroApp = metroApp;
             metroApp.init(metroDataManager.stationNames);
-            // Hide loading spinner
             metroApp.hideLoading();
-            // Show the initial message
             if (metroApp.initialMessage) metroApp.initialMessage.classList.remove('hidden');
         } else {
-            // Handle fatal error if data couldn't be loaded
             metroApp.hideLoading();
             metroApp.showError('خطای اساسی: جدول زمانی مترو بارگذاری نشد.');
         }
