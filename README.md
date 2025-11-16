@@ -32,7 +32,7 @@
 ## 🚀 مشاهده نسخه زنده (Live Demo)
 
 - [timemetro.ir](https://timemetro.ir)
-- [DVP](https://pourjanali.github.io/TimeMetro)
+- [Beta](https://pourjanali.github.io/TimeMetro)
 
 ## ✨ ویژگی‌های کلیدی
 
