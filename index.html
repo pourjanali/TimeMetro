@@ -2,14 +2,15 @@
 <html lang="fa" dir="rtl" class="dark">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جدول زمانی مترو تبریز | برنامه قطار شهری تبریز</title>
-    <meta name="description"
-        content="برنامه رسمی نمایش زمان‌بندی مترو تبریز. مشاهده زمان حرکت قطارها در خط مترو تبریز برای ایستگاه‌های مختلف در روزهای عادی و تعطیل">
-    <meta name="keywords" content="مترو تبریز, زمان‌بندی مترو, قطار شهری تبریز, برنامه مترو, ایستگاه مترو تبریز">
-    <meta name="author" content="برنامه مترو تبریز">
-    <link rel="icon" href="https://img.icons8.com/fluency/96/000000/subway.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="page-title">جدول زمانی مترو تبریز | برنامه قطار شهری تبریز</title>
+    <meta id="meta-description" name="description"
+        content="برنامه رسمی نمایش زمان‌بندی مترو تبریز. مشاهده زمان حرکت قطارها در خط مترو تبریز برای ایستگاه‌های مختلف در روزهای عادی و تعطیل" />
+    <meta id="meta-keywords" name="keywords"
+        content="مترو تبریز, زمان‌بندی مترو, قطار شهری تبریز, برنامه مترو, ایستگاه مترو تبریز" />
+    <meta name="author" content="برنامه مترو تبریز" />
+    <link rel="icon" href="https://img.icons8.com/fluency/96/000000/subway.png" type="image/png" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="جدول زمانی مترو تبریز">
@@ -26,7 +27,7 @@
 
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://timemetro.ir/">
+    <link rel="canonical" href="https://timemetro.ir/" />
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,7 +35,7 @@
     <!-- Vazirmatn Font -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <meta name="theme-color" content="#1f2937">
+    <meta name="theme-color" content="#1f2937" />
     <style>
         body {
             font-family: 'Vazirmatn', sans-serif;
@@ -56,6 +57,33 @@
 
         ::-webkit-scrollbar-thumb:hover {
             background: #6b7280;
+        }
+
+        /* Enhanced RTL/LTR support */
+        .ltr-direction {
+            direction: ltr;
+            text-align: left;
+        }
+
+        .rtl-direction {
+            direction: rtl;
+            text-align: right;
+        }
+
+        .text-direction-aware {
+            text-align: inherit;
+        }
+
+        .flex-direction-aware {
+            display: flex;
+        }
+
+        .rtl-direction .flex-direction-aware {
+            flex-direction: row-reverse;
+        }
+
+        .ltr-direction .flex-direction-aware {
+            flex-direction: row;
         }
     </style>
     <script>
@@ -88,37 +116,386 @@
         }
     }
     </script>
+
+    <!-- ==========================
+         Enhanced Localization (FA / EN / TR / AZ)
+         ========================== -->
+    <script>
+            (function () {
+                const translations = {
+                    fa: {
+                        // page/meta
+                        title: "جدول زمانی مترو تبریز | برنامه قطار شهری تبریز",
+                        meta_description: "برنامه رسمی نمایش زمان‌بندی مترو تبریز. مشاهده زمان حرکت قطارها در خط مترو تبریز برای ایستگاه‌های مختلف در روزهای عادی و تعطیل",
+                        og_title: "جدول زمانی مترو تبریز",
+                        og_description: "برنامه رسمی نمایش زمان‌بندی مترو تبریز",
+
+                        // header
+                        header_title: "برنامه مترو تبریز",
+                        header_subtitle: "سرویس زمان‌بندی هوشمند قطار شهری",
+
+                        // controls
+                        controls_heading: "انتخاب ایستگاه و زمان",
+                        station_label: "ایستگاه مترو:",
+                        day_type_label: "نوع روز:",
+                        day_option_normal: "روز عادی (شنبه تا چهارشنبه)",
+                        day_option_holiday: "روز تعطیل (پنجشنبه ، جمعه و تعطیلات رسمی)",
+
+                        // loading & messages
+                        loading_text: "در حال بارگذاری اطلاعات مترو...",
+                        initial_message: "🚇 برای مشاهده زمان‌بندی مترو، لطفاً ایستگاه مورد نظر خود را انتخاب کنید",
+                        select_station_placeholder: "-- انتخاب ایستگاه --",
+                        no_data_message: "اطلاعاتی برای این ایستگاه در این مسیر یافت نشد.",
+                        error_message: "خطا در بارگذاری اطلاعات",
+
+                        // time-related texts
+                        minutes: "دقیقه",
+                        passed: "گذشته",
+                        next_train: "قطار بعدی",
+                        following_train: "قطار بعد",
+
+                        // summaries
+                        summary_dir_title_prefix: "...",
+                        next_train_label: "قطار بعدی:",
+                        following_train_label: "قطار بعد:",
+
+                        // footer
+                        footer_brand: "مترو تبریز",
+                        footer_subtitle: "سرویس زمان‌بندی هوشمند",
+                        footer_description: "برنامه غیررسمی نمایش زمان‌بندی مترو تبریز. همراه شما در سفرهای درون‌شهری.",
+                        quick_links_title: "لینک‌های سریع",
+                        privacy_text: "حریم خصوصی",
+                        terms_text: "شرایط استفاده",
+                        github_project_text: "پروژه گیت‌هاب",
+                        developer_text: "توسعه‌دهنده",
+                        hosting_text: "میزبانی شده در Cloudflare Pages",
+                        contact_title: "ارتباط با ما",
+                        github_repo_text: "GitHub Repository",
+                        github_repo_subtext: "مشارکت در توسعه",
+                        version_text: "نسخه ۲.۰.۰ | ساخته شده با ❤️ برای مردم تبریز",
+                        unofficial_text: "برنامه غیررسمی نمایش زمان‌بندی مترو تبریز",
+                        copyright_text: "© ۱۴۰۴ - تمامی حقوق محفوظ است"
+                    },
+                    en: {
+                        title: "Tabriz Metro Timetable | Tabriz Urban Train Schedule",
+                        meta_description: "Official-like viewer for Tabriz Metro timetable. See train times for stations on normal days and holidays.",
+                        og_title: "Tabriz Metro Timetable",
+                        og_description: "Tabriz Metro timetable viewer",
+
+                        header_title: "Tabriz Metro",
+                        header_subtitle: "Smart urban train timetable service",
+
+                        controls_heading: "Select Station and Time",
+                        station_label: "Station:",
+                        day_type_label: "Day type:",
+                        day_option_normal: "Normal day (Sat–Wed)",
+                        day_option_holiday: "Holiday (Thu, Fri & public holidays)",
+
+                        loading_text: "Loading metro information...",
+                        initial_message: "🚇 To view the timetable, please select a station.",
+                        select_station_placeholder: "-- Select Station --",
+                        no_data_message: "No information found for this station in this direction.",
+                        error_message: "Error loading information",
+
+                        minutes: "minutes",
+                        passed: "passed",
+                        next_train: "Next train",
+                        following_train: "Following train",
+
+                        summary_dir_title_prefix: "...",
+                        next_train_label: "Next train:",
+                        following_train_label: "Following train:",
+
+                        footer_brand: "Tabriz Metro",
+                        footer_subtitle: "Smart timetable service",
+                        footer_description: "Unofficial timetable viewer for Tabriz Metro. Helping you in city travel.",
+                        quick_links_title: "Quick Links",
+                        privacy_text: "Privacy",
+                        terms_text: "Terms of Use",
+                        github_project_text: "GitHub Project",
+                        developer_text: "Developer",
+                        hosting_text: "Hosted on Cloudflare Pages",
+                        contact_title: "Contact",
+                        github_repo_text: "GitHub Repository",
+                        github_repo_subtext: "Contribute to development",
+                        version_text: "Version 2.0.0 | Made with ❤️ for the people of Tabriz",
+                        unofficial_text: "Unofficial Tabriz Metro timetable viewer",
+                        copyright_text: "© 2025 - All rights reserved"
+                    },
+                    tr: {
+                        title: "Tebriz Metro Saatleri | Tebriz Şehir Treni Programı",
+                        meta_description: "Tebriz Metrosu saatlerini gösteren uygulama. Normal günler ve tatiller için istasyon kalkış saatlerini görüntüleyin.",
+                        og_title: "Tebriz Metro Saatleri",
+                        og_description: "Tebriz Metrosu saat gösterici",
+
+                        header_title: "Tebriz Metrosu",
+                        header_subtitle: "Akıllı şehir treni saat servisi",
+
+                        controls_heading: "İstasyon ve Zaman Seçimi",
+                        station_label: "İstasyon:",
+                        day_type_label: "Gün tipi:",
+                        day_option_normal: "Normal gün (Cmt–Çar)",
+                        day_option_holiday: "Tatil (Per, Cum ve resmi tatiller)",
+
+                        loading_text: "Metro bilgileri yüklənir...",
+                        initial_message: "🚇 Saatleri görüntülemek için lütfen bir istasyon seçin.",
+                        select_station_placeholder: "-- İstasyon Seç --",
+                        no_data_message: "Bu istasyon için bu yönde bilgi bulunamadı.",
+                        error_message: "Bilgi yüklenirken hata",
+
+                        minutes: "dakika",
+                        passed: "geçti",
+                        next_train: "Sonraki tren",
+                        following_train: "Bir sonraki tren",
+
+                        summary_dir_title_prefix: "...",
+                        next_train_label: "Sonraki tren:",
+                        following_train_label: "Bir sonraki tren:",
+
+                        footer_brand: "Tebriz Metrosu",
+                        footer_subtitle: "Akıllı saat servisi",
+                        footer_description: "Tebriz Metrosu için gayriresmî saat görüntüleyici. Şehir içi yolculukta yanında.",
+                        quick_links_title: "Hızlı Bağlantılar",
+                        privacy_text: "Gizlilik",
+                        terms_text: "Kullanım Şartları",
+                        github_project_text: "GitHub Projesi",
+                        developer_text: "Geliştirici",
+                        hosting_text: "Cloudflare Pages üzerinde barındırılıyor",
+                        contact_title: "İletişim",
+                        github_repo_text: "GitHub Deposu",
+                        github_repo_subtext: "Geliştirmeye katkı",
+                        version_text: "Sürüm 2.0.0 | Tebriz halkı için ❤️ ile yapıldı",
+                        unofficial_text: "Tebriz Metrosu için gayriresmî saat gösterici",
+                        copyright_text: "© 2025 - Tüm hakları saklıdır"
+                    },
+                    az: {
+                        title: "Təbriz Metro Cədvəli | Təbriz Şəhər Qatar Saatları",
+                        meta_description: "Təbriz Metrosunun cədvəlini göstərən xidmət. Adi və tətİl günləri üçün qatar saatlarını görün.",
+                        og_title: "Təbriz Metro Cədvəli",
+                        og_description: "Təbriz Metro cədvəl göstərİcisi",
+
+                        header_title: "Təbriz Metrosu",
+                        header_subtitle: "Ağıllı şəhər qatarı cədvəl xidməti",
+
+                        controls_heading: "Stansiya və Zaman Seçimi",
+                        station_label: "Metro Stansiyası:",
+                        day_type_label: "Gün növü:",
+                        day_option_normal: "Adi gün (Şənbə – Çərşənbə)",
+                        day_option_holiday: "Tətİl günü (Cümə axşamı, Cümə və rəsmi tətİllər)",
+
+                        loading_text: "Metro məlumatları yüklənir...",
+                        initial_message: "🚇 Cədvəli görmək üçün stansiyanı seçin.",
+                        select_station_placeholder: "-- Stansiya Seç --",
+                        no_data_message: "Bu stansiya üçün bu istiqamətdə məlumat tapılmadı.",
+                        error_message: "Məlumat yüklənərkən xəta",
+
+                        minutes: "dəqiqə",
+                        passed: "keçdi",
+                        next_train: "Növbəti qatar",
+                        following_train: "Sonrakı qatar",
+
+                        summary_dir_title_prefix: "...",
+                        next_train_label: "Növbəti qatar:",
+                        following_train_label: "Sonrakı qatar:",
+
+                        footer_brand: "Təbriz Metrosu",
+                        footer_subtitle: "Ağıllı cədvəl xidməti",
+                        footer_description: "Təbriz metrosu üçün qeyri-rəsmi cədvəl göstərİcisi.",
+                        quick_links_title: "Sürətli keçidlər",
+                        privacy_text: "Gizlilik",
+                        terms_text: "İstifadə Şərtləri",
+                        github_project_text: "GitHub Layihəsi",
+                        developer_text: "Tərtibatçı",
+                        hosting_text: "Cloudflare Pages üzərində yerləşdirilib",
+                        contact_title: "Əlaqə",
+                        github_repo_text: "GitHub Repozİtoriyası",
+                        github_repo_subtext: "İnkişafa töhfə verin",
+                        version_text: "Versiya 2.0.0 | Təbriz xalqı üçün ❤️ ilə hazırlanıb",
+                        unofficial_text: "Təbriz Metrosu üçün qeyri-rəsmi cədvəl göstərİcisi",
+                        copyright_text: "© 2025 - Bütün hüquqlar qorunur"
+                    }
+                };
+
+                // Enhanced mapping with data attributes for dynamic content
+                const elementMap = {
+                    // meta/page
+                    "page-title": "title",
+                    "meta-description": "meta_description",
+                    "og-title": "og_title",
+                    "og-description": "og_description",
+
+                    // header
+                    "header-title": "header_title",
+                    "header-subtitle": "header_subtitle",
+
+                    // controls
+                    "controls-heading": "controls_heading",
+                    "station-label": "station_label",
+                    "day-type-label": "day_type_label",
+                    "day-option-normal": "day_option_normal",
+                    "day-option-holiday": "day_option_holiday",
+
+                    // loading & messages
+                    "loading-text": "loading_text",
+                    "initial-message": "initial_message",
+
+                    // summary labels
+                    "summary-dir-1-next-label": "next_train_label",
+                    "summary-dir-1-follow-label": "following_train_label",
+                    "summary-dir-2-next-label": "next_train_label",
+                    "summary-dir-2-follow-label": "following_train_label",
+
+                    // footer
+                    "footer-brand": "footer_brand",
+                    "footer-subtitle": "footer_subtitle",
+                    "footer-desc": "footer_description",
+                    "quick-links-title": "quick_links_title",
+                    "privacy-text": "privacy_text",
+                    "terms-text": "terms_text",
+                    "github-project-text": "github_project_text",
+                    "developer-text": "developer_text",
+                    "hosting-text": "hosting_text",
+                    "contact-title": "contact_title",
+                    "github-repo-text": "github_repo_text",
+                    "github-repo-subtext": "github_repo_subtext",
+                    "version-text": "version_text",
+                    "unofficial-text": "unofficial_text",
+                    "copyright-text": "copyright_text"
+                };
+
+                // Helper function to safely set text content
+                function setText(id, text) {
+                    const el = document.getElementById(id);
+                    if (!el) return;
+
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
+                        el.placeholder = text;
+                    } else {
+                        el.textContent = text;
+                    }
+                }
+
+                // Enhanced translation application with layout direction
+                function applyTranslations(lang) {
+                    const t = translations[lang] || translations.fa;
+                    const isRTL = lang === 'fa';
+
+                    // Set HTML attributes
+                    document.documentElement.lang = lang;
+                    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+
+                    // Apply body classes for layout
+                    document.body.className = document.body.className.replace(/\b(rtl-direction|ltr-direction)\b/g, '');
+                    document.body.classList.add(isRTL ? 'rtl-direction' : 'ltr-direction');
+
+                    // Set page-level texts
+                    if (document.getElementById("page-title")) {
+                        document.getElementById("page-title").textContent = t.title;
+                    }
+                    if (document.getElementById("meta-description")) {
+                        document.getElementById("meta-description").setAttribute("content", t.meta_description);
+                    }
+                    if (document.getElementById("og-title")) {
+                        document.getElementById("og-title").setAttribute("content", t.og_title);
+                    }
+                    if (document.getElementById("og-description")) {
+                        document.getElementById("og-description").setAttribute("content", t.og_description);
+                    }
+
+                    // Apply translations to mapped elements
+                    Object.entries(elementMap).forEach(([elementId, translationKey]) => {
+                        setText(elementId, t[translationKey]);
+                    });
+
+                    // Update dynamic placeholders
+                    const stationSelect = document.getElementById('station-select');
+                    if (stationSelect) {
+                        const firstOption = stationSelect.querySelector('option[value=""]');
+                        if (firstOption) {
+                            firstOption.textContent = t.select_station_placeholder;
+                        }
+                    }
+
+                    // Store current language in app for dynamic content
+                    if (window.metroApp) {
+                        window.metroApp.currentLanguage = lang;
+                        window.metroApp.currentTranslations = t;
+
+                        // Refresh schedule if one is already displayed
+                        if (stationSelect && stationSelect.value) {
+                            window.metroApp.updateSchedule();
+                        }
+                    }
+                }
+
+                // Enhanced language switcher
+                const langSelect = {
+                    init: function () {
+                        const sel = document.getElementById('language-switcher');
+                        if (!sel) return;
+
+                        const saved = localStorage.getItem('metro-lang') || 'fa';
+                        sel.value = saved;
+                        applyTranslations(saved);
+
+                        sel.addEventListener('change', function (ev) {
+                            const v = ev.target.value;
+                            localStorage.setItem('metro-lang', v);
+                            applyTranslations(v);
+                        });
+                    }
+                };
+
+                // Expose for global access
+                window.metroTranslations = {
+                    apply: applyTranslations,
+                    translations: translations,
+                    getCurrent: function () {
+                        const lang = localStorage.getItem('metro-lang') || 'fa';
+                        return translations[lang] || translations.fa;
+                    }
+                };
+
+                // Initialize on DOM ready
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', () => langSelect.init());
+                } else {
+                    langSelect.init();
+                }
+            })();
+    </script>
 </head>
 
-<body class="bg-gray-900 text-gray-100 min-h-screen antialiased">
+<body class="bg-gray-900 text-gray-100 min-h-screen antialiased rtl-direction">
+    <!-- Rest of your HTML remains the same but with proper direction-aware classes -->
     <!-- Enhanced Header -->
     <header class="sticky top-0 z-10 bg-gray-900/95 backdrop-blur-md shadow-xl border-b border-gray-700">
         <div class="container mx-auto max-w-6xl px-4 py-4">
             <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
                 <!-- Logo and Title -->
-                <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="flex items-center space-x-4 space-x-reverse flex-direction-aware">
                     <div class="flex-shrink-0 bg-gradient-to-br from-blue-500 to-blue-600 p-2 rounded-xl shadow-lg">
                         <img src="https://img.icons8.com/fluency/96/000000/subway.png" alt="لوگوی مترو تبریز"
                             class="h-12 w-12 rounded-lg">
                     </div>
-                    <div class="text-center sm:text-right">
-                        <h1
+                    <div class="text-center sm:text-right text-direction-aware">
+                        <h1 id="header-title"
                             class="text-2xl font-bold bg-gradient-to-l from-blue-400 to-green-400 bg-clip-text text-transparent">
                             برنامه مترو تبریز
                         </h1>
-                        <p class="text-sm text-gray-300 mt-1">سرویس زمان‌بندی هوشمند قطار شهری</p>
+                        <p id="header-subtitle" class="text-sm text-gray-300 mt-1">سرویس زمان‌بندی هوشمند قطار شهری</p>
                     </div>
                 </div>
 
                 <!-- Clock and Date -->
                 <div
-                    class="flex items-center space-x-3 space-x-reverse bg-gray-800/50 rounded-2xl px-4 py-3 border border-gray-700">
+                    class="flex items-center space-x-3 space-x-reverse bg-gray-800/50 rounded-2xl px-4 py-3 border border-gray-700 flex-direction-aware">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-400" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <div class="flex flex-col items-end">
+                    <div class="flex flex-col items-end text-direction-aware">
                         <div id="live-clock" class="text-xl font-bold tabular-nums text-gray-100">
                             --:--:--
                         </div>
@@ -126,6 +503,18 @@
                             ...
                         </div>
                     </div>
+                </div>
+
+                <!-- Language Switcher -->
+                <div
+                    class="flex items-center space-x-2 space-x-reverse bg-gray-800/50 rounded-2xl px-4 py-3 border border-gray-700 flex-direction-aware">
+                    <select id="language-switcher"
+                        class="bg-gray-700 text-gray-100 p-2 rounded-lg border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none text-direction-aware">
+                        <option value="fa">🇮🇷 فارسی</option>
+                        <option value="en">🇺🇸 English</option>
+                        <option value="tr">🇹🇷 Türkçe</option>
+                        <option value="az">🇦🇿 Azərbaycan Türkcəsi</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -135,11 +524,12 @@
     <main class="container mx-auto max-w-6xl px-4 py-8">
         <!-- Enhanced Controls -->
         <div class="bg-gray-800/50 rounded-2xl p-6 mb-8 border border-gray-700 shadow-lg">
-            <h2 class="text-xl font-bold text-center mb-6 text-gray-100">انتخاب ایستگاه و زمان</h2>
+            <h2 id="controls-heading" class="text-xl font-bold text-center mb-6 text-gray-100">انتخاب ایستگاه و زمان
+            </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label for="station-select" class="block text-sm font-medium text-gray-300 mb-3">
-                        <span class="flex items-center space-x-2 space-x-reverse">
+                    <label for="station-select" id="station-label" class="block text-sm font-medium text-gray-300 mb-3">
+                        <span class="flex items-center space-x-2 space-x-reverse flex-direction-aware">
                             <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -150,13 +540,14 @@
                         </span>
                     </label>
                     <select id="station-select"
-                        class="block w-full rounded-xl border-gray-600 bg-gray-700 p-4 text-gray-100 shadow-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-200">
-                        <!-- Options will be added by JS -->
+                        class="block w-full rounded-xl border-gray-600 bg-gray-700 p-4 text-gray-100 shadow-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-200 text-direction-aware">
+                        <option value="">-- انتخاب ایستگاه --</option>
                     </select>
                 </div>
                 <div>
-                    <label for="day-type-select" class="block text-sm font-medium text-gray-300 mb-3">
-                        <span class="flex items-center space-x-2 space-x-reverse">
+                    <label for="day-type-select" id="day-type-label"
+                        class="block text-sm font-medium text-gray-300 mb-3">
+                        <span class="flex items-center space-x-2 space-x-reverse flex-direction-aware">
                             <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -165,9 +556,10 @@
                         </span>
                     </label>
                     <select id="day-type-select"
-                        class="block w-full rounded-xl border-gray-600 bg-gray-700 p-4 text-gray-100 shadow-lg focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-all duration-200">
-                        <option value="normal">روز عادی (شنبه تا چهارشنبه)</option>
-                        <option value="holiday">روز تعطیل (پنجشنبه ، جمعه و تعطیلات رسمی)</option>
+                        class="block w-full rounded-xl border-gray-600 bg-gray-700 p-4 text-gray-100 shadow-lg focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-all duration-200 text-direction-aware">
+                        <option id="day-option-normal" value="normal">روز عادی (شنبه تا چهارشنبه)</option>
+                        <option id="day-option-holiday" value="holiday">روز تعطیل (پنجشنبه ، جمعه و تعطیلات رسمی)
+                        </option>
                     </select>
                 </div>
             </div>
@@ -178,7 +570,7 @@
             <div
                 class="inline-block h-16 w-16 animate-spin rounded-full border-4 border-solid border-blue-500 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]">
             </div>
-            <p class="mt-6 text-gray-400 text-lg">در حال بارگذاری اطلاعات مترو...</p>
+            <p id="loading-text" class="mt-6 text-gray-400 text-lg">در حال بارگذاری اطلاعات مترو...</p>
         </div>
 
         <!-- Next Trains Summary Section -->
@@ -190,9 +582,10 @@
                     <h3 id="summary-dir-1-title" class="text-xl font-bold text-white text-center">...</h3>
                 </div>
                 <div class="p-6 space-y-4">
-                    <div class="flex items-center justify-between pb-4 border-b border-gray-600">
-                        <span class="text-blue-300 font-semibold text-lg">قطار بعدی:</span>
-                        <div class="text-left">
+                    <div class="flex items-center justify-between pb-4 border-b border-gray-600 flex-direction-aware">
+                        <span id="summary-dir-1-next-label" class="text-blue-300 font-semibold text-lg">قطار
+                            بعدی:</span>
+                        <div class="text-direction-aware">
                             <div id="summary-dir-1-next-time"
                                 class="text-4xl font-black text-blue-300 tabular-nums leading-tight">
                                 --:--
@@ -202,14 +595,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-300">قطار بعد:</span>
-                        <div class="text-left">
+                    <div class="flex items-center justify-between flex-direction-aware">
+                        <span id="summary-dir-1-follow-label" class="text-gray-300">قطار بعد:</span>
+                        <div class="text-direction-aware">
                             <span id="summary-dir-1-second-time"
                                 class="text-2xl font-bold bg-gray-700 text-gray-200 rounded-xl px-5 py-2 tabular-nums block border border-gray-600">
                                 --:--
                             </span>
-                            <div id="summary-dir-1-second-countdown" class="text-xs text-gray-400 mt-2 text-left">
+                            <div id="summary-dir-1-second-countdown"
+                                class="text-xs text-gray-400 mt-2 text-direction-aware">
                                 --
                             </div>
                         </div>
@@ -224,9 +618,10 @@
                     <h3 id="summary-dir-2-title" class="text-xl font-bold text-white text-center">...</h3>
                 </div>
                 <div class="p-6 space-y-4">
-                    <div class="flex items-center justify-between pb-4 border-b border-gray-600">
-                        <span class="text-green-300 font-semibold text-lg">قطار بعدی:</span>
-                        <div class="text-left">
+                    <div class="flex items-center justify-between pb-4 border-b border-gray-600 flex-direction-aware">
+                        <span id="summary-dir-2-next-label" class="text-green-300 font-semibold text-lg">قطار
+                            بعدی:</span>
+                        <div class="text-direction-aware">
                             <div id="summary-dir-2-next-time"
                                 class="text-4xl font-black text-green-300 tabular-nums leading-tight">
                                 --:--
@@ -236,14 +631,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-300">قطار بعد:</span>
-                        <div class="text-left">
+                    <div class="flex items-center justify-between flex-direction-aware">
+                        <span id="summary-dir-2-follow-label" class="text-gray-300">قطار بعد:</span>
+                        <div class="text-direction-aware">
                             <span id="summary-dir-2-second-time"
                                 class="text-2xl font-bold bg-gray-700 text-gray-200 rounded-xl px-5 py-2 tabular-nums block border border-gray-600">
                                 --:--
                             </span>
-                            <div id="summary-dir-2-second-countdown" class="text-xs text-gray-400 mt-2 text-left">
+                            <div id="summary-dir-2-second-countdown"
+                                class="text-xs text-gray-400 mt-2 text-direction-aware">
                                 --
                             </div>
                         </div>
@@ -261,24 +657,27 @@
         </div>
     </main>
 
+    <!-- Footer remains the same but with proper direction-aware classes -->
     <!-- Enhanced Professional Footer -->
     <footer class="bg-gradient-to-b from-gray-900 to-gray-950 border-t border-gray-800 mt-16">
         <div class="container mx-auto max-w-6xl px-4 py-12">
             <!-- Main Footer Content -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <!-- Brand Section -->
-                <div class="text-center md:text-right">
-                    <div class="flex items-center justify-center md:justify-start space-x-3 space-x-reverse mb-4">
+                <div class="text-center md:text-right text-direction-aware">
+                    <div
+                        class="flex items-center justify-center md:justify-start space-x-3 space-x-reverse mb-4 flex-direction-aware">
                         <div class="bg-blue-600 p-2 rounded-lg">
                             <img src="https://img.icons8.com/fluency/48/000000/subway.png" alt="مترو تبریز"
                                 class="h-8 w-8">
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-white">مترو تبریز</h3>
-                            <p class="text-gray-400 text-sm">سرویس زمان‌بندی هوشمند</p>
+                            <h3 id="footer-brand" class="text-xl font-bold text-white">مترو تبریز</h3>
+                            <p id="footer-subtitle" class="text-gray-400 text-sm">سرویس زمان‌بندی هوشمند</p>
                         </div>
                     </div>
-                    <p class="text-gray-300 text-sm leading-relaxed text-center md:text-right">
+                    <p id="footer-desc"
+                        class="text-gray-300 text-sm leading-relaxed text-center md:text-right text-direction-aware">
                         برنامه غیررسمی نمایش زمان‌بندی مترو تبریز. همراه شما در سفرهای درون‌شهری.
                     </p>
                 </div>
@@ -294,7 +693,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                             </svg>
-                            <span>حریم خصوصی</span>
+                            <span id="privacy-text">حریم خصوصی</span>
                         </a>
 
                         <!-- Terms -->
@@ -304,7 +703,35 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
-                            <span>شرایط استفاده</span>
+                            <span id="terms-text">شرایط استفاده</span>
+                        </a>
+
+                        <!-- GitHub Project -->
+                        <a href="https://github.com/pourjanali/TimeMetro" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-purple-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm flex-direction-aware">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+                            <span id="github-project-text">پروژه گیت‌هاب</span>
+                        </a>
+
+                        <!-- Developer -->
+                        <a href="https://pourjanali.ir" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-green-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm flex-direction-aware">
+                            <img src="https://pourjanali.ir/images/logo.png" alt="pourjanali"
+                                class="h-4 w-4 rounded-full">
+                            <span id="developer-text">توسعه‌دهنده</span>
+                        </a>
+                    </div>
+
+                    <!-- Hosting Badge -->
+                    <div class="mt-4">
+                        <a href="https://pages.cloudflare.com/" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-blue-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm flex-direction-aware">
+                            <img src="https://pages.cloudflare.com/resources/logo/logo.svg" alt="Cloudflare Pages"
+                                class="h-4 w-4">
+                            <span id="hosting-text">میزبانی شده در Cloudflare Pages</span>
                         </a>
 
                         <!-- GitHub Project -->
@@ -337,18 +764,18 @@
                     </div>
                 </div>
                 <!-- GitHub Contact Section -->
-                <div class="text-center md:text-left">
-                    <h4 class="text-lg font-semibold text-white mb-4">ارتباط با ما</h4>
+                <div class="text-center md:text-left text-direction-aware">
+                    <h4 id="contact-title" class="text-lg font-semibold text-white mb-4">ارتباط با ما</h4>
                     <div class="space-y-4">
                         <a href="https://github.com/pourjanali/TimeMetro" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center justify-center md:justify-start space-x-3 space-x-reverse bg-gray-800 hover:bg-gray-700 rounded-2xl px-4 py-3 transition-all duration-200 border border-gray-700 hover:border-purple-500 w-full max-w-xs">
+                            class="inline-flex items-center justify-center md:justify-start space-x-3 space-x-reverse bg-gray-800 hover:bg-gray-700 rounded-2xl px-4 py-3 transition-all duration-200 border border-gray-700 hover:border-purple-500 w-full max-w-xs flex-direction-aware">
                             <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                             </svg>
-                            <div class="text-right">
-                                <p class="text-white font-medium">GitHub Repository</p>
-                                <p class="text-gray-400 text-sm">مشارکت در توسعه</p>
+                            <div class="text-direction-aware">
+                                <p id="github-repo-text" class="text-white font-medium">GitHub Repository</p>
+                                <p id="github-repo-subtext" class="text-gray-400 text-sm">مشارکت در توسعه</p>
                             </div>
                         </a>
                     </div>
@@ -359,15 +786,15 @@
             <div class="border-t border-gray-800 mt-8 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-center">
                     <div class="space-y-2">
-                        <p class="text-gray-500 text-sm">
-                            نسخه ۲.۰.۰ | ساخته شده با ❤️ برای مردم تبریز
+                        <p id="version-text" class="text-gray-500 text-sm">
+                            نسخه ۲.۰.۰۰ | ساخته شده با ❤️ برای مردم تبریز
                         </p>
-                        <p class="text-gray-500 text-sm">
+                        <p id="unofficial-text" class="text-gray-500 text-sm">
                             برنامه غیررسمی نمایش زمان‌بندی مترو تبریز
                         </p>
                     </div>
                     <div>
-                        <p class="text-gray-500 text-sm">
+                        <p id="copyright-text" class="text-gray-500 text-sm">
                             © ۱۴۰۴ - تمامی حقوق محفوظ است
                         </p>
                     </div>
@@ -376,7 +803,7 @@
         </div>
     </footer>
 
-    <!-- Main Application Logic -->
+    <!-- Enhanced Main Application Logic -->
     <script src="app.js"></script>
 </body>
 
