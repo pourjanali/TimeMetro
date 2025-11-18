@@ -61,13 +61,15 @@
 
 این پروژه متن‌باز است و ما از هرگونه مشارکت برای بهبود آن استقبال می‌کنیم. اگر پیشنهادی دارید یا باگی پیدا کردید، لطفاً از طریق بخش Issues یا Pull Request اقدام کنید.
 
-<div align="center"\>
-<br>
-<strong\>ساخته شده با ❤️ برای مردم عزیز تبریز\</strong\>
-<br>
+<div align="center">
+<br />
+<strong>ساخته شده با ❤️ برای مردم عزیز تبریز</strong>
+<br />
 Made with ❤️ for the great people of Tabriz
-</div\>
+</div>
 
-<p align="left"\>(\<a href="\#readme-top"\>بازگشت به بالا\</a\>)\</p\>
+<p align="left">
+(<a href="#readme-top">بازگشت به بالا</a>)
+</p>
 
-</div\>
+</div>
