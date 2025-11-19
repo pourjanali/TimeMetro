@@ -11,6 +11,7 @@
     یک برنامه وب هوشمند و آفلاین برای نمایش زمان‌بندی حرکت قطارهای مترو تبریز.<br>
     <a href="https://github.com/pourjanali/TimeMetro/issues">گزارش خطا</a> · 
     <a href="https://github.com/pourjanali/TimeMetro/pulls">درخواست ویژگی جدید</a>
+    <a href="https://feedback.onl/fa/b/timemetro">ارسال بازخورد</a>
   </p>
 </div>
 
@@ -33,6 +34,7 @@
 
 - [timemetro.ir](https://timemetro.ir)
 - [Beta](https://pourjanali.github.io/TimeMetro)
+- [Feedback](https://feedback.onl/fa/b/timemetro)
 
 ## ✨ ویژگی‌های کلیدی
 
@@ -66,10 +68,4 @@
 <strong>ساخته شده با ❤️ برای مردم عزیز تبریز</strong>
 <br />
 Made with ❤️ for the great people of Tabriz
-</div>
-
-<p align="left">
-(<a href="#readme-top">بازگشت به بالا</a>)
-</p>
-
 </div>
