@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /privacy.html
+Allow: /terms.html
+
+Disallow: /Time Shifts/
+Disallow: /Time%20Shifts/
+Disallow: /.gitattributes
+Disallow: /LICENSE
+Disallow: /README.md
+
+Sitemap: https://timemetro.ir/sitemap.xml
