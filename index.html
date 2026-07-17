@@ -4,29 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Optimization Meta Tags -->
     <title>جدول زمانی مترو تبریز | برنامه قطار شهری تبریز</title>
-    <meta name="description"
-        content="برنامه رسمی نمایش زمان‌بندی مترو تبریز. مشاهده زمان حرکت قطارها در خط مترو تبریز برای ایستگاه‌های مختلف در روزهای عادی و تعطیل">
-    <meta name="keywords" content="مترو تبریز, زمان‌بندی مترو, قطار شهری تبریز, برنامه مترو, ایستگاه مترو تبریز">
-    <meta name="author" content="برنامه مترو تبریز">
+    <meta name="description" content="برنامه رسمی و هوشمند نمایش زمان‌بندی مترو تبریز. مشاهده زمان حرکت قطارها در خط مترو تبریز برای ایستگاه‌های مختلف در روزهای عادی و تعطیل به صورت آفلاین.">
+    <meta name="keywords" content="مترو تبریز, زمان‌بندی مترو, قطار شهری تبریز, برنامه مترو, ایستگاه مترو تبریز, زمان حرکت قطار">
+    <meta name="author" content="Behnam Pourjanali">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
     <link rel="icon" href="https://img.icons8.com/fluency/96/000000/subway.png" type="image/png">
+    <link rel="canonical" href="https://timemetro.ir/">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="جدول زمانی مترو تبریز">
-    <meta property="og:description" content="برنامه رسمی نمایش زمان‌بندی مترو تبریز">
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:title" content="جدول زمانی مترو تبریز | قطار شهری">
+    <meta property="og:description" content="سرویس هوشمند و آفلاین نمایش زمان‌بندی مترو تبریز. همین حالا زمان رسیدن قطار بعدی را ببینید.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://timemetro.ir/">
     <meta property="og:locale" content="fa_IR">
     <meta property="og:image" content="https://img.icons8.com/fluency/96/000000/subway.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="جدول زمانی مترو تبریز">
-    <meta name="twitter:description" content="برنامه رسمی نمایش زمان‌بندی مترو تبریز">
+    <meta name="twitter:description" content="سرویس هوشمند و آفلاین نمایش زمان‌بندی مترو تبریز.">
     <meta name="twitter:image" content="https://img.icons8.com/fluency/96/000000/subway.png">
-
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://timemetro.ir/">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,365 +37,940 @@
     <!-- Vazirmatn Font -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <meta name="theme-color" content="#1f2937">
+    <meta name="theme-color" content="#111827">
     <style>
         body {
             font-family: 'Vazirmatn', sans-serif;
             background-color: #111827;
+            scroll-behavior: smooth;
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1f2937;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #4b5563;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #6b7280;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1f2937; }
+        ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+        
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
+    
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: {
-                        'sans': ['Vazirmatn', 'sans-serif']
-                    }
+                    fontFamily: { 'sans': ['Vazirmatn', 'sans-serif'] }
                 }
             }
         }
     </script>
 
-    <!-- JSON-LD Structured Data -->
+    <!-- JSON-LD Structured Data for SEO -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "برنامه مترو تبریز",
-        "description": "برنامه نمایش زمان‌بندی مترو تبریز",
+        "description": "نرم‌افزار تحت وب نمایش زمان‌بندی مترو تبریز به صورت آفلاین",
         "url": "https://timemetro.ir",
         "applicationCategory": "TravelApplication",
-        "operatingSystem": "Any",
-        "permissions": "none",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+            "@type": "Offer",
+            "price": "0"
+        },
         "author": {
-            "@type": "Organization",
-            "name": "مترو تبریز"
+            "@type": "Person",
+            "name": "Behnam Pourjanali",
+            "url": "https://pourjanali.ir"
         }
     }
     </script>
 </head>
 
-<body class="bg-gray-900 text-gray-100 min-h-screen antialiased">
-    <!-- Enhanced Header -->
-    <header class="sticky top-0 z-10 bg-gray-900/95 backdrop-blur-md shadow-xl border-b border-gray-700">
+<body class="bg-gray-900 text-gray-100 min-h-screen antialiased flex flex-col">
+    
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-md shadow-xl border-b border-gray-700">
         <div class="container mx-auto max-w-6xl px-4 py-4">
             <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-                <!-- Logo and Title -->
-                <div class="flex items-center space-x-4 space-x-reverse">
+                <a href="#" class="flex items-center space-x-4 space-x-reverse cursor-pointer hover:opacity-80 transition-opacity">
                     <div class="flex-shrink-0 bg-gradient-to-br from-blue-500 to-blue-600 p-2 rounded-xl shadow-lg">
-                        <img src="https://img.icons8.com/fluency/96/000000/subway.png" alt="لوگوی مترو تبریز"
-                            class="h-12 w-12 rounded-lg">
+                        <img src="https://img.icons8.com/fluency/96/000000/subway.png" alt="لوگوی مترو تبریز" class="h-12 w-12 rounded-lg">
                     </div>
                     <div class="text-center sm:text-right">
-                        <h1
-                            class="text-2xl font-bold bg-gradient-to-l from-blue-400 to-green-400 bg-clip-text text-transparent">
+                        <h1 class="text-2xl font-bold bg-gradient-to-l from-blue-400 to-green-400 bg-clip-text text-transparent">
                             برنامه مترو تبریز
                         </h1>
                         <p class="text-sm text-gray-300 mt-1">سرویس زمان‌بندی هوشمند قطار شهری</p>
                     </div>
-                </div>
+                </a>
 
-                <!-- Clock and Date -->
-                <div
-                    class="flex items-center space-x-3 space-x-reverse bg-gray-800/50 rounded-2xl px-4 py-3 border border-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-400" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <div class="flex items-center space-x-3 space-x-reverse bg-gray-800/50 rounded-2xl px-4 py-3 border border-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <div class="flex flex-col items-end">
-                        <div id="live-clock" class="text-xl font-bold tabular-nums text-gray-100">
-                            --:--:--
-                        </div>
-                        <div id="persian-date" class="text-sm text-gray-300">
-                            ...
-                        </div>
+                        <div id="live-clock" class="text-xl font-bold tabular-nums text-gray-100">--:--:--</div>
+                        <div id="persian-date" class="text-sm text-gray-300">...</div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="container mx-auto max-w-6xl px-4 py-8">
-        <!-- Enhanced Controls -->
-        <div class="bg-gray-800/50 rounded-2xl p-6 mb-8 border border-gray-700 shadow-lg">
-            <h2 class="text-xl font-bold text-center mb-6 text-gray-100">انتخاب ایستگاه و زمان</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <label for="station-select" class="block text-sm font-medium text-gray-300 mb-3">
-                        <span class="flex items-center space-x-2 space-x-reverse">
-                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            <span>ایستگاه مترو:</span>
-                        </span>
-                    </label>
-                    <select id="station-select"
-                        class="block w-full rounded-xl border-gray-600 bg-gray-700 p-4 text-gray-100 shadow-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-200">
-                        <!-- Options will be added by JS -->
-                    </select>
-                </div>
-                <div>
-                    <label for="day-type-select" class="block text-sm font-medium text-gray-300 mb-3">
-                        <span class="flex items-center space-x-2 space-x-reverse">
-                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                            <span>نوع روز:</span>
-                        </span>
-                    </label>
-                    <select id="day-type-select"
-                        class="block w-full rounded-xl border-gray-600 bg-gray-700 p-4 text-gray-100 shadow-lg focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-all duration-200">
-                        <option value="normal">روز عادی (شنبه تا چهارشنبه)</option>
-                        <option value="holiday">روز تعطیل (پنجشنبه ، جمعه و تعطیلات رسمی)</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <!-- Loading Spinner -->
-        <div id="loading" class="text-center py-16 hidden">
-            <div
-                class="inline-block h-16 w-16 animate-spin rounded-full border-4 border-solid border-blue-500 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]">
-            </div>
-            <p class="mt-6 text-gray-400 text-lg">در حال بارگذاری اطلاعات مترو...</p>
-        </div>
-
-        <!-- Next Trains Summary Section -->
-        <div id="summary-container" class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8 hidden">
-            <!-- Direction 1 Summary -->
-            <div
-                class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-xl border border-gray-700 overflow-hidden transform hover:scale-[1.02] transition-all duration-300">
-                <div class="px-6 py-5 bg-gradient-to-r from-blue-600 to-blue-700">
-                    <h3 id="summary-dir-1-title" class="text-xl font-bold text-white text-center">...</h3>
-                </div>
-                <div class="p-6 space-y-4">
-                    <div class="flex items-center justify-between pb-4 border-b border-gray-600">
-                        <span class="text-blue-300 font-semibold text-lg">قطار بعدی:</span>
-                        <div class="text-left">
-                            <div id="summary-dir-1-next-time"
-                                class="text-4xl font-black text-blue-300 tabular-nums leading-tight">
-                                --:--
-                            </div>
-                            <div id="summary-dir-1-countdown" class="text-sm text-blue-200 mt-2 font-medium">
-                                --
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-300">قطار بعد:</span>
-                        <div class="text-left">
-                            <span id="summary-dir-1-second-time"
-                                class="text-2xl font-bold bg-gray-700 text-gray-200 rounded-xl px-5 py-2 tabular-nums block border border-gray-600">
-                                --:--
+    <!-- ROUTER VIEWS -->
+    <main class="flex-grow container mx-auto max-w-6xl px-4 py-8 relative">
+        
+        <!-- ================= MAIN APP VIEW ================= -->
+        <div id="view-home" class="view-section fade-in">
+            <div class="bg-gray-800/50 rounded-2xl p-6 mb-8 border border-gray-700 shadow-lg">
+                <h2 class="text-xl font-bold text-center mb-6 text-gray-100">انتخاب ایستگاه و زمان</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="station-select" class="block text-sm font-medium text-gray-300 mb-3">
+                            <span class="flex items-center space-x-2 space-x-reverse">
+                                <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <span>ایستگاه مترو:</span>
                             </span>
-                            <div id="summary-dir-1-second-countdown" class="text-xs text-gray-400 mt-2 text-left">
-                                --
-                            </div>
-                        </div>
+                        </label>
+                        <select id="station-select" class="block w-full rounded-xl border-gray-600 bg-gray-700 p-4 text-gray-100 shadow-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-200"></select>
                     </div>
-                </div>
-            </div>
-
-            <!-- Direction 2 Summary -->
-            <div
-                class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-xl border border-gray-700 overflow-hidden transform hover:scale-[1.02] transition-all duration-300">
-                <div class="px-6 py-5 bg-gradient-to-r from-green-600 to-green-700">
-                    <h3 id="summary-dir-2-title" class="text-xl font-bold text-white text-center">...</h3>
-                </div>
-                <div class="p-6 space-y-4">
-                    <div class="flex items-center justify-between pb-4 border-b border-gray-600">
-                        <span class="text-green-300 font-semibold text-lg">قطار بعدی:</span>
-                        <div class="text-left">
-                            <div id="summary-dir-2-next-time"
-                                class="text-4xl font-black text-green-300 tabular-nums leading-tight">
-                                --:--
-                            </div>
-                            <div id="summary-dir-2-countdown" class="text-sm text-green-200 mt-2 font-medium">
-                                --
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-300">قطار بعد:</span>
-                        <div class="text-left">
-                            <span id="summary-dir-2-second-time"
-                                class="text-2xl font-bold bg-gray-700 text-gray-200 rounded-xl px-5 py-2 tabular-nums block border border-gray-600">
-                                --:--
+                    <div>
+                        <label for="day-type-select" class="block text-sm font-medium text-gray-300 mb-3">
+                            <span class="flex items-center space-x-2 space-x-reverse">
+                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                <span>نوع روز:</span>
                             </span>
-                            <div id="summary-dir-2-second-countdown" class="text-xs text-gray-400 mt-2 text-left">
-                                --
+                        </label>
+                        <select id="day-type-select" class="block w-full rounded-xl border-gray-600 bg-gray-700 p-4 text-gray-100 shadow-lg focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-all duration-200">
+                            <option value="normal">روز عادی (شنبه تا چهارشنبه)</option>
+                            <option value="holiday">روز تعطیل (پنجشنبه ، جمعه و تعطیلات رسمی)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="loading" class="text-center py-16 hidden">
+                <div class="inline-block h-16 w-16 animate-spin rounded-full border-4 border-solid border-blue-500 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+                <p class="mt-6 text-gray-400 text-lg">در حال بارگذاری اطلاعات مترو...</p>
+            </div>
+
+            <!-- Next Trains Summary Section -->
+            <div id="summary-container" class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8 hidden">
+                <!-- Direction 1 Summary -->
+                <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-xl border border-gray-700 overflow-hidden transform hover:scale-[1.02] transition-all duration-300">
+                    <div class="px-6 py-5 bg-gradient-to-r from-blue-600 to-blue-700">
+                        <h3 id="summary-dir-1-title" class="text-xl font-bold text-white text-center">...</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between pb-4 border-b border-gray-600">
+                            <span class="text-blue-300 font-semibold text-lg">قطار بعدی:</span>
+                            <div class="text-left">
+                                <div id="summary-dir-1-next-time" class="text-4xl font-black text-blue-300 tabular-nums leading-tight">--:--</div>
+                                <div id="summary-dir-1-countdown" class="text-sm text-blue-200 mt-2 font-medium">--</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-300">قطار بعد:</span>
+                            <div class="text-left">
+                                <span id="summary-dir-1-second-time" class="text-2xl font-bold bg-gray-700 text-gray-200 rounded-xl px-5 py-2 tabular-nums block border border-gray-600">--:--</span>
+                                <div id="summary-dir-1-second-countdown" class="text-xs text-gray-400 mt-2 text-left">--</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Direction 2 Summary -->
+                <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-xl border border-gray-700 overflow-hidden transform hover:scale-[1.02] transition-all duration-300">
+                    <div class="px-6 py-5 bg-gradient-to-r from-green-600 to-green-700">
+                        <h3 id="summary-dir-2-title" class="text-xl font-bold text-white text-center">...</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between pb-4 border-b border-gray-600">
+                            <span class="text-green-300 font-semibold text-lg">قطار بعدی:</span>
+                            <div class="text-left">
+                                <div id="summary-dir-2-next-time" class="text-4xl font-black text-green-300 tabular-nums leading-tight">--:--</div>
+                                <div id="summary-dir-2-countdown" class="text-sm text-green-200 mt-2 font-medium">--</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-300">قطار بعد:</span>
+                            <div class="text-left">
+                                <span id="summary-dir-2-second-time" class="text-2xl font-bold bg-gray-700 text-gray-200 rounded-xl px-5 py-2 tabular-nums block border border-gray-600">--:--</span>
+                                <div id="summary-dir-2-second-countdown" class="text-xs text-gray-400 mt-2 text-left">--</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Schedule Container -->
+            <div id="schedule-container" class="space-y-8">
+                <p id="initial-message" class="text-center text-gray-400 text-xl mt-12 bg-gray-800/50 rounded-2xl p-8 border border-gray-700">
+                    🚇 برای مشاهده زمان‌بندی مترو، لطفاً ایستگاه مورد نظر خود را انتخاب کنید
+                </p>
+            </div>
         </div>
 
-        <!-- Schedule Container -->
-        <div id="schedule-container" class="space-y-8">
-            <p id="initial-message"
-                class="text-center text-gray-400 text-xl mt-12 bg-gray-800/50 rounded-2xl p-8 border border-gray-700">
-                🚇 برای مشاهده زمان‌بندی مترو، لطفاً ایستگاه مورد نظر خود را انتخاب کنید
-            </p>
+        <!-- ================= PRIVACY VIEW ================= -->
+        <div id="view-privacy" class="view-section hidden fade-in max-w-4xl mx-auto">
+            <div class="bg-gray-800/50 rounded-2xl p-8 border border-gray-700 shadow-lg">
+                <!-- Privacy Badge -->
+                <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-2xl p-6 mb-8 text-center">
+                    <h2 class="text-2xl font-bold text-white mb-2">✅ هیچ داده‌ای جمع‌آوری نمی‌شود</h2>
+                    <p class="text-green-100">این برنامه کاملاً محترم به حریم خصوصی شماست</p>
+                </div>
+
+                <!-- Information Collection -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <span>اطلاعات جمع‌آوری شده</span>
+                    </h3>
+                    <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600">
+                        <p class="text-gray-300 text-center mb-4"><strong>این برنامه هیچ اطلاعاتی از کاربران جمع‌آوری نمی‌کند</strong></p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-red-400">❌ هیچ اطلاعات شخصی</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-red-400">❌ هیچ اطلاعات موقعیت مکانی</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-red-400">❌ هیچ اطلاعات استفاده از برنامه</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-red-400">❌ هیچ اطلاعات دستگاه</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Storage -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                        <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                        </svg>
+                        <span>ذخیره‌سازی اطلاعات</span>
+                    </h3>
+                    <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600 text-center">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-green-400 font-semibold">💾 ذخیره‌سازی محلی</p>
+                                <p class="text-gray-300 text-sm mt-2">تمام داده‌ها به صورت محلی در مرورگر شما ذخیره می‌شوند</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-green-400 font-semibold">📱 استفاده آفلاین</p>
+                                <p class="text-gray-300 text-sm mt-2">برای استفاده آفلاین، صفحه را بوکمارک کنید</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Site Permissions -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                        <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                        <span>دسترسی‌های سایت</span>
+                    </h3>
+                    <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600">
+                        <p class="text-gray-300 text-center mb-4">این سایت به هیچ دسترسی خاصی نیاز ندارد</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-red-400">❌ دسترسی به موقعیت مکانی</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-red-400">❌ دسترسی به مخاطبین</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-red-400">❌ دسترسی به فایل‌ها</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-red-400">❌ دسترسی به دوربین</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics Services -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        <span>سرویس‌های تحلیلی</span>
+                    </h3>
+                    <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600 text-center">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-red-400 font-semibold">📊 هیچ سرویس تحلیلی</p>
+                                <p class="text-gray-300 text-sm mt-2">از هیچ سرویس تحلیلی (Analytics) استفاده نمی‌شود</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-red-400 font-semibold">🚫 هیچ تبلیغاتی</p>
+                                <p class="text-gray-300 text-sm mt-2">از هیچ سرویس تبلیغاتی استفاده نمی‌شود</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-green-400 font-semibold">🌐 اتصال به CDN</p>
+                                <p class="text-gray-300 text-sm mt-2">تنها اتصال به CDN برای فونت و استایل‌ها</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="text-center">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span>تماس با ما</span>
+                    </h3>
+                    <p class="text-gray-300 mb-6">اگر سوالی درباره حریم خصوصی دارید، از طریق ریپازیتوری GitHub با ما در ارتباط باشید:</p>
+
+                    <a href="https://github.com/pourjanali/TimeMetro" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-3 space-x-reverse bg-gray-800 hover:bg-gray-700 rounded-2xl px-6 py-4 transition-all duration-200 border border-gray-700 hover:border-blue-500">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                        <div class="text-right">
+                            <p class="text-white font-bold">GitHub Repository</p>
+                            <p class="text-gray-400 text-sm">github.com/pourjanali/TimeMetro</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Back Button -->
+            <div class="text-center mt-8">
+                <a href="#" class="inline-flex items-center space-x-2 space-x-reverse bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-2xl px-6 py-3 transition-all duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    <span>بازگشت به برنامه</span>
+                </a>
+            </div>
         </div>
+
+        <!-- ================= TERMS VIEW ================= -->
+        <div id="view-terms" class="view-section hidden fade-in max-w-4xl mx-auto">
+            <div class="bg-gray-800/50 rounded-2xl p-8 border border-gray-700 shadow-lg">
+                <!-- Acceptance Section -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                        <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>پذیرش شرایط</span>
+                    </h3>
+                    <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600 text-center">
+                        <p class="text-gray-300">
+                            با استفاده از برنامه مترو تبریز، شما این شرایط استفاده را می‌پذیرید. لطفاً قبل از استفاده، این شرایط را به دقت مطالعه کنید.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- App Purpose -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <span>هدف برنامه</span>
+                    </h3>
+                    <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600 text-center">
+                        <p class="text-gray-300">
+                            این برنامه یک سرویس غیرانتفاعی است که اطلاعات زمان‌بندی مترو تبریز را به صورت آفلاین در اختیار کاربران قرار می‌دهد.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Information Accuracy -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                        <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <span>دقت اطلاعات</span>
+                    </h3>
+                    <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600">
+                        <div class="grid grid-cols-1 gap-4 text-center">
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-green-400 font-semibold">📅 اطلاعات بر اساس داده‌های رسمی</p>
+                                <p class="text-gray-300 text-sm mt-2">اطلاعات زمان‌بندی بر اساس داده‌های رسمی ارائه می‌شود</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-yellow-400 font-semibold">⚠️ امکان اختلاف زمانی</p>
+                                <p class="text-gray-300 text-sm mt-2">ممکن است به دلیل شرایط فنی یا تغییرات برنامه‌ریزی، اختلافاتی وجود داشته باشد</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-blue-400 font-semibold">🔔 مراجعه به اعلان‌های ایستگاه</p>
+                                <p class="text-gray-300 text-sm mt-2">توصیه می‌شود برای اطلاعات دقیق‌تر به اعلان‌های ایستگاه مراجعه کنید</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                        <span>حریم خصوصی</span>
+                    </h3>
+                    <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-red-400 font-semibold">🚫 هیچ داده‌ای جمع‌آوری نمی‌شود</p>
+                                <p class="text-gray-300 text-sm mt-2">این سایت هیچ داده‌ای از کاربران جمع‌آوری نمی‌کند</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-red-400 font-semibold">🔒 هیچ اطلاعات شخصی</p>
+                                <p class="text-gray-300 text-sm mt-2">هیچ اطلاعات شخصی ذخیره یا منتقل نمی‌شود</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-green-400 font-semibold">💻 پردازش محلی</p>
+                                <p class="text-gray-300 text-sm mt-2">تمام پردازش‌ها در دستگاه کاربر انجام می‌شود</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Responsibilities -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                        <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <span>مسئولیت‌ها</span>
+                    </h3>
+                    <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-yellow-400 font-semibold">⏰ عدم مسئولیت در تاخیرها</p>
+                                <p class="text-gray-300 text-sm mt-2">توسعه‌دهنده مسئولیتی در قبال تاخیرها یا تغییرات برنامه‌ریزی ندارد</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4">
+                                <p class="text-yellow-400 font-semibold">👤 استفاده مسئولانه</p>
+                                <p class="text-gray-300 text-sm mt-2">کاربر موظف است از اطلاعات برنامه به صورت مسئولانه استفاده کند</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-4 md:col-span-2">
+                                <p class="text-red-400 font-semibold">🚫 جایگزین اعلان‌های رسمی نیست</p>
+                                <p class="text-gray-300 text-sm mt-2">برنامه جایگزین اعلان‌های رسمی مترو نیست</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms Changes -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                        <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                        <span>تغییرات شرایط</span>
+                    </h3>
+                    <div class="bg-gray-700/50 rounded-xl p-6 border border-gray-600 text-center">
+                        <p class="text-gray-300">
+                            این شرایط استفاده ممکن است در آینده به روزرسانی شود. ادامه استفاده از برنامه به معنی پذیرش شرایط جدید است.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- GitHub Section -->
+                <div class="text-center">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center justify-center space-x-2 space-x-reverse">
+                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                        <span>پروژه متن‌باز</span>
+                    </h3>
+                    <p class="text-gray-300 mb-6">این پروژه متن‌باز است و می‌توانید در توسعه آن مشارکت کنید:</p>
+
+                    <a href="https://github.com/pourjanali/TimeMetro" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-3 space-x-reverse bg-gray-800 hover:bg-gray-700 rounded-2xl px-6 py-4 transition-all duration-200 border border-gray-700 hover:border-blue-500">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                        <div class="text-right">
+                            <p class="text-white font-bold">GitHub Repository</p>
+                            <p class="text-gray-400 text-sm">github.com/pourjanali/TimeMetro</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="text-center mt-8">
+                <a href="#" class="inline-flex items-center space-x-2 space-x-reverse bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-2xl px-6 py-3 transition-all duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    <span>بازگشت به برنامه</span>
+                </a>
+            </div>
+        </div>
+
     </main>
 
-    <!-- Enhanced Professional Footer -->
-    <footer class="bg-gradient-to-b from-gray-900 to-gray-950 border-t border-gray-800 mt-16">
+    <!-- Footer -->
+    <footer class="bg-gradient-to-b from-gray-900 to-gray-950 border-t border-gray-800 mt-auto">
         <div class="container mx-auto max-w-6xl px-4 py-12">
-            <!-- Main Footer Content -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <!-- Brand Section -->
                 <div class="text-center md:text-right">
                     <div class="flex items-center justify-center md:justify-start space-x-3 space-x-reverse mb-4">
-                        <div class="bg-blue-600 p-2 rounded-lg">
-                            <img src="https://img.icons8.com/fluency/48/000000/subway.png" alt="مترو تبریز"
-                                class="h-8 w-8">
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-white">مترو تبریز</h3>
-                            <p class="text-gray-400 text-sm">سرویس زمان‌بندی هوشمند</p>
-                        </div>
+                        <div class="bg-blue-600 p-2 rounded-lg"><img src="https://img.icons8.com/fluency/48/000000/subway.png" alt="مترو تبریز" class="h-8 w-8"></div>
+                        <div><h3 class="text-xl font-bold text-white">مترو تبریز</h3><p class="text-gray-400 text-sm">سرویس زمان‌بندی هوشمند</p></div>
                     </div>
-                    <p class="text-gray-300 text-sm leading-relaxed text-center md:text-right">
-                        برنامه غیررسمی نمایش زمان‌بندی مترو تبریز. همراه شما در سفرهای درون‌شهری.
-                    </p>
+                    <p class="text-gray-300 text-sm leading-relaxed text-center md:text-right">برنامه غیررسمی نمایش زمان‌بندی مترو تبریز. همراه شما در سفرهای درون‌شهری.</p>
                 </div>
 
                 <!-- Quick Links Section -->
                 <div class="text-center">
                     <h4 class="text-lg font-semibold text-white mb-4">لینک‌های سریع</h4>
                     <div class="grid grid-cols-2 gap-3 max-w-md mx-auto">
-                        <!-- Privacy -->
-                        <a href="privacy.html"
-                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-blue-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                            </svg>
+                        <a href="#privacy" class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-blue-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                             <span>حریم خصوصی</span>
                         </a>
-
-                        <!-- Terms -->
-                        <a href="terms.html"
-                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-green-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
+                        <a href="#terms" class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-green-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                             <span>شرایط استفاده</span>
                         </a>
-
-                        <!-- GitHub Project -->
-                        <a href="https://github.com/pourjanali/TimeMetro" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-purple-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                            </svg>
-                            <span>پروژه گیت‌هاب</span>
+                        <a href="https://github.com/pourjanali/TimeMetro" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-purple-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
+                            <span>گیت‌هاب</span>
                         </a>
-
-                        <!-- Developer -->
-                        <a href="https://pourjanali.ir" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-green-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
-                            <img src="https://pourjanali.ir/images/logo.png" alt="pourjanali"
-                                class="h-4 w-4 rounded-full">
+                        <a href="https://pourjanali.ir" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-green-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
+                            <img src="https://pourjanali.ir/images/logo.png" alt="pourjanali" class="h-4 w-4 rounded-full">
                             <span>توسعه‌دهنده</span>
                         </a>
                     </div>
-
-                    <!-- Hosting Badge -->
-                    <div class="mt-4">
-                        <a href="https://pages.cloudflare.com/" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-blue-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
-                            <img src="https://pages.cloudflare.com/resources/logo/logo.svg" alt="Cloudflare Pages"
-                                class="h-4 w-4">
-                            <span>میزبانی شده در Cloudflare Pages</span>
-                        </a>
-                    </div>
                 </div>
+                
                 <!-- Contact Section -->
                 <div class="text-center md:text-left">
                     <h4 class="text-lg font-semibold text-white mb-4">ارتباط با ما</h4>
                     <div class="space-y-3">
-                        <!-- GitHub Repository -->
-                        <a href="https://github.com/pourjanali/TimeMetro" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center justify-center md:justify-start space-x-3 space-x-reverse bg-gray-800 hover:bg-gray-700 rounded-xl px-4 py-2.5 transition-all duration-200 border border-gray-700 hover:border-purple-500 w-full max-w-xs text-sm">
-                            <svg class="w-5 h-5 text-white flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                            </svg>
-                            <div class="text-right flex-1">
-                                <p class="text-white font-medium text-sm">GitHub Repository</p>
-                                <p class="text-gray-400 text-xs">مشارکت در توسعه</p>
-                            </div>
-                        </a>
-
-                        <!-- Feedback Section -->
-                        <a href="https://feedback.onl/fa/b/timemetro" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center justify-center md:justify-start space-x-3 space-x-reverse bg-gray-800 hover:bg-gray-700 rounded-xl px-4 py-2.5 transition-all duration-200 border border-gray-700 hover:border-blue-500 w-full max-w-xs text-sm">
-                            <svg class="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                            </svg>
-                            <div class="text-right flex-1">
-                                <p class="text-white font-medium text-sm">ارسال بازخورد</p>
-                                <p class="text-gray-400 text-xs">نظرات و پیشنهادات شما</p>
-                            </div>
+                        <a href="https://feedback.onl/fa/b/timemetro" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center md:justify-start space-x-3 space-x-reverse bg-gray-800 hover:bg-gray-700 rounded-xl px-4 py-2.5 transition-all duration-200 border border-gray-700 hover:border-blue-500 w-full max-w-xs text-sm">
+                            <svg class="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+                            <div class="text-right flex-1"><p class="text-white font-medium text-sm">ارسال بازخورد</p><p class="text-gray-400 text-xs">نظرات و پیشنهادات شما</p></div>
                         </a>
                     </div>
                 </div>
             </div>
-
             <!-- Bottom Bar -->
             <div class="border-t border-gray-800 mt-8 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-center">
                     <div class="space-y-2">
-                        <p class="text-gray-500 text-sm">
-                            نسخه ۲.۰.۰ | ساخته شده با ❤️ برای مردم تبریز
-                        </p>
-                        <p class="text-gray-500 text-sm">
-                            برنامه غیررسمی نمایش زمان‌بندی مترو تبریز
-                        </p>
+                        <p class="text-gray-500 text-sm">نسخه ۲.۱.۰ | ساخته شده با ❤️ برای مردم تبریز</p>
                     </div>
-                    <div>
-                        <p class="text-gray-500 text-sm">
-                            © ۱۴۰۴ - تمامی حقوق محفوظ است
-                        </p>
-                    </div>
+                    <div><p class="text-gray-500 text-sm">© تمامی حقوق محفوظ است</p></div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Main Application Logic -->
-    <script src="app.js"></script>
-</body>
+    <!-- INLINE JAVASCRIPT APP AND ROUTER -->
+    <script>
+        // === 1. ROUTER SYSTEM (For Single Page App SEO) ===
+        function handleHashRouting() {
+            const hash = window.location.hash;
+            
+            // Hide all views
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            
+            if (hash === '#privacy') {
+                document.getElementById('view-privacy').classList.remove('hidden');
+                document.title = "حریم خصوصی - برنامه مترو تبریز";
+            } else if (hash === '#terms') {
+                document.getElementById('view-terms').classList.remove('hidden');
+                document.title = "شرایط استفاده - برنامه مترو تبریز";
+            } else {
+                document.getElementById('view-home').classList.remove('hidden');
+                document.title = "جدول زمانی مترو تبریز | برنامه قطار شهری تبریز";
+            }
+            window.scrollTo(0, 0);
+        }
 
+        window.addEventListener('hashchange', handleHashRouting);
+        window.addEventListener('DOMContentLoaded', handleHashRouting);
+
+
+        // === 2. METRO DATA (CSV Strings) ===
+        const csvDataNormal = `
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+حرکت از ایستگاه به سمت ایستگاه نور,,,,,,,,,,,,,,,,,,,حرکت از ایستگاه به سمت ایستگاه ائل گؤلی,,,,,,,,,,,,,,,,
+ ائل گؤلی, سهند, امام رضا(ع), خیام,29بهمن, استاد شهریار, دانشگاه, آبرسان, سالار ملی(قطب), شهید بهشتی (ره), میدان ساعت, میدان کهن, قونقا, گازران, لاله, امام حسین(ع), شهید باکری, نور,***, ائل گؤلی, سهند, امام رضا(ع), خیام,29بهمن, استاد شهریار, دانشگاه, آبرسان, سالار ملی(قطب), شهید بهشتی (ره), میدان ساعت, میدان کهن, قونقا, گازران, لاله, امام حسین(ع), شهید باکری, نور
+05:55:00,05:57:00,05:59:00,06:01:00,06:03:00,06:05:00,06:07:00,06:09:00,06:11:00,06:13:00,06:15:00,06:18:00,06:20:00,06:22:00,06:24:00,06:26:00,06:28:00,06:30:00,,06:50:00,06:48:00,06:46:00,06:44:00,06:42:00,06:40:00,06:38:00,06:36:00,06:34:00,06:32:00,06:29:00,06:27:00,06:25:00,06:23:00,06:21:00,06:19:00,06:17:00,06:15:00
+06:15:00,06:17:00,06:19:00,06:21:00,06:23:00,06:25:00,06:27:00,06:29:00,06:31:00,06:33:00,06:35:00,06:38:00,06:40:00,06:42:00,06:44:00,06:46:00,06:48:00,06:50:00,,07:10:00,07:08:00,07:06:00,07:04:00,07:02:00,07:00:00,06:58:00,06:56:00,06:54:00,06:52:00,06:49:00,06:47:00,06:45:00,06:43:00,06:41:00,06:39:00,06:37:00,06:35:00
+06:35:00,06:37:00,06:39:00,06:41:00,06:43:00,06:45:00,06:47:00,06:49:00,06:51:00,06:53:00,06:55:00,06:58:00,07:00:00,07:02:00,07:04:00,07:06:00,07:08:00,07:10:00,,07:30:00,07:28:00,07:26:00,07:24:00,07:22:00,07:20:00,07:18:00,07:16:00,07:14:00,07:12:00,07:09:00,07:07:00,07:05:00,07:03:00,07:01:00,06:59:00,06:57:00,06:55:00
+06:55:00,06:57:00,06:59:00,07:01:00,07:03:00,07:05:00,07:07:00,07:09:00,07:11:00,07:13:00,07:15:00,07:18:00,07:20:00,07:22:00,07:24:00,07:26:00,07:28:00,07:30:00,,07:50:00,07:48:00,07:46:00,07:44:00,07:42:00,07:40:00,07:38:00,07:36:00,07:34:00,07:32:00,07:29:00,07:27:00,07:25:00,07:23:00,07:21:00,07:19:00,07:17:00,07:15:00
+07:10:00,07:12:00,07:14:00,07:16:00,07:18:00,07:20:00,07:22:00,07:24:00,07:26:00,07:28:00,07:30:00,07:33:00,07:35:00,07:37:00,07:39:00,07:41:00,07:43:00,07:45:00,,08:05:00,08:03:00,08:01:00,07:59:00,07:57:00,07:55:00,07:53:00,07:51:00,07:49:00,07:47:00,07:44:00,07:42:00,07:40:00,07:38:00,07:36:00,07:34:00,07:32:00,07:30:00
+07:25:00,07:27:00,07:29:00,07:31:00,07:33:00,07:35:00,07:37:00,07:39:00,07:41:00,07:43:00,07:45:00,07:48:00,07:50:00,07:52:00,07:54:00,07:56:00,07:58:00,08:00:00,,08:20:00,08:18:00,08:16:00,08:14:00,08:12:00,08:10:00,08:08:00,08:06:00,08:04:00,08:02:00,07:59:00,07:57:00,07:55:00,07:53:00,07:51:00,07:49:00,07:47:00,07:45:00
+07:40:00,07:42:00,07:44:00,07:46:00,07:48:00,07:50:00,07:52:00,07:54:00,07:56:00,07:58:00,08:00:00,08:03:00,08:05:00,08:07:00,08:09:00,08:11:00,08:13:00,08:15:00,,08:35:00,08:33:00,08:31:00,08:29:00,08:27:00,08:25:00,08:23:00,08:21:00,08:19:00,08:17:00,08:14:00,08:12:00,08:10:00,08:08:00,08:06:00,08:04:00,08:02:00,08:00:00
+07:55:00,07:57:00,07:59:00,08:01:00,08:03:00,08:05:00,08:07:00,08:09:00,08:11:00,08:13:00,08:15:00,08:18:00,08:20:00,08:22:00,08:24:00,08:26:00,08:28:00,08:30:00,,08:50:00,08:48:00,08:46:00,08:44:00,08:42:00,08:40:00,08:38:00,08:36:00,08:34:00,08:32:00,08:29:00,08:27:00,08:25:00,08:23:00,08:21:00,08:19:00,08:17:00,08:15:00
+08:10:00,08:12:00,08:14:00,08:16:00,08:18:00,08:20:00,08:22:00,08:24:00,08:26:00,08:28:00,08:30:00,08:33:00,08:35:00,08:37:00,08:39:00,08:41:00,08:43:00,08:45:00,,09:05:00,09:03:00,09:01:00,08:59:00,08:57:00,08:55:00,08:53:00,08:51:00,08:49:00,08:47:00,08:44:00,08:42:00,08:40:00,08:38:00,08:36:00,08:34:00,08:32:00,08:30:00
+08:25:00,08:27:00,08:29:00,08:31:00,08:33:00,08:35:00,08:37:00,08:39:00,08:41:00,08:43:00,08:45:00,08:48:00,08:50:00,08:52:00,08:54:00,08:56:00,08:58:00,09:00:00,,09:20:00,09:18:00,09:16:00,09:14:00,09:12:00,09:10:00,09:08:00,09:06:00,09:04:00,09:02:00,08:59:00,08:57:00,08:55:00,08:53:00,08:51:00,08:49:00,08:47:00,08:45:00
+08:40:00,08:42:00,08:44:00,08:46:00,08:48:00,08:50:00,08:52:00,08:54:00,08:56:00,08:58:00,09:00:00,09:03:00,09:05:00,09:07:00,09:09:00,09:11:00,09:13:00,09:15:00,,09:35:00,09:33:00,09:31:00,09:29:00,09:27:00,09:25:00,09:23:00,09:21:00,09:19:00,09:17:00,09:14:00,09:12:00,09:10:00,09:08:00,09:06:00,09:04:00,09:02:00,09:00:00
+08:55:00,08:57:00,08:59:00,09:01:00,09:03:00,09:05:00,09:07:00,09:09:00,09:11:00,09:13:00,09:15:00,09:18:00,09:20:00,09:22:00,09:24:00,09:26:00,09:28:00,09:30:00,,09:50:00,09:48:00,09:46:00,09:44:00,09:42:00,09:40:00,09:38:00,09:36:00,09:34:00,09:32:00,09:29:00,09:27:00,09:25:00,09:23:00,09:21:00,09:19:00,09:17:00,09:15:00
+09:10:00,09:12:00,09:14:00,09:16:00,09:18:00,09:20:00,09:22:00,09:24:00,09:26:00,09:28:00,09:30:00,09:33:00,09:35:00,09:37:00,09:39:00,09:41:00,09:43:00,09:45:00,,10:05:00,10:03:00,10:01:00,09:59:00,09:57:00,09:55:00,09:53:00,09:51:00,09:49:00,09:47:00,09:44:00,09:42:00,09:40:00,09:38:00,09:36:00,09:34:00,09:32:00,09:30:00
+09:25:00,09:27:00,09:29:00,09:31:00,09:33:00,09:35:00,09:37:00,09:39:00,09:41:00,09:43:00,09:45:00,09:48:00,09:50:00,09:52:00,09:54:00,09:56:00,09:58:00,10:00:00,,10:20:00,10:18:00,10:16:00,10:14:00,10:12:00,10:10:00,10:08:00,10:06:00,10:04:00,10:02:00,09:59:00,09:57:00,09:55:00,09:53:00,09:51:00,09:49:00,09:47:00,09:45:00
+09:40:00,09:42:00,09:44:00,09:46:00,09:48:00,09:50:00,09:52:00,09:54:00,09:56:00,09:58:00,10:00:00,10:03:00,10:05:00,10:07:00,10:09:00,10:11:00,10:13:00,10:15:00,,10:35:00,10:33:00,10:31:00,10:29:00,10:27:00,10:25:00,10:23:00,10:21:00,10:19:00,10:17:00,10:14:00,10:12:00,10:10:00,10:08:00,10:06:00,10:04:00,10:02:00,10:00:00
+09:55:00,09:57:00,09:59:00,10:01:00,10:03:00,10:05:00,10:07:00,10:09:00,10:11:00,10:13:00,10:15:00,10:18:00,10:20:00,10:22:00,10:24:00,10:26:00,10:28:00,10:30:00,,10:50:00,10:48:00,10:46:00,10:44:00,10:42:00,10:40:00,10:38:00,10:36:00,10:34:00,10:32:00,10:29:00,10:27:00,10:25:00,10:23:00,10:21:00,10:19:00,10:17:00,10:15:00
+10:10:00,10:12:00,10:14:00,10:16:00,10:18:00,10:20:00,10:22:00,10:24:00,10:26:00,10:28:00,10:30:00,10:33:00,10:35:00,10:37:00,10:39:00,10:41:00,10:43:00,10:45:00,,11:05:00,11:03:00,11:01:00,10:59:00,10:57:00,10:55:00,10:53:00,10:51:00,10:49:00,10:47:00,10:44:00,10:42:00,10:40:00,10:38:00,10:36:00,10:34:00,10:32:00,10:30:00
+10:25:00,10:27:00,10:29:00,10:31:00,10:33:00,10:35:00,10:37:00,10:39:00,10:41:00,10:43:00,10:45:00,10:48:00,10:50:00,10:52:00,10:54:00,10:56:00,10:58:00,11:00:00,,11:20:00,11:18:00,11:16:00,11:14:00,11:12:00,11:10:00,11:08:00,11:06:00,11:04:00,11:02:00,10:59:00,10:57:00,10:55:00,10:53:00,10:51:00,10:49:00,10:47:00,10:45:00
+10:40:00,10:42:00,10:44:00,10:46:00,10:48:00,10:50:00,10:52:00,10:54:00,10:56:00,10:58:00,11:00:00,11:03:00,11:05:00,11:07:00,11:09:00,11:11:00,11:13:00,11:15:00,,11:35:00,11:33:00,11:31:00,11:29:00,11:27:00,11:25:00,11:23:00,11:21:00,11:19:00,11:17:00,11:14:00,11:12:00,11:10:00,11:08:00,11:06:00,11:04:00,11:02:00,11:00:00
+10:55:00,10:57:00,10:59:00,11:01:00,11:03:00,11:05:00,11:07:00,11:09:00,11:11:00,11:13:00,11:15:00,11:18:00,11:20:00,11:22:00,11:24:00,11:26:00,11:28:00,11:30:00,,11:50:00,11:48:00,11:46:00,11:44:00,11:42:00,11:40:00,11:38:00,11:36:00,11:34:00,11:32:00,11:29:00,11:27:00,11:25:00,11:23:00,11:21:00,11:19:00,11:17:00,11:15:00
+11:10:00,11:12:00,11:14:00,11:16:00,11:18:00,11:20:00,11:22:00,11:24:00,11:26:00,11:28:00,11:30:00,11:33:00,11:35:00,11:37:00,11:39:00,11:41:00,11:43:00,11:45:00,,12:05:00,12:03:00,12:01:00,11:59:00,11:57:00,11:55:00,11:53:00,11:51:00,11:49:00,11:47:00,11:44:00,11:42:00,11:40:00,11:38:00,11:36:00,11:34:00,11:32:00,11:30:00
+11:25:00,11:27:00,11:29:00,11:31:00,11:33:00,11:35:00,11:37:00,11:39:00,11:41:00,11:43:00,11:45:00,11:48:00,11:50:00,11:52:00,11:54:00,11:56:00,11:58:00,12:00:00,,12:20:00,12:18:00,12:16:00,12:14:00,12:12:00,12:10:00,12:08:00,12:06:00,12:04:00,12:02:00,11:59:00,11:57:00,11:55:00,11:53:00,11:51:00,11:49:00,11:47:00,11:45:00
+11:40:00,11:42:00,11:44:00,11:46:00,11:48:00,11:50:00,11:52:00,11:54:00,11:56:00,11:58:00,12:00:00,12:03:00,12:05:00,12:07:00,12:09:00,12:11:00,12:13:00,12:15:00,,12:35:00,12:33:00,12:31:00,12:29:00,12:27:00,12:25:00,12:23:00,12:21:00,12:19:00,12:17:00,12:14:00,12:12:00,12:10:00,12:08:00,12:06:00,12:04:00,12:02:00,12:00:00
+11:55:00,11:57:00,11:59:00,12:01:00,12:03:00,12:05:00,12:07:00,12:09:00,12:11:00,12:13:00,12:15:00,12:18:00,12:20:00,12:22:00,12:24:00,12:26:00,12:28:00,12:30:00,,12:50:00,12:48:00,12:46:00,12:44:00,12:42:00,12:40:00,12:38:00,12:36:00,12:34:00,12:32:00,12:29:00,12:27:00,12:25:00,12:23:00,12:21:00,12:19:00,12:17:00,12:15:00
+12:10:00,12:12:00,12:14:00,12:16:00,12:18:00,12:20:00,12:22:00,12:24:00,12:26:00,12:28:00,12:30:00,12:33:00,12:35:00,12:37:00,12:39:00,12:41:00,12:43:00,12:45:00,,13:05:00,13:03:00,13:01:00,12:59:00,12:57:00,12:55:00,12:53:00,12:51:00,12:49:00,12:47:00,12:44:00,12:42:00,12:40:00,12:38:00,12:36:00,12:34:00,12:32:00,12:30:00
+12:25:00,12:27:00,12:29:00,12:31:00,12:33:00,12:35:00,12:37:00,12:39:00,12:41:00,12:43:00,12:45:00,12:48:00,12:50:00,12:52:00,12:54:00,12:56:00,12:58:00,13:00:00,,13:20:00,13:18:00,13:16:00,13:14:00,13:12:00,13:10:00,13:08:00,13:06:00,13:04:00,13:02:00,12:59:00,12:57:00,12:55:00,12:53:00,12:51:00,12:49:00,12:47:00,12:45:00
+12:40:00,12:42:00,12:44:00,12:46:00,12:48:00,12:50:00,12:52:00,12:54:00,12:56:00,12:58:00,13:00:00,13:03:00,13:05:00,13:07:00,13:09:00,13:11:00,13:13:00,13:15:00,,13:35:00,13:33:00,13:31:00,13:29:00,13:27:00,13:25:00,13:23:00,13:21:00,13:19:00,13:17:00,13:14:00,13:12:00,13:10:00,13:08:00,13:06:00,13:04:00,13:02:00,13:00:00
+12:55:00,12:57:00,12:59:00,13:01:00,13:03:00,13:05:00,13:07:00,13:09:00,13:11:00,13:13:00,13:15:00,13:18:00,13:20:00,13:22:00,13:24:00,13:26:00,13:28:00,13:30:00,,13:50:00,13:48:00,13:46:00,13:44:00,13:42:00,13:40:00,13:38:00,13:36:00,13:34:00,13:32:00,13:29:00,13:27:00,13:25:00,13:23:00,13:21:00,13:19:00,13:17:00,13:15:00
+13:10:00,13:12:00,13:14:00,13:16:00,13:18:00,13:20:00,13:22:00,13:24:00,13:26:00,13:28:00,13:30:00,13:33:00,13:35:00,13:37:00,13:39:00,13:41:00,13:43:00,13:45:00,,14:05:00,14:03:00,14:01:00,13:59:00,13:57:00,13:55:00,13:53:00,13:51:00,13:49:00,13:47:00,13:44:00,13:42:00,13:40:00,13:38:00,13:36:00,13:34:00,13:32:00,13:30:00
+13:25:00,13:27:00,13:29:00,13:31:00,13:33:00,13:35:00,13:37:00,13:39:00,13:41:00,13:43:00,13:45:00,13:48:00,13:50:00,13:52:00,13:54:00,13:56:00,13:58:00,14:00:00,,14:20:00,14:18:00,14:16:00,14:14:00,14:12:00,14:10:00,14:08:00,14:06:00,14:04:00,14:02:00,13:59:00,13:57:00,13:55:00,13:53:00,13:51:00,13:49:00,13:47:00,13:45:00
+13:40:00,13:42:00,13:44:00,13:46:00,13:48:00,13:50:00,13:52:00,13:54:00,13:56:00,13:58:00,14:00:00,14:03:00,14:05:00,14:07:00,14:09:00,14:11:00,14:13:00,14:15:00,,14:35:00,14:33:00,14:31:00,14:29:00,14:27:00,14:25:00,14:23:00,14:21:00,14:19:00,14:17:00,14:14:00,14:12:00,14:10:00,14:08:00,14:06:00,14:04:00,14:02:00,14:00:00
+13:55:00,13:57:00,13:59:00,14:01:00,14:03:00,14:05:00,14:07:00,14:09:00,14:11:00,14:13:00,14:15:00,14:18:00,14:20:00,14:22:00,14:24:00,14:26:00,14:28:00,14:30:00,,14:50:00,14:48:00,14:46:00,14:44:00,14:42:00,14:40:00,14:38:00,14:36:00,14:34:00,14:32:00,14:29:00,14:27:00,14:25:00,14:23:00,14:21:00,14:19:00,14:17:00,14:15:00
+14:10:00,14:12:00,14:14:00,14:16:00,14:18:00,14:20:00,14:22:00,14:24:00,14:26:00,14:28:00,14:30:00,14:33:00,14:35:00,14:37:00,14:39:00,14:41:00,14:43:00,14:45:00,,15:05:00,15:03:00,15:01:00,14:59:00,14:57:00,14:55:00,14:53:00,14:51:00,14:49:00,14:47:00,14:44:00,14:42:00,14:40:00,14:38:00,14:36:00,14:34:00,14:32:00,14:30:00
+14:25:00,14:27:00,14:29:00,14:31:00,14:33:00,14:35:00,14:37:00,14:39:00,14:41:00,14:43:00,14:45:00,14:48:00,14:50:00,14:52:00,14:54:00,14:56:00,14:58:00,15:00:00,,15:20:00,15:18:00,15:16:00,15:14:00,15:12:00,15:10:00,15:08:00,15:06:00,15:04:00,15:02:00,14:59:00,14:57:00,14:55:00,14:53:00,14:51:00,14:49:00,14:47:00,14:45:00
+14:40:00,14:42:00,14:44:00,14:46:00,14:48:00,14:50:00,14:52:00,14:54:00,14:56:00,14:58:00,15:00:00,15:03:00,15:05:00,15:07:00,15:09:00,15:11:00,15:13:00,15:15:00,,15:35:00,15:33:00,15:31:00,15:29:00,15:27:00,15:25:00,15:23:00,15:21:00,15:19:00,15:17:00,15:14:00,15:12:00,15:10:00,15:08:00,15:06:00,15:04:00,15:02:00,15:00:00
+14:55:00,14:57:00,14:59:00,15:01:00,15:03:00,15:05:00,15:07:00,15:09:00,15:11:00,15:13:00,15:15:00,15:18:00,15:20:00,15:22:00,15:24:00,15:26:00,15:28:00,15:30:00,,15:50:00,15:48:00,15:46:00,15:44:00,15:42:00,15:40:00,15:38:00,15:36:00,15:34:00,15:32:00,15:29:00,15:27:00,15:25:00,15:23:00,15:21:00,15:19:00,15:17:00,15:15:00
+15:10:00,15:12:00,15:14:00,15:16:00,15:18:00,15:20:00,15:22:00,15:24:00,15:26:00,15:28:00,15:30:00,15:33:00,15:35:00,15:37:00,15:39:00,15:41:00,15:43:00,15:45:00,,16:05:00,16:03:00,16:01:00,15:59:00,15:57:00,15:55:00,15:53:00,15:51:00,15:49:00,15:47:00,15:44:00,15:42:00,15:40:00,15:38:00,15:36:00,15:34:00,15:32:00,15:30:00
+15:25:00,15:27:00,15:29:00,15:31:00,15:33:00,15:35:00,15:37:00,15:39:00,15:41:00,15:43:00,15:45:00,15:48:00,15:50:00,15:52:00,15:54:00,15:56:00,15:58:00,16:00:00,,16:20:00,16:18:00,16:16:00,16:14:00,16:12:00,16:10:00,16:08:00,16:06:00,16:04:00,16:02:00,15:59:00,15:57:00,15:55:00,15:53:00,15:51:00,15:49:00,15:47:00,15:45:00
+15:40:00,15:42:00,15:44:00,15:46:00,15:48:00,15:50:00,15:52:00,15:54:00,15:56:00,15:58:00,16:00:00,16:03:00,16:05:00,16:07:00,16:09:00,16:11:00,16:13:00,16:15:00,,16:35:00,16:33:00,16:31:00,16:29:00,16:27:00,16:25:00,16:23:00,16:21:00,16:19:00,16:17:00,16:14:00,16:12:00,16:10:00,16:08:00,16:06:00,16:04:00,16:02:00,16:00:00
+15:55:00,15:57:00,15:59:00,16:01:00,16:03:00,16:05:00,16:07:00,16:09:00,16:11:00,16:13:00,16:15:00,16:18:00,16:20:00,16:22:00,16:24:00,16:26:00,16:28:00,16:30:00,,16:50:00,16:48:00,16:46:00,16:44:00,16:42:00,16:40:00,16:38:00,16:36:00,16:34:00,16:32:00,16:29:00,16:27:00,16:25:00,16:23:00,16:21:00,16:19:00,16:17:00,16:15:00
+16:10:00,16:12:00,16:14:00,16:16:00,16:18:00,16:20:00,16:22:00,16:24:00,16:26:00,16:28:00,16:30:00,16:33:00,16:35:00,16:37:00,16:39:00,16:41:00,16:43:00,16:45:00,,17:05:00,17:03:00,17:01:00,16:59:00,16:57:00,16:55:00,16:53:00,16:51:00,16:49:00,16:47:00,16:44:00,16:42:00,16:40:00,16:38:00,16:36:00,16:34:00,16:32:00,16:30:00
+16:25:00,16:27:00,16:29:00,16:31:00,16:33:00,16:35:00,16:37:00,16:39:00,16:41:00,16:43:00,16:45:00,16:48:00,16:50:00,16:52:00,16:54:00,16:56:00,16:58:00,17:00:00,,17:20:00,17:18:00,17:16:00,17:14:00,17:12:00,17:10:00,17:08:00,17:06:00,17:04:00,17:02:00,16:59:00,16:57:00,16:55:00,16:53:00,16:51:00,16:49:00,16:47:00,16:45:00
+16:40:00,16:42:00,16:44:00,16:46:00,16:48:00,16:50:00,16:52:00,16:54:00,16:56:00,16:58:00,17:00:00,17:03:00,17:05:00,17:07:00,17:09:00,17:11:00,17:13:00,17:15:00,,17:35:00,17:33:00,17:31:00,17:29:00,17:27:00,17:25:00,17:23:00,17:21:00,17:19:00,17:17:00,17:14:00,17:12:00,17:10:00,17:08:00,17:06:00,17:04:00,17:02:00,17:00:00
+16:55:00,16:57:00,16:59:00,17:01:00,17:03:00,17:05:00,17:07:00,17:09:00,17:11:00,17:13:00,17:15:00,17:18:00,17:20:00,17:22:00,17:24:00,17:26:00,17:28:00,17:30:00,,17:50:00,17:48:00,17:46:00,17:44:00,17:42:00,17:40:00,17:38:00,17:36:00,17:34:00,17:32:00,17:29:00,17:27:00,17:25:00,17:23:00,17:21:00,17:19:00,17:17:00,17:15:00
+17:10:00,17:12:00,17:14:00,17:16:00,17:18:00,17:20:00,17:22:00,17:24:00,17:26:00,17:28:00,17:30:00,17:33:00,17:35:00,17:37:00,17:39:00,17:41:00,17:43:00,17:45:00,,18:05:00,18:03:00,18:01:00,17:59:00,17:57:00,17:55:00,17:53:00,17:51:00,17:49:00,17:47:00,17:44:00,17:42:00,17:40:00,17:38:00,17:36:00,17:34:00,17:32:00,17:30:00
+17:25:00,17:27:00,17:29:00,17:31:00,17:33:00,17:35:00,17:37:00,17:39:00,17:41:00,17:43:00,17:45:00,17:48:00,17:50:00,17:52:00,17:54:00,17:56:00,17:58:00,18:00:00,,18:20:00,18:18:00,18:16:00,18:14:00,18:12:00,18:10:00,18:08:00,18:06:00,18:04:00,18:02:00,17:59:00,17:57:00,17:55:00,17:53:00,17:51:00,17:49:00,17:47:00,17:45:00
+17:40:00,17:42:00,17:44:00,17:46:00,17:48:00,17:50:00,17:52:00,17:54:00,17:56:00,17:58:00,18:00:00,18:03:00,18:05:00,18:07:00,18:09:00,18:11:00,18:13:00,18:15:00,,18:35:00,18:33:00,18:31:00,18:29:00,18:27:00,18:25:00,18:23:00,18:21:00,18:19:00,18:17:00,18:14:00,18:12:00,18:10:00,18:08:00,18:06:00,18:04:00,18:02:00,18:00:00
+17:55:00,17:57:00,17:59:00,18:01:00,18:03:00,18:05:00,18:07:00,18:09:00,18:11:00,18:13:00,18:15:00,18:18:00,18:20:00,18:22:00,18:24:00,18:26:00,18:28:00,18:30:00,,18:50:00,18:48:00,18:46:00,18:44:00,18:42:00,18:40:00,18:38:00,18:36:00,18:34:00,18:32:00,18:29:00,18:27:00,18:25:00,18:23:00,18:21:00,18:19:00,18:17:00,18:15:00
+18:10:00,18:12:00,18:14:00,18:16:00,18:18:00,18:20:00,18:22:00,18:24:00,18:26:00,18:28:00,18:30:00,18:33:00,18:35:00,18:37:00,18:39:00,18:41:00,18:43:00,18:45:00,,19:05:00,19:03:00,19:01:00,18:59:00,18:57:00,18:55:00,18:53:00,18:51:00,18:49:00,18:47:00,18:44:00,18:42:00,18:40:00,18:38:00,18:36:00,18:34:00,18:32:00,18:30:00
+18:25:00,18:27:00,18:29:00,18:31:00,18:33:00,18:35:00,18:37:00,18:39:00,18:41:00,18:43:00,18:45:00,18:48:00,18:50:00,18:52:00,18:54:00,18:56:00,18:58:00,19:00:00,,19:20:00,19:18:00,19:16:00,19:14:00,19:12:00,19:10:00,19:08:00,19:06:00,19:04:00,19:02:00,18:59:00,18:57:00,18:55:00,18:53:00,18:51:00,18:49:00,18:47:00,18:45:00
+18:40:00,18:42:00,18:44:00,18:46:00,18:48:00,18:50:00,18:52:00,18:54:00,18:56:00,18:58:00,19:00:00,19:03:00,19:05:00,19:07:00,19:09:00,19:11:00,19:13:00,19:15:00,,19:35:00,19:33:00,19:31:00,19:29:00,19:27:00,19:25:00,19:23:00,19:21:00,19:19:00,19:17:00,19:14:00,19:12:00,19:10:00,19:08:00,19:06:00,19:04:00,19:02:00,19:00:00
+18:55:00,18:57:00,18:59:00,19:01:00,19:03:00,19:05:00,19:07:00,19:09:00,19:11:00,19:13:00,19:15:00,19:18:00,19:20:00,19:22:00,19:24:00,19:26:00,19:28:00,19:30:00,,19:50:00,19:48:00,19:46:00,19:44:00,19:42:00,19:40:00,19:38:00,19:36:00,19:34:00,19:32:00,19:29:00,19:27:00,19:25:00,19:23:00,19:21:00,19:19:00,19:17:00,19:15:00
+19:10:00,19:12:00,19:14:00,19:16:00,19:18:00,19:20:00,19:22:00,19:24:00,19:26:00,19:28:00,19:30:00,19:33:00,19:35:00,19:37:00,19:39:00,19:41:00,19:43:00,19:45:00,,20:05:00,20:03:00,20:01:00,19:59:00,19:57:00,19:55:00,19:53:00,19:51:00,19:49:00,19:47:00,19:44:00,19:42:00,19:40:00,19:38:00,19:36:00,19:34:00,19:32:00,19:30:00
+19:25:00,19:27:00,19:29:00,19:31:00,19:33:00,19:35:00,19:37:00,19:39:00,19:41:00,19:43:00,19:45:00,19:48:00,19:50:00,19:52:00,19:54:00,19:56:00,19:58:00,20:00:00,,20:20:00,20:18:00,20:16:00,20:14:00,20:12:00,20:10:00,20:08:00,20:06:00,20:04:00,20:02:00,19:59:00,19:57:00,19:55:00,19:53:00,19:51:00,19:49:00,19:47:00,19:45:00
+19:40:00,19:42:00,19:44:00,19:46:00,19:48:00,19:50:00,19:52:00,19:54:00,19:56:00,19:58:00,20:00:00,20:03:00,20:05:00,20:07:00,20:09:00,20:11:00,20:13:00,20:15:00,,20:35:00,20:33:00,20:31:00,20:29:00,20:27:00,20:25:00,20:23:00,20:21:00,20:19:00,20:17:00,20:14:00,20:12:00,20:10:00,20:08:00,20:06:00,20:04:00,20:02:00,20:00:00
+19:55:00,19:57:00,19:59:00,20:01:00,20:03:00,20:05:00,20:07:00,20:09:00,20:11:00,20:13:00,20:15:00,20:18:00,20:20:00,20:22:00,20:24:00,20:26:00,20:28:00,20:30:00,,20:50:00,20:48:00,20:46:00,20:44:00,20:42:00,20:40:00,20:38:00,20:36:00,20:34:00,20:32:00,20:29:00,20:27:00,20:25:00,20:23:00,20:21:00,20:19:00,20:17:00,20:15:00
+20:10:00,20:12:00,20:14:00,20:16:00,20:18:00,20:20:00,20:22:00,20:24:00,20:26:00,20:28:00,20:30:00,20:33:00,20:35:00,20:37:00,20:39:00,20:41:00,20:43:00,20:45:00,,21:05:00,21:03:00,21:01:00,20:59:00,20:57:00,20:55:00,20:53:00,20:51:00,20:49:00,20:47:00,20:44:00,20:42:00,20:40:00,20:38:00,20:36:00,20:34:00,20:32:00,20:30:00
+`;
+
+        const csvDataHoliday = `
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+حرکت از ایستگاه به سمت ایستگاه نور,,,,,,,,,,,,,,,,,,,حرکت از ایستگاه به سمت ایستگاه ائل گؤلی,,,,,,,,,,,,,,,,
+ ائل گؤلی, سهند, امام رضا(ع), خیام,29بهمن, استاد شهریار, دانشگاه, آبرسان, سالار ملی(قطب), شهید بهشتی (ره), میدان ساعت, میدان کهن, قونقا, گازران, لاله, امام حسین(ع), شهید باکری, نور,***, ائل گؤلی, سهند, امام رضا(ع), خیام,29بهمن, استاد شهریار, دانشگاه, آبرسان, سالار ملی(قطب), شهید بهشتی (ره), میدان ساعت, میدان کهن, قونقا, گازران, لاله, امام حسین(ع), شهید باکری, نور
+07:30:00,07:32:00,07:34:00,07:36:00,07:38:00,07:40:00,07:42:00,07:44:00,07:46:00,07:48:00,07:50:00,07:53:00,07:55:00,07:57:00,07:59:00,08:01:00,08:03:00,08:05:00,***,08:15:00,08:13:00,08:11:00,08:09:00,08:07:00,08:05:00,08:03:00,08:01:00,07:59:00,07:57:00,07:54:00,07:52:00,07:50:00,07:48:00,07:46:00,07:44:00,07:42:00,07:40:00
+07:46:00,07:48:00,07:50:00,07:52:00,07:54:00,07:56:00,07:58:00,08:00:00,08:02:00,08:04:00,08:06:00,08:09:00,08:11:00,08:13:00,08:15:00,08:17:00,08:19:00,08:21:00,***,08:31:00,08:29:00,08:27:00,08:25:00,08:23:00,08:21:00,08:19:00,08:17:00,08:15:00,08:13:00,08:10:00,08:08:00,08:06:00,08:04:00,08:02:00,08:00:00,07:58:00,07:56:00
+08:02:00,08:04:00,08:06:00,08:08:00,08:10:00,08:12:00,08:14:00,08:16:00,08:18:00,08:20:00,08:22:00,08:25:00,08:27:00,08:29:00,08:31:00,08:33:00,08:35:00,08:37:00,***,08:47:00,08:45:00,08:43:00,08:41:00,08:39:00,08:37:00,08:35:00,08:33:00,08:31:00,08:29:00,08:26:00,08:24:00,08:22:00,08:20:00,08:18:00,08:16:00,08:14:00,08:12:00
+08:18:00,08:20:00,08:22:00,08:24:00,08:26:00,08:28:00,08:30:00,08:32:00,08:34:00,08:36:00,08:38:00,08:41:00,08:43:00,08:45:00,08:47:00,08:49:00,08:51:00,08:53:00,***,09:03:00,09:01:00,08:59:00,08:57:00,08:55:00,08:53:00,08:51:00,08:49:00,08:47:00,08:45:00,08:42:00,08:40:00,08:38:00,08:36:00,08:34:00,08:32:00,08:30:00,08:28:00
+08:34:00,08:36:00,08:38:00,08:40:00,08:42:00,08:44:00,08:46:00,08:48:00,08:50:00,08:52:00,08:54:00,08:57:00,08:59:00,09:01:00,09:03:00,09:05:00,09:07:00,09:09:00,***,09:19:00,09:17:00,09:15:00,09:13:00,09:11:00,09:09:00,09:07:00,09:05:00,09:03:00,09:01:00,08:58:00,08:56:00,08:54:00,08:52:00,08:50:00,08:48:00,08:46:00,08:44:00
+08:50:00,08:52:00,08:54:00,08:56:00,08:58:00,09:00:00,09:02:00,09:04:00,09:06:00,09:08:00,09:10:00,09:13:00,09:15:00,09:17:00,09:19:00,09:21:00,09:23:00,09:25:00,***,09:35:00,09:33:00,09:31:00,09:29:00,09:27:00,09:25:00,09:23:00,09:21:00,09:19:00,09:17:00,09:14:00,09:12:00,09:10:00,09:08:00,09:06:00,09:04:00,09:02:00,09:00:00
+09:06:00,09:08:00,09:10:00,09:12:00,09:14:00,09:16:00,09:18:00,09:20:00,09:22:00,09:24:00,09:26:00,09:29:00,09:31:00,09:33:00,09:35:00,09:37:00,09:39:00,09:41:00,***,09:51:00,09:49:00,09:47:00,09:45:00,09:43:00,09:41:00,09:39:00,09:37:00,09:35:00,09:33:00,09:30:00,09:28:00,09:26:00,09:24:00,09:22:00,09:20:00,09:18:00,09:16:00
+09:22:00,09:24:00,09:26:00,09:28:00,09:30:00,09:32:00,09:34:00,09:36:00,09:38:00,09:40:00,09:42:00,09:45:00,09:47:00,09:49:00,09:51:00,09:53:00,09:55:00,09:57:00,***,10:07:00,10:05:00,10:03:00,10:01:00,09:59:00,09:57:00,09:55:00,09:53:00,09:51:00,09:49:00,09:46:00,09:44:00,09:42:00,09:40:00,09:38:00,09:36:00,09:34:00,09:32:00
+09:38:00,09:40:00,09:42:00,09:44:00,09:46:00,09:48:00,09:50:00,09:52:00,09:54:00,09:56:00,09:58:00,10:01:00,10:03:00,10:05:00,10:07:00,10:09:00,10:11:00,10:13:00,***,10:23:00,10:21:00,10:19:00,10:17:00,10:15:00,10:13:00,10:11:00,10:09:00,10:07:00,10:05:00,10:02:00,10:00:00,09:58:00,09:56:00,09:54:00,09:52:00,09:50:00,09:48:00
+09:54:00,09:56:00,09:58:00,10:00:00,10:02:00,10:04:00,10:06:00,10:08:00,10:10:00,10:12:00,10:14:00,10:17:00,10:19:00,10:21:00,10:23:00,10:25:00,10:27:00,10:29:00,***,10:39:00,10:37:00,10:35:00,10:33:00,10:31:00,10:29:00,10:27:00,10:25:00,10:23:00,10:21:00,10:18:00,10:16:00,10:14:00,10:12:00,10:10:00,10:08:00,10:06:00,10:04:00
+10:10:00,10:12:00,10:14:00,10:16:00,10:18:00,10:20:00,10:22:00,10:24:00,10:26:00,10:28:00,10:30:00,10:33:00,10:35:00,10:37:00,10:39:00,10:41:00,10:43:00,10:45:00,***,10:55:00,10:53:00,10:51:00,10:49:00,10:47:00,10:45:00,10:43:00,10:41:00,10:39:00,10:37:00,10:34:00,10:32:00,10:30:00,10:28:00,10:26:00,10:24:00,10:22:00,10:20:00
+10:26:00,10:28:00,10:30:00,10:32:00,10:34:00,10:36:00,10:38:00,10:40:00,10:42:00,10:44:00,10:46:00,10:49:00,10:51:00,10:53:00,10:55:00,10:57:00,10:59:00,11:01:00,***,11:11:00,11:09:00,11:07:00,11:05:00,11:03:00,11:01:00,10:59:00,10:57:00,10:55:00,10:53:00,10:50:00,10:48:00,10:46:00,10:44:00,10:42:00,10:40:00,10:38:00,10:36:00
+10:42:00,10:44:00,10:46:00,10:48:00,10:50:00,10:52:00,10:54:00,10:56:00,10:58:00,11:00:00,11:02:00,11:05:00,11:07:00,11:09:00,11:11:00,11:13:00,11:15:00,11:17:00,***,11:27:00,11:25:00,11:23:00,11:21:00,11:19:00,11:17:00,11:15:00,11:13:00,11:11:00,11:09:00,11:06:00,11:04:00,11:02:00,11:00:00,10:58:00,10:56:00,10:54:00,10:52:00
+10:58:00,11:00:00,11:02:00,11:04:00,11:06:00,11:08:00,11:10:00,11:12:00,11:14:00,11:16:00,11:18:00,11:21:00,11:23:00,11:25:00,11:27:00,11:29:00,11:31:00,11:33:00,***,11:43:00,11:41:00,11:39:00,11:37:00,11:35:00,11:33:00,11:31:00,11:29:00,11:27:00,11:25:00,11:22:00,11:20:00,11:18:00,11:16:00,11:14:00,11:12:00,11:10:00,11:08:00
+11:14:00,11:16:00,11:18:00,11:20:00,11:22:00,11:24:00,11:26:00,11:28:00,11:30:00,11:32:00,11:34:00,11:37:00,11:39:00,11:41:00,11:43:00,11:45:00,11:47:00,11:49:00,***,11:59:00,11:57:00,11:55:00,11:53:00,11:51:00,11:49:00,11:47:00,11:45:00,11:43:00,11:41:00,11:38:00,11:36:00,11:34:00,11:32:00,11:30:00,11:28:00,11:26:00,11:24:00
+11:30:00,11:32:00,11:34:00,11:36:00,11:38:00,11:40:00,11:42:00,11:44:00,11:46:00,11:48:00,11:50:00,11:53:00,11:55:00,11:57:00,11:59:00,12:01:00,12:03:00,12:05:00,***,12:15:00,12:13:00,12:11:00,12:09:00,12:07:00,12:05:00,12:03:00,12:01:00,11:59:00,11:57:00,11:54:00,11:52:00,11:50:00,11:48:00,11:46:00,11:44:00,11:42:00,11:40:00
+11:46:00,11:48:00,11:50:00,11:52:00,11:54:00,11:56:00,11:58:00,12:00:00,12:02:00,12:04:00,12:06:00,12:09:00,12:11:00,12:13:00,12:15:00,12:17:00,12:19:00,12:21:00,***,12:31:00,12:29:00,12:27:00,12:25:00,12:23:00,12:21:00,12:19:00,12:17:00,12:15:00,12:13:00,12:10:00,12:08:00,12:06:00,12:04:00,12:02:00,12:00:00,11:58:00,11:56:00
+12:02:00,12:04:00,12:06:00,12:08:00,12:10:00,12:12:00,12:14:00,12:16:00,12:18:00,12:20:00,12:22:00,12:25:00,12:27:00,12:29:00,12:31:00,12:33:00,12:35:00,12:37:00,***,12:47:00,12:45:00,12:43:00,12:41:00,12:39:00,12:37:00,12:35:00,12:33:00,12:31:00,12:29:00,12:26:00,12:24:00,12:22:00,12:20:00,12:18:00,12:16:00,12:14:00,12:12:00
+12:18:00,12:20:00,12:22:00,12:24:00,12:26:00,12:28:00,12:30:00,12:32:00,12:34:00,12:36:00,12:38:00,12:41:00,12:43:00,12:45:00,12:47:00,12:49:00,12:51:00,12:53:00,***,13:03:00,13:01:00,12:59:00,12:57:00,12:55:00,12:53:00,12:51:00,12:49:00,12:47:00,12:45:00,12:42:00,12:40:00,12:38:00,12:36:00,12:34:00,12:32:00,12:30:00,12:28:00
+12:34:00,12:36:00,12:38:00,12:40:00,12:42:00,12:44:00,12:46:00,12:48:00,12:50:00,12:52:00,12:54:00,12:57:00,12:59:00,13:01:00,13:03:00,13:05:00,13:07:00,13:09:00,***,13:19:00,13:17:00,13:15:00,13:13:00,13:11:00,13:09:00,13:07:00,13:05:00,13:03:00,13:01:00,12:58:00,12:56:00,12:54:00,12:52:00,12:50:00,12:48:00,12:46:00,12:44:00
+12:50:00,12:52:00,12:54:00,12:56:00,12:58:00,13:00:00,13:02:00,13:04:00,13:06:00,13:08:00,13:10:00,13:13:00,13:15:00,13:17:00,13:19:00,13:21:00,13:23:00,13:25:00,***,13:35:00,13:33:00,13:31:00,13:29:00,13:27:00,13:25:00,13:23:00,13:21:00,13:19:00,13:17:00,13:14:00,13:12:00,13:10:00,13:08:00,13:06:00,13:04:00,13:02:00,13:00:00
+13:06:00,13:08:00,13:10:00,13:12:00,13:14:00,13:16:00,13:18:00,13:20:00,13:22:00,13:24:00,13:26:00,13:29:00,13:31:00,13:33:00,13:35:00,13:37:00,13:39:00,13:41:00,***,13:51:00,13:49:00,13:47:00,13:45:00,13:43:00,13:41:00,13:39:00,13:37:00,13:35:00,13:33:00,13:30:00,13:28:00,13:26:00,13:24:00,13:22:00,13:20:00,13:18:00,13:16:00
+13:22:00,13:24:00,13:26:00,13:28:00,13:30:00,13:32:00,13:34:00,13:36:00,13:38:00,13:40:00,13:42:00,13:45:00,13:47:00,13:49:00,13:51:00,13:53:00,13:55:00,13:57:00,***,14:07:00,14:05:00,14:03:00,14:01:00,13:59:00,13:57:00,13:55:00,13:53:00,13:51:00,13:49:00,13:46:00,13:44:00,13:42:00,13:40:00,13:38:00,13:36:00,13:34:00,13:32:00
+13:38:00,13:40:00,13:42:00,13:44:00,13:46:00,13:48:00,13:50:00,13:52:00,13:54:00,13:56:00,13:58:00,14:01:00,14:03:00,14:05:00,14:07:00,14:09:00,14:11:00,14:13:00,***,14:23:00,14:21:00,14:19:00,14:17:00,14:15:00,14:13:00,14:11:00,14:09:00,14:07:00,14:05:00,14:02:00,14:00:00,13:58:00,13:56:00,13:54:00,13:52:00,13:50:00,13:48:00
+13:54:00,13:56:00,13:58:00,14:00:00,14:02:00,14:04:00,14:06:00,14:08:00,14:10:00,14:12:00,14:14:00,14:17:00,14:19:00,14:21:00,14:23:00,14:25:00,14:27:00,14:29:00,***,14:39:00,14:37:00,14:35:00,14:33:00,14:31:00,14:29:00,14:27:00,14:25:00,14:23:00,14:21:00,14:18:00,14:16:00,14:14:00,14:12:00,14:10:00,14:08:00,14:06:00,14:04:00
+14:10:00,14:12:00,14:14:00,14:16:00,14:18:00,14:20:00,14:22:00,14:24:00,14:26:00,14:28:00,14:30:00,14:33:00,14:35:00,14:37:00,14:39:00,14:41:00,14:43:00,14:45:00,***,14:55:00,14:53:00,14:51:00,14:49:00,14:47:00,14:45:00,14:43:00,14:41:00,14:39:00,14:37:00,14:34:00,14:32:00,14:30:00,14:28:00,14:26:00,14:24:00,14:22:00,14:20:00
+14:26:00,14:28:00,14:30:00,14:32:00,14:34:00,14:36:00,14:38:00,14:40:00,14:42:00,14:44:00,14:46:00,14:49:00,14:51:00,14:53:00,14:55:00,14:57:00,14:59:00,15:01:00,***,15:11:00,15:09:00,15:07:00,15:05:00,15:03:00,15:01:00,14:59:00,14:57:00,14:55:00,14:53:00,14:50:00,14:48:00,14:46:00,14:44:00,14:42:00,14:40:00,14:38:00,14:36:00
+14:42:00,14:44:00,14:46:00,14:48:00,14:50:00,14:52:00,14:54:00,14:56:00,14:58:00,15:00:00,15:02:00,15:05:00,15:07:00,15:09:00,15:11:00,15:13:00,15:15:00,15:17:00,***,15:27:00,15:25:00,15:23:00,15:21:00,15:19:00,15:17:00,15:15:00,15:13:00,15:11:00,15:09:00,15:06:00,15:04:00,15:02:00,15:00:00,14:58:00,14:56:00,14:54:00,14:52:00
+14:58:00,15:00:00,15:02:00,15:04:00,15:06:00,15:08:00,15:10:00,15:12:00,15:14:00,15:16:00,15:18:00,15:21:00,15:23:00,15:25:00,15:27:00,15:29:00,15:31:00,15:33:00,***,15:43:00,15:41:00,15:39:00,15:37:00,15:35:00,15:33:00,15:31:00,15:29:00,15:27:00,15:25:00,15:22:00,15:20:00,15:18:00,15:16:00,15:14:00,15:12:00,15:10:00,15:08:00
+15:14:00,15:16:00,15:18:00,15:20:00,15:22:00,15:24:00,15:26:00,15:28:00,15:30:00,15:32:00,15:34:00,15:37:00,15:39:00,15:41:00,15:43:00,15:45:00,15:47:00,15:49:00,***,15:59:00,15:57:00,15:55:00,15:53:00,15:51:00,15:49:00,15:47:00,15:45:00,15:43:00,15:41:00,15:38:00,15:36:00,15:34:00,15:32:00,15:30:00,15:28:00,15:26:00,15:24:00
+15:30:00,15:32:00,15:34:00,15:36:00,15:38:00,15:40:00,15:42:00,15:44:00,15:46:00,15:48:00,15:50:00,15:53:00,15:55:00,15:57:00,15:59:00,16:01:00,16:03:00,16:05:00,***,16:15:00,16:13:00,16:11:00,16:09:00,16:07:00,16:05:00,16:03:00,16:01:00,15:59:00,15:57:00,15:54:00,15:52:00,15:50:00,15:48:00,15:46:00,15:44:00,15:42:00,15:40:00
+15:46:00,15:48:00,15:50:00,15:52:00,15:54:00,15:56:00,15:58:00,16:00:00,16:02:00,16:04:00,16:06:00,16:09:00,16:11:00,16:13:00,16:15:00,16:17:00,16:19:00,16:21:00,***,16:31:00,16:29:00,16:27:00,16:25:00,16:23:00,16:21:00,16:19:00,16:17:00,16:15:00,16:13:00,16:10:00,16:08:00,16:06:00,16:04:00,16:02:00,16:00:00,15:58:00,15:56:00
+16:02:00,16:04:00,16:06:00,16:08:00,16:10:00,16:12:00,16:14:00,16:16:00,16:18:00,16:20:00,16:22:00,16:25:00,16:27:00,16:29:00,16:31:00,16:33:00,16:35:00,16:37:00,***,16:47:00,16:45:00,16:43:00,16:41:00,16:39:00,16:37:00,16:35:00,16:33:00,16:31:00,16:29:00,16:26:00,16:24:00,16:22:00,16:20:00,16:18:00,16:16:00,16:14:00,16:12:00
+16:18:00,16:20:00,16:22:00,16:24:00,16:26:00,16:28:00,16:30:00,16:32:00,16:34:00,16:36:00,16:38:00,16:41:00,16:43:00,16:45:00,16:47:00,16:49:00,16:51:00,16:53:00,***,17:03:00,17:01:00,16:59:00,16:57:00,16:55:00,16:53:00,16:51:00,16:49:00,16:47:00,16:45:00,16:42:00,16:40:00,16:38:00,16:36:00,16:34:00,16:32:00,16:30:00,16:28:00
+16:34:00,16:36:00,16:38:00,16:40:00,16:42:00,16:44:00,16:46:00,16:48:00,16:50:00,16:52:00,16:54:00,16:57:00,16:59:00,17:01:00,17:03:00,17:05:00,17:07:00,17:09:00,***,17:19:00,17:17:00,17:15:00,17:13:00,17:11:00,17:09:00,17:07:00,17:05:00,17:03:00,17:01:00,16:58:00,16:56:00,16:54:00,16:52:00,16:50:00,16:48:00,16:46:00,16:44:00
+16:50:00,16:52:00,16:54:00,16:56:00,16:58:00,17:00:00,17:02:00,17:04:00,17:06:00,17:08:00,17:10:00,17:13:00,17:15:00,17:17:00,17:19:00,17:21:00,17:23:00,17:25:00,***,17:35:00,17:33:00,17:31:00,17:29:00,17:27:00,17:25:00,17:23:00,17:21:00,17:19:00,17:17:00,17:14:00,17:12:00,17:10:00,17:08:00,17:06:00,17:04:00,17:02:00,17:00:00
+17:06:00,17:08:00,17:10:00,17:12:00,17:14:00,17:16:00,17:18:00,17:20:00,17:22:00,17:24:00,17:26:00,17:29:00,17:31:00,17:33:00,17:35:00,17:37:00,17:39:00,17:41:00,***,17:51:00,17:49:00,17:47:00,17:45:00,17:43:00,17:41:00,17:39:00,17:37:00,17:35:00,17:33:00,17:30:00,17:28:00,17:26:00,17:24:00,17:22:00,17:20:00,17:18:00,17:16:00
+17:22:00,17:24:00,17:26:00,17:28:00,17:30:00,17:32:00,17:34:00,17:36:00,17:38:00,17:40:00,17:42:00,17:45:00,17:47:00,17:49:00,17:51:00,17:53:00,17:55:00,17:57:00,***,18:07:00,18:05:00,18:03:00,18:01:00,17:59:00,17:57:00,17:55:00,17:53:00,17:51:00,17:49:00,17:46:00,17:44:00,17:42:00,17:40:00,17:38:00,17:36:00,17:34:00,17:32:00
+17:38:00,17:40:00,17:42:00,17:44:00,17:46:00,17:48:00,17:50:00,17:52:00,17:54:00,17:56:00,17:58:00,18:01:00,18:03:00,18:05:00,18:07:00,18:09:00,18:11:00,18:13:00,***,18:23:00,18:21:00,18:19:00,18:17:00,18:15:00,18:13:00,18:11:00,18:09:00,18:07:00,18:05:00,18:02:00,18:00:00,17:58:00,17:56:00,17:54:00,17:52:00,17:50:00,17:48:00
+17:54:00,17:56:00,17:58:00,18:00:00,18:02:00,18:04:00,18:06:00,18:08:00,18:10:00,18:12:00,18:14:00,18:17:00,18:19:00,18:21:00,18:23:00,18:25:00,18:27:00,18:29:00,***,18:39:00,18:37:00,18:35:00,18:33:00,18:31:00,18:29:00,18:27:00,18:25:00,18:23:00,18:21:00,18:18:00,18:16:00,18:14:00,18:12:00,18:10:00,18:08:00,18:06:00,18:04:00
+18:10:00,18:12:00,18:14:00,18:16:00,18:18:00,18:20:00,18:22:00,18:24:00,18:26:00,18:28:00,18:30:00,18:33:00,18:35:00,18:37:00,18:39:00,18:41:00,18:43:00,18:45:00,***,18:55:00,18:53:00,18:51:00,18:49:00,18:47:00,18:45:00,18:43:00,18:41:00,18:39:00,18:37:00,18:34:00,18:32:00,18:30:00,18:28:00,18:26:00,18:24:00,18:22:00,18:20:00
+18:26:00,18:28:00,18:30:00,18:32:00,18:34:00,18:36:00,18:38:00,18:40:00,18:42:00,18:44:00,18:46:00,18:49:00,18:51:00,18:53:00,18:55:00,18:57:00,18:59:00,19:01:00,***,19:11:00,19:09:00,19:07:00,19:05:00,19:03:00,19:01:00,18:59:00,18:57:00,18:55:00,18:53:00,18:50:00,18:48:00,18:46:00,18:44:00,18:42:00,18:40:00,18:38:00,18:36:00
+18:42:00,18:44:00,18:46:00,18:48:00,18:50:00,18:52:00,18:54:00,18:56:00,18:58:00,19:00:00,19:02:00,19:05:00,19:07:00,19:09:00,19:11:00,19:13:00,19:15:00,19:17:00,***,19:27:00,19:25:00,19:23:00,19:21:00,19:19:00,19:17:00,19:15:00,19:13:00,19:11:00,19:09:00,19:06:00,19:04:00,19:02:00,19:00:00,18:58:00,18:56:00,18:54:00,18:52:00
+18:58:00,19:00:00,19:02:00,19:04:00,19:06:00,19:08:00,19:10:00,19:12:00,19:14:00,19:16:00,19:18:00,19:21:00,19:23:00,19:25:00,19:27:00,19:29:00,19:31:00,19:33:00,***,19:43:00,19:41:00,19:39:00,19:37:00,19:35:00,19:33:00,19:31:00,19:29:00,19:27:00,19:25:00,19:22:00,19:20:00,19:18:00,19:16:00,19:14:00,19:12:00,19:10:00,19:08:00
+19:14:00,19:16:00,19:18:00,19:20:00,19:22:00,19:24:00,19:26:00,19:28:00,19:30:00,19:32:00,19:34:00,19:37:00,19:39:00,19:41:00,19:43:00,19:45:00,19:47:00,19:49:00,***,19:59:00,19:57:00,19:55:00,19:53:00,19:51:00,19:49:00,19:47:00,19:45:00,19:43:00,19:41:00,19:38:00,19:36:00,19:34:00,19:32:00,19:30:00,19:28:00,19:26:00,19:24:00
+19:30:00,19:32:00,19:34:00,19:36:00,19:38:00,19:40:00,19:42:00,19:44:00,19:46:00,19:48:00,19:50:00,19:53:00,19:55:00,19:57:00,19:59:00,20:01:00,20:03:00,20:05:00,***,20:15:00,20:13:00,20:11:00,20:09:00,20:07:00,20:05:00,20:03:00,20:01:00,19:59:00,19:57:00,19:54:00,19:52:00,19:50:00,19:48:00,19:46:00,19:44:00,19:42:00,19:40:00
+19:46:00,19:48:00,19:50:00,19:52:00,19:54:00,19:56:00,19:58:00,20:00:00,20:02:00,20:04:00,20:06:00,20:09:00,20:11:00,20:13:00,20:15:00,20:17:00,20:19:00,20:21:00,***,20:31:00,20:29:00,20:27:00,20:25:00,20:23:00,20:21:00,20:19:00,20:17:00,20:15:00,20:13:00,20:10:00,20:08:00,20:06:00,20:04:00,20:02:00,20:00:00,19:58:00,19:56:00
+20:02:00,20:04:00,20:06:00,20:08:00,20:10:00,20:12:00,20:14:00,20:16:00,20:18:00,20:20:00,20:22:00,20:25:00,20:27:00,20:29:00,20:31:00,20:33:00,20:35:00,20:37:00,***,20:47:00,20:45:00,20:43:00,20:41:00,20:39:00,20:37:00,20:35:00,20:33:00,20:31:00,20:29:00,20:26:00,20:24:00,20:22:00,20:20:00,20:18:00,20:16:00,20:14:00,20:12:00
+20:18:00,20:20:00,20:22:00,20:24:00,20:26:00,20:28:00,20:30:00,20:32:00,20:34:00,20:36:00,20:38:00,20:41:00,20:43:00,20:45:00,20:47:00,20:49:00,20:51:00,20:53:00,***,21:03:00,21:01:00,20:59:00,20:57:00,20:55:00,20:53:00,20:51:00,20:49:00,20:47:00,20:45:00,20:42:00,20:40:00,20:38:00,20:36:00,20:34:00,20:32:00,20:30:00,20:28:00
+`;
+
+        // === 3. MODULES ===
+        const liveClock = {
+            clockElement: document.getElementById('live-clock'),
+            init() {
+                this.updateTime();
+                setInterval(() => this.updateTime(), 1000);
+            },
+            updateTime() {
+                if (this.clockElement) {
+                    const now = new Date();
+                    this.clockElement.textContent = [now.getHours(), now.getMinutes(), now.getSeconds()].map(n => String(n).padStart(2, '0')).join(':');
+                }
+            }
+        };
+
+        const persianCalendar = {
+            dateElement: document.getElementById('persian-date'),
+            init() {
+                this.updateDate();
+                setInterval(() => this.updateDate(), 24 * 60 * 60 * 1000);
+            },
+            updateDate() {
+                if (this.dateElement) {
+                    try {
+                        this.dateElement.textContent = new Date().toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+                    } catch (e) {
+                        this.dateElement.textContent = "تاریخ امروز";
+                    }
+                }
+            }
+        };
+
+        const metroDataManager = {
+            metroData: { normal: null, holiday: null },
+            stationNames: [],
+            parseCsvData(csvString) {
+                const lines = csvString.trim().split('\n');
+                const headerLine = lines[2].split(',');
+                const separatorIndex = headerLine.indexOf('***');
+                if (separatorIndex === -1) return null;
+
+                const stations = headerLine.slice(0, separatorIndex).map(s => s.trim());
+                const titleLine = lines[1].split(',');
+                
+                const timetable = [];
+                for (let i = 3; i < lines.length; i++) {
+                    if (!lines[i] || lines[i].trim().length === 0) continue;
+                    const columns = lines[i].split(',');
+                    const dir1_times = columns.slice(0, separatorIndex).map(t => t.trim() || null);
+                    const dir2_times = columns.slice(separatorIndex + 1).map(t => t.trim() || null);
+                    if (dir1_times.some(t => t) || dir2_times.some(t => t)) timetable.push({ dir1_times, dir2_times });
+                }
+
+                return { stations, direction1_header: titleLine[0].trim(), direction2_header: titleLine[separatorIndex + 1].trim(), timetable };
+            },
+            init() {
+                this.metroData.normal = this.parseCsvData(csvDataNormal);
+                this.metroData.holiday = this.parseCsvData(csvDataHoliday);
+                if (this.metroData.normal && this.metroData.normal.stations) {
+                    this.stationNames = this.metroData.normal.stations;
+                }
+                return { then: (cb) => cb() };
+            }
+        };
+
+        const metroApp = {
+            stationSelect: document.getElementById('station-select'),
+            dayTypeSelect: document.getElementById('day-type-select'),
+            scheduleContainer: document.getElementById('schedule-container'),
+            loadingSpinner: document.getElementById('loading'),
+            initialMessage: document.getElementById('initial-message'),
+            summaryContainer: document.getElementById('summary-container'),
+            
+            summaryDir1: {
+                title: document.getElementById('summary-dir-1-title'),
+                nextTime: document.getElementById('summary-dir-1-next-time'),
+                secondTime: document.getElementById('summary-dir-1-second-time'),
+                countdown: document.getElementById('summary-dir-1-countdown'),
+                secondCountdown: document.getElementById('summary-dir-1-second-countdown'),
+            },
+            summaryDir2: {
+                title: document.getElementById('summary-dir-2-title'),
+                nextTime: document.getElementById('summary-dir-2-next-time'),
+                secondTime: document.getElementById('summary-dir-2-second-time'),
+                countdown: document.getElementById('summary-dir-2-countdown'),
+                secondCountdown: document.getElementById('summary-dir-2-second-countdown'),
+            },
+
+            currentTime: null,
+            updateInterval: null,
+
+            calculateMinutesRemaining(trainTime) {
+                const now = new Date();
+                const [hours, minutes] = trainTime.split(':').map(Number);
+                const trainDate = new Date();
+                trainDate.setHours(hours, minutes, 0, 0);
+                return Math.max(0, Math.ceil((trainDate - now) / 60000));
+            },
+
+            init(stationNames) {
+                if (!this.stationSelect) return;
+                
+                if (stationNames && stationNames.length > 0) {
+                    this.stationSelect.innerHTML = '<option value="">-- انتخاب ایستگاه --</option>';
+                    stationNames.forEach(name => {
+                        if (name && name !== '***') {
+                            const option = document.createElement('option');
+                            option.value = name;
+                            option.textContent = name;
+                            this.stationSelect.appendChild(option);
+                        }
+                    });
+                }
+                
+                this.stationSelect.addEventListener('change', () => this.updateSchedule());
+                this.dayTypeSelect.addEventListener('change', () => this.updateSchedule());
+                
+                this.updateInterval = setInterval(() => {
+                    if (this.stationSelect.value) this.updateSchedule();
+                }, 10000);
+            },
+
+            updateSchedule() {
+                const selectedStation = this.stationSelect.value;
+                const selectedDayType = this.dayTypeSelect.value;
+
+                if (this.initialMessage) this.initialMessage.classList.add('hidden');
+
+                if (!selectedStation) {
+                    this.scheduleContainer.innerHTML = '';
+                    if (this.initialMessage) this.initialMessage.classList.remove('hidden');
+                    if (this.summaryContainer) this.summaryContainer.classList.add('hidden');
+                    return;
+                }
+
+                const data = metroDataManager.metroData[selectedDayType];
+                if (!data) return this.showError('اطلاعاتی یافت نشد.');
+
+                const stationIndex = data.stations.indexOf(selectedStation);
+                if (stationIndex === -1) return this.showError('ایستگاه یافت نشد.');
+
+                const now = new Date();
+                this.currentTime = [now.getHours(), now.getMinutes(), now.getSeconds()].map(n => String(n).padStart(2, '0')).join(':');
+
+                const dir1Times = data.timetable.map(r => r.dir1_times[stationIndex]).filter(Boolean);
+                const dir2Times = data.timetable.map(r => r.dir2_times[stationIndex]).filter(Boolean);
+
+                this.updateSummaryCards(dir1Times, dir2Times, data);
+                
+                const card1 = this.createStationCard(data.direction1_header, dir1Times, 'blue');
+                const card2 = this.createStationCard(data.direction2_header, dir2Times, 'green');
+                this.scheduleContainer.innerHTML = card1 + card2;
+            },
+
+            updateSummaryCards(dir1, dir2, data) {
+                const updateDir = (summaryObj, times, title) => {
+                    summaryObj.title.textContent = title;
+                    const nextIdx = this.findNextTrainIndex(times);
+                    if (nextIdx !== -1) {
+                        summaryObj.nextTime.textContent = times[nextIdx].substring(0, 5);
+                        summaryObj.countdown.textContent = `${this.calculateMinutesRemaining(times[nextIdx])} دقیقه`;
+                        if (times.length > nextIdx + 1) {
+                            summaryObj.secondTime.textContent = times[nextIdx + 1].substring(0, 5);
+                            summaryObj.secondCountdown.textContent = `${this.calculateMinutesRemaining(times[nextIdx + 1])} دقیقه`;
+                        } else {
+                            summaryObj.secondTime.textContent = "--:--";
+                            summaryObj.secondCountdown.textContent = "-- دقیقه";
+                        }
+                    } else {
+                        summaryObj.nextTime.textContent = "--:--";
+                        summaryObj.countdown.textContent = "-- دقیقه";
+                        summaryObj.secondTime.textContent = "--:--";
+                        summaryObj.secondCountdown.textContent = "-- دقیقه";
+                    }
+                };
+
+                updateDir(this.summaryDir1, dir1, data.direction1_header);
+                updateDir(this.summaryDir2, dir2, data.direction2_header);
+                if (this.summaryContainer) this.summaryContainer.classList.remove('hidden');
+            },
+
+            createStationCard(title, times, themeColor) {
+                if (times.length === 0) return `<div class="bg-gray-800 rounded-lg p-5 text-center text-gray-400 border border-gray-700">بدون اطلاعات</div>`;
+                
+                const nextTrainIdx = this.findNextTrainIndex(times);
+                let html = `<div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700"><div class="px-5 py-4 bg-gray-700/50"><h3 class="text-lg font-semibold">${title}</h3></div><div class="p-5"><div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">`;
+                
+                times.forEach((time, idx) => {
+                    const isNext = (idx === nextTrainIdx);
+                    const isPast = (idx < nextTrainIdx);
+                    const mins = this.calculateMinutesRemaining(time);
+                    
+                    let classes = "text-center rounded-md p-2 text-lg font-medium tabular-nums transition-colors ";
+                    let colorClass = themeColor === 'blue' ? "bg-blue-600 text-white shadow-lg scale-105" : "bg-green-600 text-white shadow-lg scale-105";
+                    
+                    if (isNext) classes += colorClass;
+                    else if (isPast) classes += "bg-gray-700/50 text-gray-500 line-through";
+                    else classes += "bg-gray-700 text-gray-200";
+
+                    html += `<div class="${classes}"><div class="font-bold">${time.substring(0, 5)}</div><div class="text-xs mt-1 ${isNext ? 'text-blue-100' : 'text-gray-400'}">${isPast ? 'گذشته' : mins + ' دقیقه'}</div></div>`;
+                });
+                return html + `</div></div></div>`;
+            },
+
+            findNextTrainIndex(times) {
+                if (!this.currentTime) return -1;
+                for (let i = 0; i < times.length; i++) {
+                    if (times[i] >= this.currentTime) return i;
+                }
+                return -1;
+            },
+
+            showLoading() {
+                if (this.loadingSpinner) this.loadingSpinner.classList.remove('hidden');
+                this.scheduleContainer.innerHTML = '';
+            },
+
+            hideLoading() {
+                if (this.loadingSpinner) this.loadingSpinner.classList.add('hidden');
+            },
+
+            showError(msg) {
+                this.scheduleContainer.innerHTML = `<div class="bg-red-900 border border-red-700 text-red-100 px-4 py-3 rounded-lg">${msg}</div>`;
+            }
+        };
+
+        // Bootstrap App
+        document.addEventListener('DOMContentLoaded', () => {
+            metroApp.showLoading();
+            liveClock.init();
+            persianCalendar.init();
+            
+            metroDataManager.init().then(() => {
+                if (metroDataManager.metroData.normal && metroDataManager.stationNames.length > 0) {
+                    metroApp.init(metroDataManager.stationNames);
+                    metroApp.hideLoading();
+                } else {
+                    metroApp.hideLoading();
+                    metroApp.showError('خطای اساسی: جدول زمانی مترو بارگذاری نشد.');
+                }
+            });
+        });
+    </script>
+</body>
 </html>
