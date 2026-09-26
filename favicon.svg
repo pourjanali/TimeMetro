@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">نماد مترو تبریز</title>
+  <rect width="64" height="64" rx="14" fill="#2563eb"/>
+  <path d="M20 18h24c5.523 0 10 4.477 10 10v13c0 4.418-3.582 8-8 8H18c-4.418 0-8-3.582-8-8V28c0-5.523 4.477-10 10-10Z" fill="#fff"/>
+  <path d="M16 28h32v13c0 2.209-1.791 4-4 4H20c-2.209 0-4-1.791-4-4V28Z" fill="#1e3a8a"/>
+  <path d="M21 24h6M37 24h6M22 51l-4 5M42 51l4 5" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="24" cy="39" r="3" fill="#93c5fd"/>
+  <circle cx="40" cy="39" r="3" fill="#93c5fd"/>
+</svg>

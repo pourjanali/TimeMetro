@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Disallow: /Time Shifts/
+Disallow: /Time%20Shifts/
 Disallow: /.gitattributes
 Disallow: /LICENSE
 Disallow: /README.md

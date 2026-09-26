@@ -57,7 +57,17 @@
 
 ## 💾 مدیریت داده‌ها
 
-داده‌های زمان‌بندی (Timetable) به صورت فایل‌های CSV مدیریت می‌شوند. ساختار فایل `app.js` شامل یک پارسر (Parser) داخلی است که رشته‌های CSV را خوانده و تبدیل به آرایه‌های قابل پردازش می‌کند. برای به‌روزرسانی زمان‌ها، کافیست رشته‌های موجود در متغیرهای `csvDataNormal` و `csvDataHoliday` در فایل `app.js` به‌روزرسانی شوند.
+داده‌های زمان‌بندی (Timetable) به صورت رشته‌های CSV در کد JavaScript داخل `index.html` قرار دارند. پارسر داخلی این رشته‌ها را خوانده و به آرایه‌های قابل پردازش تبدیل می‌کند. برای به‌روزرسانی زمان‌ها، رشته‌های موجود در متغیرهای `csvDataNormal` و `csvDataHoliday` را در `index.html` به‌روزرسانی کنید.
+
+## 🔎 بررسی SEO
+
+برای اجرای بررسی‌های ایستای متادیتا، ساختار HTML، JSON-LD، robots.txt و sitemap.xml در PowerShell:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\seo-check.ps1
+```
+
+این بررسی‌ها جایگزین آزمون مرورگر واقعی، داده‌های Google Search Console یا بررسی پاسخ‌های نهایی Cloudflare Pages نیستند.
 
 ## 🤝 مشارکت در توسعه
 
