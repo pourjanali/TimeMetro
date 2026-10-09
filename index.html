@@ -39,14 +39,24 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Vazirmatn Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Estedad Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Estedad:wght@100..900&display=swap" rel="stylesheet">
 
     <meta name="theme-color" content="#111827">
     <meta name="color-scheme" content="dark">
     <style>
+        html,
+        body,
+        button,
+        input,
+        select,
+        textarea,
+        optgroup,
+        option {
+            font-family: 'Estedad', sans-serif;
+        }
+
         body {
-            font-family: 'Vazirmatn', sans-serif;
             background-color: #111827;
             scroll-behavior: smooth;
         }
@@ -80,7 +90,7 @@
             darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: { 'sans': ['Vazirmatn', 'sans-serif'] }
+                    fontFamily: { 'sans': ['Estedad', 'sans-serif'] }
                 }
             }
         }

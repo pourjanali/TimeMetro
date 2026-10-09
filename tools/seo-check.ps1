@@ -76,6 +76,25 @@ foreach ($page in @(
     }
 }
 
+foreach ($fontPage in @('index.html', 'privacy.html', 'terms.html', '404.html')) {
+    $fontPagePath = Join-Path $Root $fontPage
+    if (-not (Test-Path -LiteralPath $fontPagePath -PathType Leaf)) {
+        Add-CheckError "Missing font page: $fontPage"
+        continue
+    }
+
+    $fontHtml = Get-Content -Raw -Encoding UTF8 $fontPagePath
+    if ($fontHtml -match '(?i)Vazirmatn') {
+        Add-CheckError "$fontPage must not reference Vazirmatn."
+    }
+    if ($fontHtml -notmatch '(?i)family=Estedad') {
+        Add-CheckError "$fontPage must load Estedad from Google Fonts."
+    }
+    if ($fontHtml -notmatch '(?is)(html|body|button\s*,\s*input\s*,\s*select\s*,\s*textarea)[^{]*\{[^}]*font-family\s*:[^}]*Estedad') {
+        Add-CheckError "$fontPage must apply Estedad to page text and form controls."
+    }
+}
+
 if (-not [regex]::IsMatch($html, '(?is)<html\b[^>]*\blang\s*=\s*["'']fa["''][^>]*\bdir\s*=\s*["'']rtl["'']')) {
     Add-CheckError 'The document must declare lang="fa" and dir="rtl".'
 }
