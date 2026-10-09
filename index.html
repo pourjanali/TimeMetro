@@ -7,7 +7,7 @@
     
     <!-- Search metadata describes the actual static application without a year that will expire. -->
     <title>برنامه مترو تبریز | جدول زمان‌بندی قطار شهری</title>
-    <meta name="description" content="برنامه وب مترو تبریز برای مشاهده جدول زمان‌بندی حرکت قطارهای قطار شهری در روزهای عادی و تعطیل؛ انتخاب ایستگاه و بررسی زمان حرکت در مرورگر.">
+    <meta name="description" content="جدول زمان‌بندی مترو تبریز برای مشاهده حرکت قطارها در روزهای عادی و تعطیل؛ ایستگاه را انتخاب کنید و زمان حرکت بعدی را ببینید.">
     <meta name="author" content="Behnam Pourjanali">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     
@@ -43,6 +43,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <meta name="theme-color" content="#111827">
+    <meta name="color-scheme" content="dark">
     <style>
         body {
             font-family: 'Vazirmatn', sans-serif;
@@ -57,6 +58,21 @@
         
         .fade-in { animation: fadeIn 0.3s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        :focus-visible {
+            outline: 3px solid #93c5fd;
+            outline-offset: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
     
     <script>
@@ -157,9 +173,9 @@
         <div id="view-home" class="view-section fade-in">
             
             <div class="mb-8 text-center bg-gray-800/30 rounded-2xl p-4 border border-gray-700/50">
-                <h2 class="sr-only">جدول زمان‌بندی حرکت قطار شهری تبریز</h2>
+                <h2 id="planner-title" class="text-xl md:text-2xl font-bold text-white mb-3">زمان حرکت مترو تبریز</h2>
                 <p class="text-gray-300 text-sm md:text-base leading-relaxed">
-                    در این برنامه می‌توانید جدول زمان‌بندی موجود برای <strong class="text-blue-400">مترو تبریز</strong> را ببینید. ایستگاه مبدأ و نوع روز (عادی یا تعطیل) را انتخاب کنید تا زمان‌های حرکت قطارهای قطار شهری تبریز در مرورگر نمایش داده شود.
+                    ایستگاه مبدأ و نوع روز را انتخاب کنید تا زمان حرکت قطارهای <strong class="text-blue-400">مترو تبریز</strong> در هر دو مسیر و زمان قطار بعدی نمایش داده شود.
                 </p>
             </div>
 
@@ -175,7 +191,7 @@
                                 <span>ایستگاه مترو:</span>
                             </span>
                         </label>
-                        <select id="station-select" class="block w-full rounded-xl border-gray-600 bg-gray-700 p-4 text-gray-100 shadow-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-200">
+                        <select id="station-select" aria-describedby="planner-help" class="block w-full rounded-xl border-gray-600 bg-gray-700 p-4 text-gray-100 shadow-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-200">
                             <option value="">-- انتخاب ایستگاه --</option>
                             <option value="ائل گؤلی">ائل گؤلی</option>
                             <option value="سهند">سهند</option>
@@ -206,12 +222,13 @@
                                 <span>نوع روز:</span>
                             </span>
                         </label>
-                        <select id="day-type-select" class="block w-full rounded-xl border-gray-600 bg-gray-700 p-4 text-gray-100 shadow-lg focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-all duration-200">
+                        <select id="day-type-select" aria-describedby="planner-help" class="block w-full rounded-xl border-gray-600 bg-gray-700 p-4 text-gray-100 shadow-lg focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-all duration-200">
                             <option value="normal">روز عادی (شنبه تا چهارشنبه)</option>
                             <option value="holiday">روز تعطیل (پنجشنبه ، جمعه و تعطیلات رسمی)</option>
                         </select>
                     </div>
                 </div>
+                <p id="planner-help" class="mt-4 text-sm leading-relaxed text-gray-400">پس از انتخاب، زمان قطار بعدی و جدول کامل هر دو مسیر به‌روزرسانی می‌شود.</p>
             </div>
 
             <!-- Loading Spinner -->
@@ -221,7 +238,7 @@
             </div>
 
             <!-- Next Trains Summary Section -->
-            <div id="summary-container" class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8 hidden">
+            <div id="summary-container" class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8 hidden" aria-live="polite" aria-atomic="false">
                 <!-- Direction 1 Summary -->
                 <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-xl border border-gray-700 overflow-hidden transform hover:scale-[1.02] transition-all duration-300">
                     <div class="px-6 py-5 bg-gradient-to-r from-blue-600 to-blue-700">
@@ -270,7 +287,7 @@
             </div>
 
             <!-- Schedule Container -->
-            <div id="schedule-container" class="space-y-8">
+            <div id="schedule-container" class="space-y-8" aria-live="polite" aria-atomic="false">
                 <p id="initial-message" class="text-center text-gray-400 text-xl mt-12 bg-gray-800/50 rounded-2xl p-8 border border-gray-700">
                     🚇 برای مشاهده زمان‌بندی مترو، لطفاً ایستگاه مورد نظر خود را انتخاب کنید
                 </p>
@@ -631,11 +648,11 @@
                 <div class="text-center">
                     <h4 class="text-lg font-semibold text-white mb-4">لینک‌های سریع</h4>
                     <div class="grid grid-cols-2 gap-3 max-w-md mx-auto">
-                        <a href="#privacy" class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-blue-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
+                        <a href="/privacy" class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-blue-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                             <span>حریم خصوصی</span>
                         </a>
-                        <a href="#terms" class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-green-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
+                        <a href="/terms" class="inline-flex items-center justify-center space-x-2 space-x-reverse text-gray-400 hover:text-green-400 transition-colors duration-200 bg-gray-800/50 rounded-lg px-3 py-2 text-sm">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                             <span>شرایط استفاده</span>
                         </a>
@@ -677,7 +694,7 @@
         const pageMeta = {
             home: {
                 title: 'برنامه مترو تبریز | جدول زمان‌بندی قطار شهری',
-                description: 'برنامه وب مترو تبریز برای مشاهده جدول زمان‌بندی حرکت قطارهای قطار شهری در روزهای عادی و تعطیل؛ انتخاب ایستگاه و بررسی زمان حرکت در مرورگر.'
+                description: 'جدول زمان‌بندی مترو تبریز برای مشاهده حرکت قطارها در روزهای عادی و تعطیل؛ ایستگاه را انتخاب کنید و زمان حرکت بعدی را ببینید.'
             },
             privacy: {
                 title: 'حریم خصوصی | برنامه مترو تبریز',
@@ -1007,9 +1024,9 @@
                         }
                     } else {
                         summaryObj.nextTime.textContent = "--:--";
-                        summaryObj.countdown.textContent = "-- دقیقه";
+                        summaryObj.countdown.textContent = "سرویس امروز به پایان رسیده است";
                         summaryObj.secondTime.textContent = "--:--";
-                        summaryObj.secondCountdown.textContent = "-- دقیقه";
+                        summaryObj.secondCountdown.textContent = "حرکت دیگری باقی نمانده است";
                     }
                 };
 
@@ -1019,14 +1036,14 @@
             },
 
             createStationCard(title, times, themeColor) {
-                if (times.length === 0) return `<div class="bg-gray-800 rounded-lg p-5 text-center text-gray-400 border border-gray-700">بدون اطلاعات</div>`;
+                if (times.length === 0) return `<div role="status" class="bg-gray-800 rounded-lg p-5 text-center text-gray-400 border border-gray-700">برای این مسیر زمانی ثبت نشده است.</div>`;
                 
                 const nextTrainIdx = this.findNextTrainIndex(times);
                 let html = `<div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700"><div class="px-5 py-4 bg-gray-700/50"><h3 class="text-lg font-semibold">${title}</h3></div><div class="p-5"><div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">`;
                 
                 times.forEach((time, idx) => {
                     const isNext = (idx === nextTrainIdx);
-                    const isPast = (idx < nextTrainIdx);
+                    const isPast = nextTrainIdx === -1 || idx < nextTrainIdx;
                     const mins = this.calculateMinutesRemaining(time);
                     
                     let classes = "text-center rounded-md p-2 text-lg font-medium tabular-nums transition-colors ";
@@ -1036,7 +1053,8 @@
                     else if (isPast) classes += "bg-gray-700/50 text-gray-500 line-through";
                     else classes += "bg-gray-700 text-gray-200";
 
-                    html += `<div class="${classes}"><div class="font-bold">${time.substring(0, 5)}</div><div class="text-xs mt-1 ${isNext ? 'text-blue-100' : 'text-gray-400'}">${isPast ? 'گذشته' : mins + ' دقیقه'}</div></div>`;
+                    const stateText = isNext ? `${mins} دقیقه تا حرکت` : isPast ? 'گذشته' : `${mins} دقیقه تا حرکت`;
+                    html += `<div class="${classes}" aria-label="حرکت ساعت ${time.substring(0, 5)}، ${stateText}"><div class="font-bold">${time.substring(0, 5)}</div><div class="text-xs mt-1 ${isNext ? 'text-blue-100' : 'text-gray-400'}">${isPast ? 'گذشته' : mins + ' دقیقه'}</div></div>`;
                 });
                 return html + `</div></div></div>`;
             },
@@ -1051,15 +1069,17 @@
 
             showLoading() {
                 if (this.loadingSpinner) this.loadingSpinner.classList.remove('hidden');
+                if (this.scheduleContainer) this.scheduleContainer.setAttribute('aria-busy', 'true');
                 this.scheduleContainer.innerHTML = '';
             },
 
             hideLoading() {
                 if (this.loadingSpinner) this.loadingSpinner.classList.add('hidden');
+                if (this.scheduleContainer) this.scheduleContainer.setAttribute('aria-busy', 'false');
             },
 
             showError(msg) {
-                this.scheduleContainer.innerHTML = `<div class="bg-red-900 border border-red-700 text-red-100 px-4 py-3 rounded-lg">${msg}</div>`;
+                this.scheduleContainer.innerHTML = `<div role="alert" class="bg-red-900 border border-red-700 text-red-100 px-4 py-3 rounded-lg">${msg}</div>`;
             }
         };
 

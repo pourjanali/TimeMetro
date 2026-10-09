@@ -45,6 +45,37 @@ if ($canonicalTags.Count -ne 1 -or $canonical -ne 'https://timemetro.ir/') {
     Add-CheckError 'Canonical must be exactly https://timemetro.ir/.'
 }
 
+foreach ($page in @(
+    @{ Path = 'privacy.html'; Canonical = 'https://timemetro.ir/privacy' },
+    @{ Path = 'terms.html'; Canonical = 'https://timemetro.ir/terms' }
+)) {
+    $pagePath = Join-Path $Root $page.Path
+    if (-not (Test-Path -LiteralPath $pagePath -PathType Leaf)) {
+        Add-CheckError "Missing required legal page: $($page.Path)"
+        continue
+    }
+
+    $pageHtml = Get-Content -Raw -Encoding UTF8 $pagePath
+    if ([regex]::Matches($pageHtml, '(?is)<title\b[^>]*>(.*?)</title>').Count -ne 1) {
+        Add-CheckError "$($page.Path) must contain exactly one title."
+    }
+    $pageDescription = [regex]::Matches($pageHtml, '(?is)<meta\b[^>]*\bname\s*=\s*["'']description["''][^>]*>')
+    if ($pageDescription.Count -ne 1 -or [string]::IsNullOrWhiteSpace((Get-Attribute $pageDescription[0].Value 'content'))) {
+        Add-CheckError "$($page.Path) must contain exactly one non-empty meta description."
+    }
+    $pageCanonicalTags = [regex]::Matches($pageHtml, '(?is)<link\b[^>]*\brel\s*=\s*["'']canonical["''][^>]*>')
+    $pageCanonical = if ($pageCanonicalTags.Count -eq 1) { Get-Attribute $pageCanonicalTags[0].Value 'href' } else { $null }
+    if ($pageCanonicalTags.Count -ne 1 -or $pageCanonical -ne $page.Canonical) {
+        Add-CheckError "$($page.Path) has an invalid canonical URL."
+    }
+    if ([regex]::Matches($pageHtml, '(?is)<h1\b').Count -ne 1) {
+        Add-CheckError "$($page.Path) must contain exactly one H1."
+    }
+    if (-not [regex]::IsMatch($pageHtml, '(?is)<html\b[^>]*\blang\s*=\s*["'']fa["''][^>]*\bdir\s*=\s*["'']rtl["'']')) {
+        Add-CheckError "$($page.Path) must declare lang=\"fa\" and dir=\"rtl\"."
+    }
+}
+
 if (-not [regex]::IsMatch($html, '(?is)<html\b[^>]*\blang\s*=\s*["'']fa["''][^>]*\bdir\s*=\s*["'']rtl["'']')) {
     Add-CheckError 'The document must declare lang="fa" and dir="rtl".'
 }
@@ -82,9 +113,30 @@ $locs = @($sitemap.SelectNodes("//*[local-name()='loc']") | ForEach-Object { $_.
 if ($locs.Count -eq 0) { Add-CheckError 'sitemap.xml must contain at least one URL.' }
 if (($locs | Sort-Object -Unique).Count -ne $locs.Count) { Add-CheckError 'sitemap.xml contains duplicate URLs.' }
 foreach ($loc in $locs) {
-    if ($loc -match '[?#]' -or $loc -ne 'https://timemetro.ir/') {
+    $allowedLocs = @(
+        'https://timemetro.ir/',
+        'https://timemetro.ir/privacy',
+        'https://timemetro.ir/terms'
+    )
+    if ($loc -match '[?#]' -or $loc -notin $allowedLocs) {
         Add-CheckError "Non-canonical or parameterized sitemap URL: $loc"
     }
+}
+
+$redirectsPath = Join-Path $Root '_redirects'
+if (-not (Test-Path -LiteralPath $redirectsPath -PathType Leaf)) {
+    Add-CheckError 'Missing _redirects compatibility rules.'
+} else {
+    $redirects = Get-Content -Raw -Encoding UTF8 $redirectsPath
+    foreach ($rule in @('/privacy.html /privacy 301', '/terms.html /terms 301')) {
+        if ($redirects -notmatch [regex]::Escape($rule)) {
+            Add-CheckError "Missing legacy redirect: $rule"
+        }
+    }
+}
+
+if (-not (Test-Path -LiteralPath (Join-Path $Root 'app.js') -PathType Leaf)) {
+    Add-CheckError 'Missing legacy app.js compatibility file.'
 }
 
 if ([regex]::IsMatch($html, '(?is)<a\b[^>]*\bhref\s*=\s*["'']#["'']')) {
