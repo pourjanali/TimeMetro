@@ -1,0 +1,7 @@
+/robots.txt
+  Link: <https://timemetro.ir/robots.txt>; rel="canonical"
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin

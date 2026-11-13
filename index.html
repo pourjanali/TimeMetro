@@ -13,6 +13,7 @@
     
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="canonical" href="https://timemetro.ir/">
+    <link rel="alternate" hreflang="fa-IR" href="https://timemetro.ir/">
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +41,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Estedad Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Estedad:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Estedad:wght@100..900&display=swap" rel="stylesheet">
 
     <meta name="theme-color" content="#111827">
     <meta name="color-scheme" content="dark">
@@ -700,6 +701,11 @@
 
     <!-- INLINE JAVASCRIPT APP AND ROUTER -->
     <script>
+        // === 0. PERSIAN DIGITS HELPER ===
+        function toPersianDigits(input) {
+            return String(input).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+        }
+
         // === 1. ROUTER SYSTEM ===
         const pageMeta = {
             home: {
@@ -874,7 +880,8 @@
             updateTime() {
                 if (this.clockElement) {
                     const now = new Date();
-                    this.clockElement.textContent = [now.getHours(), now.getMinutes(), now.getSeconds()].map(n => String(n).padStart(2, '0')).join(':');
+                    const timeStr = [now.getHours(), now.getMinutes(), now.getSeconds()].map(n => String(n).padStart(2, '0')).join(':');
+                    this.clockElement.textContent = toPersianDigits(timeStr);
                 }
             }
         };
@@ -1023,11 +1030,11 @@
                     summaryObj.title.textContent = title;
                     const nextIdx = this.findNextTrainIndex(times);
                     if (nextIdx !== -1) {
-                        summaryObj.nextTime.textContent = times[nextIdx].substring(0, 5);
-                        summaryObj.countdown.textContent = `${this.calculateMinutesRemaining(times[nextIdx])} دقیقه`;
+                        summaryObj.nextTime.textContent = toPersianDigits(times[nextIdx].substring(0, 5));
+                        summaryObj.countdown.textContent = `${toPersianDigits(this.calculateMinutesRemaining(times[nextIdx]))} دقیقه`;
                         if (times.length > nextIdx + 1) {
-                            summaryObj.secondTime.textContent = times[nextIdx + 1].substring(0, 5);
-                            summaryObj.secondCountdown.textContent = `${this.calculateMinutesRemaining(times[nextIdx + 1])} دقیقه`;
+                            summaryObj.secondTime.textContent = toPersianDigits(times[nextIdx + 1].substring(0, 5));
+                            summaryObj.secondCountdown.textContent = `${toPersianDigits(this.calculateMinutesRemaining(times[nextIdx + 1]))} دقیقه`;
                         } else {
                             summaryObj.secondTime.textContent = "--:--";
                             summaryObj.secondCountdown.textContent = "-- دقیقه";
@@ -1055,6 +1062,8 @@
                     const isNext = (idx === nextTrainIdx);
                     const isPast = nextTrainIdx === -1 || idx < nextTrainIdx;
                     const mins = this.calculateMinutesRemaining(time);
+                    const timeFa = toPersianDigits(time.substring(0, 5));
+                    const minsFa = toPersianDigits(mins);
                     
                     let classes = "text-center rounded-md p-2 text-lg font-medium tabular-nums transition-colors ";
                     let colorClass = themeColor === 'blue' ? "bg-blue-600 text-white shadow-lg scale-105" : "bg-green-600 text-white shadow-lg scale-105";
@@ -1063,8 +1072,8 @@
                     else if (isPast) classes += "bg-gray-700/50 text-gray-500 line-through";
                     else classes += "bg-gray-700 text-gray-200";
 
-                    const stateText = isNext ? `${mins} دقیقه تا حرکت` : isPast ? 'گذشته' : `${mins} دقیقه تا حرکت`;
-                    html += `<div class="${classes}" aria-label="حرکت ساعت ${time.substring(0, 5)}، ${stateText}"><div class="font-bold">${time.substring(0, 5)}</div><div class="text-xs mt-1 ${isNext ? 'text-blue-100' : 'text-gray-400'}">${isPast ? 'گذشته' : mins + ' دقیقه'}</div></div>`;
+                    const stateText = isNext ? `${minsFa} دقیقه تا حرکت` : isPast ? 'گذشته' : `${minsFa} دقیقه تا حرکت`;
+                    html += `<div class="${classes}" aria-label="حرکت ساعت ${timeFa}، ${stateText}"><div class="font-bold">${timeFa}</div><div class="text-xs mt-1 ${isNext ? 'text-blue-100' : 'text-gray-400'}">${isPast ? 'گذشته' : minsFa + ' دقیقه'}</div></div>`;
                 });
                 return html + `</div></div></div>`;
             },

@@ -1,5 +1,10 @@
+# Redirect old trailing-slash paths
 /privacy/ /privacy 301
 /terms/ /terms 301
+
+# Redirect old .html paths
 /privacy.html /privacy 301
 /terms.html /terms 301
+
+# Redirect index.html to root
 /index.html / 301
