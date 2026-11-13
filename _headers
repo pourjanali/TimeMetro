@@ -1,6 +1,12 @@
 /robots.txt
   Link: <https://timemetro.ir/robots.txt>; rel="canonical"
 
+/privacy
+  Link: <https://timemetro.ir/privacy>; rel="canonical"
+
+/terms
+  Link: <https://timemetro.ir/terms>; rel="canonical"
+
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
